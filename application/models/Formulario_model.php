@@ -3,12 +3,13 @@ class Formulario_model extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
+
 	}
+
 
 	public function inserirJogos($data){
 		$this->db->insert("tbl_produtosJogos",$data);//nome da tabela
 	}
-
 	public function exibirDados(){
 		$this->db
 		->from("tbl_produtosJogos");//Nome da tabela
@@ -64,6 +65,11 @@ class Formulario_model extends CI_Model{
 		->from("tbl_fornecedor");//Nome da tabela
 
 		return $this->db->get()->result_array();
+	}
+
+	public function inserirImagem($dados){
+		$this->db->insert("tbl_teste",$dados);
+
 	}
 }
 
