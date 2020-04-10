@@ -38,7 +38,6 @@ class CadastroFornecedor extends CI_Controller{
 		$this->form_validation->set_rules('for_email','Email');
 
 
-
 		if($this->form_validation->run() == FALSE){
 			$this->load->view("Cadastro");
 		}else{

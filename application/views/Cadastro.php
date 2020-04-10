@@ -35,7 +35,7 @@
 				<div class="container">
 					
 					<?php echo validation_errors(); ?>
-					<?php  echo  form_open_multipart('index.php/Cadastro/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
+					<?php  echo  form_open_multipart('index.php/CadastroJogo/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
 					
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Título</label>
@@ -49,7 +49,8 @@
 							<select id="cat_codigo" class="form-control" name="pro_categoria">
 								<option selected>Escolha</option>
 								<?php
-								$categoria=$this->Formulario_model->exibirCategoria();			foreach ($categoria as $cat) {
+								$categoria=$this->Formulario_model->exibirCategoria();			
+								foreach ($categoria as $cat) {
 									?>
 									<option value="<?php echo $cat['cat_codigo']?>"><?php echo $cat['cat_categoria'] ?></option>
 									<?php
@@ -64,7 +65,8 @@
 							<select id="for_cnpj" class="form-control" name="pro_fornecedor">
 								<option selected>Escolha</option>
 								<?php
-								$fornecedor=$this->Formulario_model->exibirFornecedor();			foreach ($fornecedor as $for) {
+								$fornecedor=$this->Formulario_model->exibirFornecedor();			
+								foreach ($fornecedor as $for) {
 									?>
 									<option value="<?php echo $for['for_cnpj']?>"><?php echo $for['for_nomeFantasia'] ?></option>
 									<?php
@@ -130,11 +132,12 @@
 							<?php echo form_close(); ?>
 						</div>
 					</div>
+
 					<div class="tab-pane" id="cadastros" role="tabpanel" aria-labelledby="cadastros-tab">
 
 						<div class="container">
 							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/Cadastro/cadastraCategoria'); ?> 
+							<?php  echo form_open('index.php/Cadastros/cadastraCategoria'); ?> 
 
 							<div class="form-group row">
 								<label for="" class="col-sm-4 col-form-label">Categoria</label>
@@ -146,10 +149,8 @@
 
 							<?php echo form_close(); ?>
 
-
-
 							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/Cadastro/cadastraClassificacao'); ?>
+							<?php  echo form_open('index.php/Cadastros/cadastraClassificacao'); ?>
 
 							<div class="form-group row">
 								<label for="" class="col-sm-4 col-form-label">Classificação</label>
@@ -163,50 +164,94 @@
 
 
 							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/Cadastro/cadastraModelo'); ?>
+							<?php  echo form_open('index.php/Cadastros/cadastraModelo'); ?>
 
 							<div class="form-group row">
 								<label for="" class="col-sm-4 col-form-label">Modelo</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="">
+									<input type="text" class="form-control" id="" name="mod_modelo">
 								</div>
 								<button type="submit" class="btn btn-success">Cadastrar</button>
 							</div>
 							<?php echo form_close(); ?>
+
+							<?php echo validation_errors(); ?>
+							<?php  echo form_open('index.php/Cadastros/cadastraMarca'); ?>
+
+							<div class="form-group row">
+								<div class="col-sm-5">
+									<label for="">Marca</label>
+									<input type="text" class="form-control" id="" name="mar_marca">
+								</div>
+								<div class="col-sm-5">
+									<label for="" >Fabricante</label>
+									<input type="text" class="form-control" id="" name="mar_fabricante">
+								</div>
+							</div>
+							<button type="submit" class="btn btn-success" >Cadastrar</button>
+							<?php echo form_close(); ?>
+
+							<?php echo validation_errors(); ?>
+							<?php  echo form_open('index.php/CadastroPecas/cadastraCategoriaPecas'); ?>
+
+							<div class="form-group row">
+								<label for="" class="col-sm-4 col-form-label">Categoria Peça</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="catp_nome">
+								</div>
+								<button type="submit" class="btn btn-success">Cadastrar</button>
+							</div>  
+							<?php echo form_close(); ?>
 						</div>
 					</div>
-
 					<!--FIM TAB CADASTRO-->
 					<div class="tab-pane" id="pecas" role="tabpanel" aria-labelledby="pecas-tab">
-
+						<?php echo validation_errors(); ?>
+						<?php  echo form_open_multipart('index.php/CadastroPecas/cadastraPecas'); ?>
 						<div class="container">
 
 							<div class="form-group row">
 								<label for="" class="col-sm-4 col-form-label">Nome</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="">
+									<input type="text" class="form-control" name="pec_nome">
 								</div>
 							</div>  
 							<div class="form-group row">
 								<label for="" class="col-sm-4 col-form-label">Marca</label>
 								<div class="col-sm-9">
-									<select id="" class="form-control">
+									<select id="" class="form-control" name="pec_marca">
 										<option selected>Escolha</option>
-										<option>...</option>
+										<?php
+										$marca=$this->Formulario_model->exibirMarca();			
+										foreach ($marca as $mar) {
+											?>
+											<option value="<?php echo $mar['mar_codigo']?>"><?php echo $mar['mar_marca'] ?></option>
+											<?php
+										}
+										?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="" class="col-sm-4 col-form-label">Modelo</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="">
+									<select id="" class="form-control" name="pec_modelo">
+										<option selected>Escolha</option>
+										<?php
+										$modelo=$this->Formulario_model->exibirModelo();			
+										foreach ($modelo as $mod) {
+											?>
+											<option value="<?php echo $mod['mod_codigo']?>"><?php echo $mod['mod_modelo'] ?></option>
+											<?php
+										}
+										?>
+									</select>
 								</div>
-							</div>  
-
+							</div>
 							<div class="form-group">
 								<label for="" class="col-sm-4 col-form-label">Descrição</label>
 								<div class="col-sm-9">
-									<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="" rows="4"></textarea>
+									<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="" rows="4" name="pec_descricao"></textarea>
 								</div>
 							</div>
 
@@ -214,21 +259,51 @@
 							<div class="col-sm-9">
 								<div class="input-group">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-										<label class="custom-file-label" for="inputGroupFile04">Escolha a imagem</label>
+										<input type="file" class="custom-file-input" id="imagem" aria-describedby="" name="pec_foto">
+										<label class="custom-file-label" for="">Escolha a imagem</label>
 									</div>
-									<div class="input-group-append">
-										<button class="btn btn-success" type="button" id="inputGroupFileAddon04">Salvar</button>
-									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
+								<div class="col-sm-9">
+									<select id="for_cnpj" class="form-control" name="pec_fornecedor">
+										<option selected>Escolha</option>
+										<?php
+										$fornecedor=$this->Formulario_model->exibirFornecedor();			
+										foreach ($fornecedor as $for) {
+											?>
+											<option value="<?php echo $for['for_cnpj']?>"><?php echo $for['for_nomeFantasia'] ?></option>
+											<?php
+										}
+										?>
+									</select>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="" class="col-sm-4 col-form-label">Preço</label>
 								<div class="col-sm-9">
-									<input type="number" step="0.01" class="form-control" id="">
+									<input type="number" step="0.01" class="form-control" id=""name="pec_preco">
 								</div>
-							</div>  
+							</div> 
+							<div class="form-group row">
+								<label for="" class="col-sm-4 col-form-label">Categoria</label>
+								<div class="col-sm-9">
+									<select id="catp_codigo" class="form-control" name="pec_categoria">
+										<option selected>Escolha</option>
+										<?php
+										$catPecas=$this->Formulario_model->exibirCategoriaPecas();			
+										foreach ($catPecas as $pec) {
+											?>
+											<option value="<?php echo $pec['catp_codigo']?>"><?php echo $pec['catp_nome'] ?></option>
+											<?php
+										}
+										?>
+									</select>
+								</div>
+							</div> 
 							<button type="submit" class="btn btn-success">Cadastrar</button>
+							<?php echo form_close(); ?>
 						</div>
 					</div>
 					<div class="tab-pane" id="fornecedor" role="tabpanel" aria-labelledby="fornecedor-tab">

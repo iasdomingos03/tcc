@@ -3,17 +3,15 @@ class Formulario_model extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
-
 	}
-
 
 	public function inserirJogos($data){
 		$this->db->insert("tbl_produtosJogos",$data);//nome da tabela
 	}
+	
 	public function exibirDados(){
 		$this->db
 		->from("tbl_produtosJogos");//Nome da tabela
-
 		return $this->db->get()->result_array();
 	}
 
@@ -53,7 +51,7 @@ class Formulario_model extends CI_Model{
 		$this->db
 		->from("tbl_categoriaJogos");//Nome da tabela
 
-		return $this->db->get()->result_array();
+		 return $this->db->get()->result_array();
 	}
 
 	public function inserirFornecedor($data){
@@ -63,13 +61,45 @@ class Formulario_model extends CI_Model{
 	public function exibirFornecedor(){
 		$this->db
 		->from("tbl_fornecedor");//Nome da tabela
-
 		return $this->db->get()->result_array();
 	}
 
-	public function inserirImagem($dados){
-		$this->db->insert("tbl_teste",$dados);
+	public function inserirModelo($data){
+		$this->db->insert("tbl_modelo",$data);//nome da tabela
+	}
 
+	public function exibirModelo(){
+		$this->db
+		->from("tbl_modelo");//Nome da tabela
+		return $this->db->get()->result_array();
+	}
+
+	public function inserirMarca($data){
+		$this->db->insert("tbl_marca1",$data);//nome da tabela
+	}
+
+	public function exibirMarca(){
+		$this->db
+		->from("tbl_marca1");//Nome da tabela
+		return $this->db->get()->result_array();
+	}
+	public function inserirPecas($pecas){
+		$this->db->insert("tbl_pecasComputador",$pecas);//nome da tabela
+	}
+
+	public function exibirPecas(){
+		$this->db
+		->from("tbl_pecasComputador");//Nome da tabela
+		return $this->db->get()->result_array();
+	}
+	public function inserirCategoriaPecas($pecas){
+		$this->db->insert("tbl_categoriaPecas",$pecas);//nome da tabela
+	}
+
+	public function exibirCategoriaPecas(){
+		$this->db
+		->from("tbl_categoriaPecas");//Nome da tabela
+		return $this->db->get()->result_array();
 	}
 }
 
