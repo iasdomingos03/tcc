@@ -25,7 +25,7 @@
 				<a class="nav-link shadow p-3 mb-5 bg-white rounded" id="fornecedor-tab" data-toggle="tab" href="#fornecedor" role="tab" aria-controls="fornecedor" aria-selected="false">Fornecedor</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link shadow p-3 mb-5 bg-white rounded" id="teste-tab" data-toggle="tab" href="#teste" role="tab" aria-controls="teste" aria-selected="false">Upload</a>
+				<a class="nav-link shadow p-3 mb-5 bg-white rounded" id="computador-tab" data-toggle="tab" href="#computador" role="tab" aria-controls="computador" aria-selected="false">Computador</a>
 			</li>
 		</ul>
 
@@ -117,319 +117,373 @@
 								<input type="file" class="custom-file-input" id="" aria-describedby="" name="pro_foto">
 								<label class="custom-file-label" for="">Escolha a imagem</label>
 							</div>
-								<!-- <div class="input-group-append">
-									<button class="btn btn-success" type="button" id="inputGroupFileAddon04">Salvar</button> </div>-->
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Preço</label>
-								<div class="col-sm-9">
-									<input type="number" step="0.01" class="form-control" id="" name="pro_preco">
-								</div>
-							</div>  
-							<button type="submit" class="btn btn-success">Cadastrar</button>
-
-							<?php echo form_close(); ?>
 						</div>
 					</div>
-
-					<div class="tab-pane" id="cadastros" role="tabpanel" aria-labelledby="cadastros-tab">
-
-						<div class="container">
-							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/Cadastros/cadastraCategoria'); ?> 
-
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Categoria</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="cat_categoria">
-								</div>
-								<button type="submit" class="btn btn-success" id="btn_cat">Cadastrar</button>
-							</div>  
-
-							<?php echo form_close(); ?>
-
-							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/Cadastros/cadastraClassificacao'); ?>
-
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Classificação</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="cla_classificacao">
-								</div>
-								<button type="submit" class="btn btn-success">Cadastrar</button>
-							</div>  
-
-							<?php echo form_close(); ?>
-
-
-							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/Cadastros/cadastraModelo'); ?>
-
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Modelo</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="" name="mod_modelo">
-								</div>
-								<button type="submit" class="btn btn-success">Cadastrar</button>
-							</div>
-							<?php echo form_close(); ?>
-
-							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/Cadastros/cadastraMarca'); ?>
-
-							<div class="form-group row">
-								<div class="col-sm-5">
-									<label for="">Marca</label>
-									<input type="text" class="form-control" id="" name="mar_marca">
-								</div>
-								<div class="col-sm-5">
-									<label for="" >Fabricante</label>
-									<input type="text" class="form-control" id="" name="mar_fabricante">
-								</div>
-							</div>
-							<button type="submit" class="btn btn-success" >Cadastrar</button>
-							<?php echo form_close(); ?>
-
-							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/CadastroPecas/cadastraCategoriaPecas'); ?>
-
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Categoria Peça</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="catp_nome">
-								</div>
-								<button type="submit" class="btn btn-success">Cadastrar</button>
-							</div>  
-							<?php echo form_close(); ?>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Preço</label>
+						<div class="col-sm-9">
+							<input type="number" step="0.01" class="form-control" id="" name="pro_preco">
 						</div>
-					</div>
-					<!--FIM TAB CADASTRO-->
-					<div class="tab-pane" id="pecas" role="tabpanel" aria-labelledby="pecas-tab">
-						<?php echo validation_errors(); ?>
-						<?php  echo form_open_multipart('index.php/CadastroPecas/cadastraPecas'); ?>
-						<div class="container">
+					</div>  
+					<button type="submit" class="btn btn-success">Cadastrar</button>
 
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Nome</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="pec_nome">
-								</div>
-							</div>  
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Marca</label>
-								<div class="col-sm-9">
-									<select id="" class="form-control" name="pec_marca">
-										<option selected>Escolha</option>
-										<?php
-										$marca=$this->Formulario_model->exibirMarca();			
-										foreach ($marca as $mar) {
-											?>
-											<option value="<?php echo $mar['mar_codigo']?>"><?php echo $mar['mar_marca'] ?></option>
-											<?php
-										}
-										?>
-									</select>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Modelo</label>
-								<div class="col-sm-9">
-									<select id="" class="form-control" name="pec_modelo">
-										<option selected>Escolha</option>
-										<?php
-										$modelo=$this->Formulario_model->exibirModelo();			
-										foreach ($modelo as $mod) {
-											?>
-											<option value="<?php echo $mod['mod_codigo']?>"><?php echo $mod['mod_modelo'] ?></option>
-											<?php
-										}
-										?>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="" class="col-sm-4 col-form-label">Descrição</label>
-								<div class="col-sm-9">
-									<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="" rows="4" name="pec_descricao"></textarea>
-								</div>
-							</div>
-
-							<label for="" class="col-sm-4 col-form-label">Imagem</label>
-							<div class="col-sm-9">
-								<div class="input-group">
-									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="imagem" aria-describedby="" name="pec_foto">
-										<label class="custom-file-label" for="">Escolha a imagem</label>
-									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
-								<div class="col-sm-9">
-									<select id="for_cnpj" class="form-control" name="pec_fornecedor">
-										<option selected>Escolha</option>
-										<?php
-										$fornecedor=$this->Formulario_model->exibirFornecedor();			
-										foreach ($fornecedor as $for) {
-											?>
-											<option value="<?php echo $for['for_cnpj']?>"><?php echo $for['for_nomeFantasia'] ?></option>
-											<?php
-										}
-										?>
-									</select>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Preço</label>
-								<div class="col-sm-9">
-									<input type="number" step="0.01" class="form-control" id=""name="pec_preco">
-								</div>
-							</div> 
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Categoria</label>
-								<div class="col-sm-9">
-									<select id="catp_codigo" class="form-control" name="pec_categoria">
-										<option selected>Escolha</option>
-										<?php
-										$catPecas=$this->Formulario_model->exibirCategoriaPecas();			
-										foreach ($catPecas as $pec) {
-											?>
-											<option value="<?php echo $pec['catp_codigo']?>"><?php echo $pec['catp_nome'] ?></option>
-											<?php
-										}
-										?>
-									</select>
-								</div>
-							</div> 
-							<button type="submit" class="btn btn-success">Cadastrar</button>
-							<?php echo form_close(); ?>
-						</div>
-					</div>
-					<div class="tab-pane" id="fornecedor" role="tabpanel" aria-labelledby="fornecedor-tab">
-						<div class="container">
-
-							<?php echo validation_errors(); ?>
-							<?php  echo form_open('index.php/cadastroFornecedor/cadastraFornecedor'); ?><!--Nome do metodo que cadastra-->
-
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">CNPJ</label>
-								<div class="col-sm-9">
-									<input type="number" class="form-control" id="" name="for_cnpj">
-								</div>
-							</div>  
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Razao Social</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="" name="for_razaoSocial">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Nome Fantasia</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="" name="for_nomeFantasia">
-								</div>
-							</div>
-							<div class="form-group inline">
-								<label for="cep" class="col-sm-4 col-form-label">CEP</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" id="cep" name="for_cep"/>
-								</div>
-							</div>
-							<button type="button" class="btn btn-success" id="btnPesquisar">Pesquisar</button>
-							<div class="form-group row">
-								<label for="logradouro" class="col-sm-4 col-form-label">Rua</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="rua" name="for_endereco">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Numero</label>
-								<!--Dimnuir o tamanho do input-->
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="" name="for_numero">
-								</div>
-							</div>
-							<!--CEP DA BAIRRO E CIDADE??????-->
-							<div class="form-group row">
-								<label for="bairro" class="col-sm-4 col-form-label">Bairro</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="bairro" name="for_bairro">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="cidade" class="col-sm-4 col-form-label">Cidade</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="cidade" name="for_cidade">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="uf" class="col-sm-4 col-form-label">Estado</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="estado" name="for_estado">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Telefone</label>
-								<div class="col-sm-9">
-									<input type="number" class="form-control" id="" name="for_telefone">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Celular</label>
-								<div class="col-sm-9">
-									<input type="number" class="form-control" id="" name="for_celular">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-4 col-form-label">Email</label>
-								<div class="col-sm-9">
-									<input type="email" class="form-control" id="" name="for_email">
-								</div>
-							</div>
-							<button type="submit" class="btn btn-success">Cadastrar</button>
-
-							<?php echo form_close(); ?>
-						</div>	
-					</div>
-					<!--Teste do upload-->
-					<!-- <div class="tab-pane" id="teste" role="tabpanel" aria-labelledby="teste-tab">
-
-						<div class="container">
-							<?php //echo validation_errors(); ?>
-					<?php  //echo  form_open_multipart('index.php/Teste/imagemJogo'); ?>
-							<label for="" class="col-sm-4 col-form-label">Imagem</label>
-							<div class="col-sm-9" name="foto" method="POST" enctype="multipart/form-data">
-								<div class="input-group">
-									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="imagem_nome">
-										<label class="custom-file-label" for="inputGroupFile04">Escolha a imagem</label>
-									</div>
-								<div class="input-group-append">
-									<button class="btn btn-success" type="submit" id="inputGroupFileAddon04">Salvar</button> </div>
-								</div>
-							</div>
-							<?php //echo form_close(); ?>
-						</div>
-					</div> -->
-					<!--************************************************-->
+					<?php echo form_close(); ?>
 				</div>
 			</div>
-		</body>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-		<script type="text/javascript">
-			$('#myTab a').on('click', function (e) {
-				e.preventDefault()
-				$(this).tab('show')
-			})
 
-		</script>
-		<script type="text/javascript">
+			<div class="tab-pane" id="cadastros" role="tabpanel" aria-labelledby="cadastros-tab">
 
-			const btnPesquisar = document.querySelector("#btnPesquisar");
+				<div class="container">
+					<?php echo validation_errors(); ?>
+					<?php  echo form_open('index.php/Cadastros/cadastraCategoria'); ?> 
 
-			btnPesquisar.addEventListener("click", e =>{ 
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Categoria</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="cat_categoria">
+						</div>
+						<button type="submit" class="btn btn-success" id="btn_cat">Cadastrar</button>
+					</div>  
+
+					<?php echo form_close(); ?>
+
+					<?php echo validation_errors(); ?>
+					<?php  echo form_open('index.php/Cadastros/cadastraClassificacao'); ?>
+
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Classificação</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="cla_classificacao">
+						</div>
+						<button type="submit" class="btn btn-success">Cadastrar</button>
+					</div>  
+
+					<?php echo form_close(); ?>
+
+
+					<?php echo validation_errors(); ?>
+					<?php  echo form_open('index.php/Cadastros/cadastraModelo'); ?>
+
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Modelo</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="" name="mod_modelo">
+						</div>
+						<button type="submit" class="btn btn-success">Cadastrar</button>
+					</div>
+					<?php echo form_close(); ?>
+
+					<?php echo validation_errors(); ?>
+					<?php  echo form_open('index.php/Cadastros/cadastraMarca'); ?>
+
+					<div class="form-group row">
+						<div class="col-sm-5">
+							<label for="">Marca</label>
+							<input type="text" class="form-control" id="" name="mar_marca">
+						</div>
+						<div class="col-sm-5">
+							<label for="" >Fabricante</label>
+							<input type="text" class="form-control" id="" name="mar_fabricante">
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success" >Cadastrar</button>
+					<?php echo form_close(); ?>
+
+					<?php echo validation_errors(); ?>
+					<?php  echo form_open('index.php/CadastroPecas/cadastraCategoriaPecas'); ?>
+
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Categoria Peça</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="catp_nome">
+						</div>
+						<button type="submit" class="btn btn-success">Cadastrar</button>
+					</div>  
+					<?php echo form_close(); ?>
+				</div>
+			</div>
+			<!--FIM TAB CADASTRO-->
+			<div class="tab-pane" id="pecas" role="tabpanel" aria-labelledby="pecas-tab">
+				<?php echo validation_errors(); ?>
+				<?php  echo form_open_multipart('index.php/CadastroPecas/cadastraPecas'); ?>
+				<div class="container">
+
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Nome</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="pec_nome">
+						</div>
+					</div>  
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Marca</label>
+						<div class="col-sm-9">
+							<select id="" class="form-control" name="pec_marca">
+								<option selected>Escolha</option>
+								<?php
+								$marca=$this->Formulario_model->exibirMarca();			
+								foreach ($marca as $mar) {
+									?>
+									<option value="<?php echo $mar['mar_codigo']?>"><?php echo $mar['mar_marca'] ?></option>
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Modelo</label>
+						<div class="col-sm-9">
+							<select id="" class="form-control" name="pec_modelo">
+								<option selected>Escolha</option>
+								<?php
+								$modelo=$this->Formulario_model->exibirModelo();			
+								foreach ($modelo as $mod) {
+									?>
+									<option value="<?php echo $mod['mod_codigo']?>"><?php echo $mod['mod_modelo'] ?></option>
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-4 col-form-label">Descrição</label>
+						<div class="col-sm-9">
+							<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="" rows="4" name="pec_descricao"></textarea>
+						</div>
+					</div>
+
+					<label for="" class="col-sm-4 col-form-label">Imagem</label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="imagem" aria-describedby="" name="pec_foto">
+								<label class="custom-file-label" for="">Escolha a imagem</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
+						<div class="col-sm-9">
+							<select id="for_cnpj" class="form-control" name="pec_fornecedor">
+								<option selected>Escolha</option>
+								<?php
+								$fornecedor=$this->Formulario_model->exibirFornecedor();			
+								foreach ($fornecedor as $for) {
+									?>
+									<option value="<?php echo $for['for_cnpj']?>"><?php echo $for['for_nomeFantasia'] ?></option>
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Preço</label>
+						<div class="col-sm-9">
+							<input type="number" step="0.01" class="form-control" id=""name="pec_preco">
+						</div>
+					</div> 
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Categoria</label>
+						<div class="col-sm-9">
+							<select id="catp_codigo" class="form-control" name="pec_categoria">
+								<option selected>Escolha</option>
+								<?php
+								$catPecas=$this->Formulario_model->exibirCategoriaPecas();			
+								foreach ($catPecas as $pec) {
+									?>
+									<option value="<?php echo $pec['catp_codigo']?>"><?php echo $pec['catp_nome'] ?></option>
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div> 
+					<button type="submit" class="btn btn-success">Cadastrar</button>
+					<?php echo form_close(); ?>
+				</div>
+			</div>
+			<div class="tab-pane" id="fornecedor" role="tabpanel" aria-labelledby="fornecedor-tab">
+				<div class="container">
+
+					<?php echo validation_errors(); ?>
+					<?php  echo form_open('index.php/cadastroFornecedor/cadastraFornecedor'); ?><!--Nome do metodo que cadastra-->
+
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">CNPJ</label>
+						<div class="col-sm-9">
+							<input type="number" class="form-control" id="" name="for_cnpj">
+						</div>
+					</div>  
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Razao Social</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="" name="for_razaoSocial">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Nome Fantasia</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="" name="for_nomeFantasia">
+						</div>
+					</div>
+					<div class="form-group inline">
+						<label for="cep" class="col-sm-4 col-form-label">CEP</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="cep" name="for_cep"/>
+						</div>
+					</div>
+					<button type="button" class="btn btn-success" id="btnPesquisar">Pesquisar</button>
+					<div class="form-group row">
+						<label for="logradouro" class="col-sm-4 col-form-label">Rua</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="rua" name="for_endereco">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Numero</label>
+						<!--Dimnuir o tamanho do input-->
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="" name="for_numero">
+						</div>
+					</div>
+					<!--CEP DA BAIRRO E CIDADE??????-->
+					<div class="form-group row">
+						<label for="bairro" class="col-sm-4 col-form-label">Bairro</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="bairro" name="for_bairro">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="cidade" class="col-sm-4 col-form-label">Cidade</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="cidade" name="for_cidade">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="uf" class="col-sm-4 col-form-label">Estado</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="estado" name="for_estado">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Telefone</label>
+						<div class="col-sm-9">
+							<input type="number" class="form-control" id="" name="for_telefone">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Celular</label>
+						<div class="col-sm-9">
+							<input type="number" class="form-control" id="" name="for_celular">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Email</label>
+						<div class="col-sm-9">
+							<input type="email" class="form-control" id="" name="for_email">
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success">Cadastrar</button>
+
+					<?php echo form_close(); ?>
+				</div>	
+			</div>
+			<div class="tab-pane" id="computador" role="tabpanel" aria-labelledby="computador-tab">
+
+				<div class="container">
+					<?php echo validation_errors(); ?>
+					<?php  echo  form_open_multipart('index.php/CadastroComputador/cadastraComputador'); ?>
+
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Nome</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="com_nome">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-4 col-form-label">Descrição</label>
+						<div class="col-sm-9">
+							<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="" rows="4" name="com_descricao"></textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Marca</label>
+						<div class="col-sm-9">
+							<select id="" class="form-control" name="com_marca">
+								<option selected>Escolha</option>
+								<?php
+								$marca=$this->Formulario_model->exibirMarca();			
+								foreach ($marca as $mar) {
+									?>
+									<option value="<?php echo $mar['mar_codigo']?>"><?php echo $mar['mar_marca'] ?></option>
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Modelo</label>
+						<div class="col-sm-9">
+							<select id="" class="form-control" name="com_modelo">
+								<option selected>Escolha</option>
+								<?php
+								$modelo=$this->Formulario_model->exibirModelo();			
+								foreach ($modelo as $mod) {
+									?>
+									<option value="<?php echo $mod['mod_codigo']?>"><?php echo $mod['mod_modelo'] ?></option>
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<label for="" class="col-sm-4 col-form-label">Imagem</label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="" aria-describedby="" name="com_foto">
+								<label class="custom-file-label" for="">Escolha a imagem</label>
+							</div>
+						</div>
+					</div>
+					<!--A ARQUITETURA COLOCA COMO SELECT OU DEIXA DIGITAR???????-->
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Arquitetura</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="com_arquitetura">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Preço</label>
+						<div class="col-sm-9">
+							<input type="number" step="0.01" class="form-control" id="" name="com_preco">
+						</div>
+					</div>  
+					<button type="submit" class="btn btn-success">Cadastrar</button>
+					<?php echo form_close(); ?>
+				</div>
+			</div> 
+			<!--************************************************-->
+		</div>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$('#myTab a').on('click', function (e) {
+		e.preventDefault()
+		$(this).tab('show')
+	})
+
+</script>
+<script type="text/javascript">
+
+	const btnPesquisar = document.querySelector("#btnPesquisar");
+
+	btnPesquisar.addEventListener("click", e =>{ 
 	//Bloqueia o evento default
 	e.preventDefault();
 //pegando valores
@@ -453,17 +507,17 @@ fetch(url).then(response =>{
 
 
 
-			function atribuirCampos(dado)
-			{
-				const rua = document.querySelector("#rua");
-				const bairro = document.querySelector("#bairro");
-				const cidade = document.querySelector("#cidade");
-				const estado = document.querySelector("#estado");
+	function atribuirCampos(dado)
+	{
+		const rua = document.querySelector("#rua");
+		const bairro = document.querySelector("#bairro");
+		const cidade = document.querySelector("#cidade");
+		const estado = document.querySelector("#estado");
 
-				rua.value = dado.logradouro;
-				bairro.value = dado.bairro;
-				cidade.value = dado.localidade;
-				estado.value = dado.uf;
-			}
-		</script>
-		</html>
+		rua.value = dado.logradouro;
+		bairro.value = dado.bairro;
+		cidade.value = dado.localidade;
+		estado.value = dado.uf;
+	}
+</script>
+</html>

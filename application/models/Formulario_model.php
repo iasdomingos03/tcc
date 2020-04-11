@@ -22,14 +22,12 @@ class Formulario_model extends CI_Model{
 		$result=$this->db->get();
 		return $result->num_rows();
 	}
-	public function ano(){
-		//get_where equivale ao where
-		$this->db->get_where("tbl_produtosJogos", array('jog_anoLancamento'=>'2007'));
-
-
-		$result=$this->db->get();
-		return $result->num_rows();
-	}
+	// public function ano(){
+	// 	//get_where equivale ao where
+	// 	$this->db->get_where("tbl_produtosJogos", array('jog_anoLancamento'=>'2007'));
+	// $result=$this->db->get();
+	// 	return $result->num_rows();
+	// }
 
 	
 	public function inserirCategoria($data){
@@ -51,7 +49,7 @@ class Formulario_model extends CI_Model{
 		$this->db
 		->from("tbl_categoriaJogos");//Nome da tabela
 
-		 return $this->db->get()->result_array();
+		return $this->db->get()->result_array();
 	}
 
 	public function inserirFornecedor($data){
@@ -99,6 +97,16 @@ class Formulario_model extends CI_Model{
 	public function exibirCategoriaPecas(){
 		$this->db
 		->from("tbl_categoriaPecas");//Nome da tabela
+		return $this->db->get()->result_array();
+	}
+
+	public function inserirComputador($com){
+		$this->db->insert("tbl_produtoComputador",$com);//nome da tabela
+	}
+
+	public function exibirComputador(){
+		$this->db
+		->from("tbl_produtoComputador");//Nome da tabela
 		return $this->db->get()->result_array();
 	}
 }
