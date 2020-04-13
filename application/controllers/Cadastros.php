@@ -91,4 +91,25 @@ class Cadastros extends CI_Controller{
 			echo "Cadastro Efetuado";
 		}
 	}
+
+	public function cadastraTipoManutencao(){
+
+		$this->load->helper(['form','url']);
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('tman_nome','Tipo da Manutencao','required');
+		$this->form_validation->set_rules('tman_descricao','Descricao','required');
+
+		if($this->form_validation->run() == FALSE){
+			$this->load->view("Cadastro");
+		}else{
+			$data=$this->input->post();
+			$this->load->model('Formulario_model');
+			$this->Formulario_model->inserirTipoManutencao($data);
+			echo "Cadastro Efetuado";
+		}
+	}
+
+	
+
+
 }

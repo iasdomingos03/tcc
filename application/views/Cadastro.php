@@ -27,6 +27,9 @@
 			<li class="nav-item">
 				<a class="nav-link shadow p-3 mb-5 bg-white rounded" id="computador-tab" data-toggle="tab" href="#computador" role="tab" aria-controls="computador" aria-selected="false">Computador</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link shadow p-3 mb-5 bg-white rounded" id="manutencao-tab" data-toggle="tab" href="#manutencao" role="tab" aria-controls="manutencao" aria-selected="false">Manutenção</a>
+			</li>
 		</ul>
 
 		<!-- Painel de abas -->
@@ -466,24 +469,44 @@
 					<?php echo form_close(); ?>
 				</div>
 			</div> 
-			<!--************************************************-->
+			<div class="tab-pane" id="manutencao" role="tabpanel" aria-labelledby="manutencao-tab">
+
+				<div class="container">
+					<?php echo validation_errors(); ?>
+					<?php  echo  form_open('index.php/Cadastros/cadastraTipoManutencao'); ?>
+					<div class="form-group row">
+						<label for="" class="col-sm-4 col-form-label">Tipo de Manutencao</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="tman_nome">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-4 col-form-label">Descrição</label>
+						<div class="col-sm-9">
+							<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="" rows="4" name="tman_descricao"></textarea>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success">Cadastrar</button>
+					<?php echo form_close();?>
+				</div>
+				<!--************************************************-->
+			</div>
 		</div>
-	</div>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script type="text/javascript">
-	$('#myTab a').on('click', function (e) {
-		e.preventDefault()
-		$(this).tab('show')
-	})
+	</body>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$('#myTab a').on('click', function (e) {
+			e.preventDefault()
+			$(this).tab('show')
+		})
 
-</script>
-<script type="text/javascript">
+	</script>
+	<script type="text/javascript">
 
-	const btnPesquisar = document.querySelector("#btnPesquisar");
+		const btnPesquisar = document.querySelector("#btnPesquisar");
 
-	btnPesquisar.addEventListener("click", e =>{ 
+		btnPesquisar.addEventListener("click", e =>{ 
 	//Bloqueia o evento default
 	e.preventDefault();
 //pegando valores
@@ -507,17 +530,17 @@ fetch(url).then(response =>{
 
 
 
-	function atribuirCampos(dado)
-	{
-		const rua = document.querySelector("#rua");
-		const bairro = document.querySelector("#bairro");
-		const cidade = document.querySelector("#cidade");
-		const estado = document.querySelector("#estado");
+		function atribuirCampos(dado)
+		{
+			const rua = document.querySelector("#rua");
+			const bairro = document.querySelector("#bairro");
+			const cidade = document.querySelector("#cidade");
+			const estado = document.querySelector("#estado");
 
-		rua.value = dado.logradouro;
-		bairro.value = dado.bairro;
-		cidade.value = dado.localidade;
-		estado.value = dado.uf;
-	}
-</script>
-</html>
+			rua.value = dado.logradouro;
+			bairro.value = dado.bairro;
+			cidade.value = dado.localidade;
+			estado.value = dado.uf;
+		}
+	</script>
+	</html>
