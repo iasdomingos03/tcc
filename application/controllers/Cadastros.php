@@ -23,7 +23,6 @@ class Cadastros extends CI_Controller{
 		$data=array(
 			"forms"=>$forms
 		);
-		
 		$this->load->view("Cadastro",$data);
 	}
 
@@ -40,6 +39,8 @@ class Cadastros extends CI_Controller{
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirCategoria($data);
 			echo "Cadastro Efetuado";
+			echo json_encode($data);  
+
 		}
 	}
 
@@ -91,6 +92,8 @@ class Cadastros extends CI_Controller{
 			echo "Cadastro Efetuado";
 		}
 	}
+
+	
 
 	public function cadastraTipoManutencao(){
 

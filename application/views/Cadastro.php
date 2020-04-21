@@ -50,14 +50,8 @@
 						<label for="" class="col-sm-4 col-form-label">Categoria</label>
 						<div class="col-sm-9">
 							<select id="cat_codigo" class="form-control" name="pro_categoria">
-								<option selected>Escolha</option>
 								<?php
-								$categoria=$this->Formulario_model->exibirCategoria();			
-								foreach ($categoria as $cat) {
-									?>
-									<option value="<?php echo $cat['cat_codigo']?>"><?php echo $cat['cat_categoria'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectCategoria();	
 								?>
 							</select>
 						</div>
@@ -66,14 +60,8 @@
 						<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
 						<div class="col-sm-9">
 							<select id="for_cnpj" class="form-control" name="pro_fornecedor">
-								<option selected>Escolha</option>
 								<?php
-								$fornecedor=$this->Formulario_model->exibirFornecedor();			
-								foreach ($fornecedor as $for) {
-									?>
-									<option value="<?php echo $for['for_cnpj']?>"><?php echo $for['for_nomeFantasia'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectFornecedor();	
 								?>
 							</select>
 						</div>
@@ -82,13 +70,8 @@
 						<label for="" class="col-sm-4 col-form-label">Classificação</label>
 						<div class="col-sm-9">
 							<select  class="form-control" name="pro_classificacao" id="cla_codigo">
-								<option selected>Escolha</option>
 								<?php
-								$classificacao=$this->Formulario_model->exibirClassificacao();			foreach ($classificacao as $cla) {
-									?>
-									<option value="<?php echo $cla['cla_codigo']?>"><?php echo $cla['cla_classificacao'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectClassificacao();	
 								?>
 							</select>
 						</div>
@@ -220,15 +203,10 @@
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Marca</label>
 						<div class="col-sm-9">
-							<select id="" class="form-control" name="pec_marca">
+							<select id="mar_codigo" class="form-control" name="pec_marca">
 								<option selected>Escolha</option>
 								<?php
-								$marca=$this->Formulario_model->exibirMarca();			
-								foreach ($marca as $mar) {
-									?>
-									<option value="<?php echo $mar['mar_codigo']?>"><?php echo $mar['mar_marca'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectMarca();	
 								?>
 							</select>
 						</div>
@@ -236,15 +214,10 @@
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Modelo</label>
 						<div class="col-sm-9">
-							<select id="" class="form-control" name="pec_modelo">
+							<select id="mod_codigo" class="form-control" name="pec_modelo">
 								<option selected>Escolha</option>
 								<?php
-								$modelo=$this->Formulario_model->exibirModelo();			
-								foreach ($modelo as $mod) {
-									?>
-									<option value="<?php echo $mod['mod_codigo']?>"><?php echo $mod['mod_modelo'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectModelo();	
 								?>
 							</select>
 						</div>
@@ -269,14 +242,8 @@
 						<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
 						<div class="col-sm-9">
 							<select id="for_cnpj" class="form-control" name="pec_fornecedor">
-								<option selected>Escolha</option>
 								<?php
-								$fornecedor=$this->Formulario_model->exibirFornecedor();			
-								foreach ($fornecedor as $for) {
-									?>
-									<option value="<?php echo $for['for_cnpj']?>"><?php echo $for['for_nomeFantasia'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectFornecedor();	
 								?>
 							</select>
 						</div>
@@ -293,12 +260,7 @@
 							<select id="catp_codigo" class="form-control" name="pec_categoria">
 								<option selected>Escolha</option>
 								<?php
-								$catPecas=$this->Formulario_model->exibirCategoriaPecas();			
-								foreach ($catPecas as $pec) {
-									?>
-									<option value="<?php echo $pec['catp_codigo']?>"><?php echo $pec['catp_nome'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectCategoriaPecas();	
 								?>
 							</select>
 						</div>
@@ -414,15 +376,10 @@
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Marca</label>
 						<div class="col-sm-9">
-							<select id="" class="form-control" name="com_marca">
+							<select id="mar_codigo" class="form-control" name="com_marca">
 								<option selected>Escolha</option>
 								<?php
-								$marca=$this->Formulario_model->exibirMarca();			
-								foreach ($marca as $mar) {
-									?>
-									<option value="<?php echo $mar['mar_codigo']?>"><?php echo $mar['mar_marca'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectMarca();	
 								?>
 							</select>
 						</div>
@@ -430,16 +387,12 @@
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Modelo</label>
 						<div class="col-sm-9">
-							<select id="" class="form-control" name="com_modelo">
+							<select id="mod_codigo" class="form-control" name="com_modelo">
 								<option selected>Escolha</option>
 								<?php
-								$modelo=$this->Formulario_model->exibirModelo();			
-								foreach ($modelo as $mod) {
-									?>
-									<option value="<?php echo $mod['mod_codigo']?>"><?php echo $mod['mod_modelo'] ?></option>
-									<?php
-								}
+								$this->Formulario_model->selectModelo();	
 								?>
+								
 							</select>
 						</div>
 					</div>
@@ -526,10 +479,6 @@ fetch(url).then(response =>{
 	atribuirCampos(dado);
 })
 })
-
-
-
-
 		function atribuirCampos(dado)
 		{
 			const rua = document.querySelector("#rua");
@@ -543,4 +492,29 @@ fetch(url).then(response =>{
 			estado.value = dado.uf;
 		}
 	</script>
-	</html>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#btn_cat').on('click', function() {
+
+				var categoria = $('cat_categoria').val();
+				$.ajax({
+					url: "<?php echo base_url("Cadastros/cadastraCategoria");?>",//Esta no controller
+					type: "POST",
+					data: {
+						categoria:cat_categoria
+					},
+					cache: false,
+					success: function(data){
+						var data = JSON.parse(data);
+						//sucess
+					},
+					error:function(data){
+						console.log("erro");
+					}
+					})//ajax
+			})
+			});//function ready
+
+		</script>
+		</html>
