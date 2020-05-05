@@ -26,7 +26,7 @@ class Formulario_model extends CI_Model{
 	// 	return $result->num_rows();
 	// }
 
-/*---------INICIO CATEGORIA---------------------------------------------*/	
+	/*---------INICIO CATEGORIA---------------------------------------------*/	
 	public function inserirCategoria($data){
 		$this->db->insert("tbl_categoriaJogos",$data);//nome da tabela
 	}
@@ -48,12 +48,12 @@ class Formulario_model extends CI_Model{
 		?>
 		<?php
 	}
-/*-----------FIM CATEGORIA-----------------*/	
+	/*-----------FIM CATEGORIA-----------------*/	
 
 
-/*---------INICIO CATEGORIA---------------------------------------------*/	
+	/*---------INICIO CATEGORIA---------------------------------------------*/	
 
-public function inserirClassificacao($data){
+	public function inserirClassificacao($data){
 $this->db->insert("tbl_classificacao",$data);//nome da tabela
 }
 public function exibirClassificacao(){
@@ -145,6 +145,7 @@ public function selectMarca(){
 	}
 	?>
 	<?php
+
 }
 /*-----------FIM MARCA-----------------*/	
 

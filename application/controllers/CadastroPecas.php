@@ -85,26 +85,24 @@ class CadastroPecas extends CI_Controller{
 			//$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirPecas($pecas);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');		}
 		}
-	}
 
-	public function cadastraCategoriaPecas(){
+		public function cadastraCategoriaPecas(){
 
-		$this->load->helper(['form','url']);
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('catp_nome','Categoria Pecas','required');
+			$this->load->helper(['form','url']);
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('catp_nome','Categoria Pecas','required');
 
-		if($this->form_validation->run() == FALSE){
-			$this->load->view("Cadastro");
-		}else{
-			$data=$this->input->post();
-			$this->load->model('Formulario_model');
-			$this->Formulario_model->inserirCategoriaPecas($data);
-			echo "Cadastro Efetuado";
+			if($this->form_validation->run() == FALSE){
+				$this->load->view("Cadastro");
+			}else{
+				$data=$this->input->post();
+				$this->load->model('Formulario_model');
+				$this->Formulario_model->inserirCategoriaPecas($data);
+				$this->load->view('Cadastro');			}
+			}
+
 		}
-	}
 
-}
-
-?>
+		?>

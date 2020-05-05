@@ -90,7 +90,7 @@ class CadastroJogo extends CI_Controller{
 			//$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirJogos($data);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');
 		}
 	}
 

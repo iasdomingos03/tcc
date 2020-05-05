@@ -83,10 +83,9 @@ class CadastroComputador extends CI_Controller{
 			//$com=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirComputador($com);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');		}
 		}
+
 	}
 
-}
-
-?>
+	?>

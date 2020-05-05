@@ -21,6 +21,7 @@ class CadastroFornecedor extends CI_Controller{
 		
 		$this->load->view("Cadastro",$data);
 	}
+
 	public function cadastraFornecedor(){
 		$this->load->helper(['form','url']);
 		$this->load->library('form_validation');
@@ -44,9 +45,8 @@ class CadastroFornecedor extends CI_Controller{
 			$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirFornecedor($data);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');		
 		}
+
 	}
-
-
 }

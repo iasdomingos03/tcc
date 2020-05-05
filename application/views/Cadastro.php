@@ -51,7 +51,7 @@
 						<div class="col-sm-9">
 							<select id="cat_codigo" class="form-control" name="pro_categoria">
 								<?php
-								$this->Formulario_model->selectCategoria();	
+								$this->Formulario_model->selectCategoria();					
 								?>
 							</select>
 						</div>
@@ -446,7 +446,8 @@
 			</div>
 		</div>
 	</body>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$('#myTab a').on('click', function (e) {
@@ -494,27 +495,31 @@ fetch(url).then(response =>{
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#btn_cat').on('click', function() {
+	//	$(document).ready(function() {
+			// $('#btn_cat').on('click', function() {
 
-				var categoria = $('cat_categoria').val();
-				$.ajax({
-					url: "<?php echo base_url("Cadastros/cadastraCategoria");?>",//Esta no controller
-					type: "POST",
-					data: {
-						categoria:cat_categoria
-					},
-					cache: false,
-					success: function(data){
-						var data = JSON.parse(data);
-						//sucess
-					},
-					error:function(data){
-						console.log("erro");
-					}
-					})//ajax
-			})
-			});//function ready
+			// 	var categoria = $('cat_categoria').val();
+			// 	$.ajax({
+			// 		url: "<?php //echo base_url("Cadastros/cadastraCategoria");?>",
+			// 		type: "POST",
+			// 		data: {
+			// 			categoria
+			// 		},
+			// 		cache: false,
+			// 		success: function(data){
+			// 			alert(data.categoriaOptions);
+			// 			// var option = '<option>Selecione a Categoria</option>';
+			// 			// $.each(data, function(i, obj){
+			// 			// 	option += '<option value="'+obj.cat_codigo+'">'+obj.cat_categoria+'</option>';
+			// 			// })
+			// 			// $('#cat_codigo').html(option).show();
+			// 		}// },
+					// error:function(data){
+					// 	console.log("erro");
+					// }
+			// 		})//ajax
+			// })
+			// });//function ready
 
 		</script>
 		</html>

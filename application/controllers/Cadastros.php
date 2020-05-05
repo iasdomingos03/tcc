@@ -38,9 +38,10 @@ class Cadastros extends CI_Controller{
 			$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirCategoria($data);
-			echo "Cadastro Efetuado";
-			echo json_encode($data);  
-
+			//$this->Formulario_model->selectCategoria();
+		//	------ correto
+			$this->load->view('Cadastro');
+//--------------------------------------------
 		}
 	}
 
@@ -56,7 +57,8 @@ class Cadastros extends CI_Controller{
 			$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirClassificacao($data);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');
+
 		}
 	}
 
@@ -72,7 +74,8 @@ class Cadastros extends CI_Controller{
 			$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirModelo($data);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');
+
 		}
 	}
 
@@ -89,7 +92,8 @@ class Cadastros extends CI_Controller{
 			$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirMarca($data);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');
+
 		}
 	}
 
@@ -108,11 +112,17 @@ class Cadastros extends CI_Controller{
 			$data=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirTipoManutencao($data);
-			echo "Cadastro Efetuado";
+			$this->load->view('Cadastro');
 		}
 	}
 
 	
-
+	// public function selectCategoria(){
+	// 	$this->load->model('Formulario_model');
+	// 	$this->Formulario_model->selectCategoria();
+	// 	//echo json_encode($categoriaOptions);
+	// 	echo 'Aqui chegou!';
+	// 	$this->load->view('Cadastro');
+	// }
 
 }
