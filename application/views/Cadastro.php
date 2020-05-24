@@ -10,6 +10,20 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>   
+	<header class="navbar navbar-expand navbar-dark bg-dark">
+		<div class="navbar-nav-scroll">
+			<ul class="navbar-nav bd-navbar-nav flex-row">
+				<li class="nav-item">
+					<a class="nav-link" href=<?php echo base_url()?>index.php/Cadastros/exibeFormulario/>Cadastrar</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href=<?php echo base_url() ?>index.php/Exibir/exibeLista/>Listar</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+	
+
 	<div class="container shadow-lg p-3 mb-5 bg-white rounded sm-5">
 		<ul class="nav nav-tabs " id="myTab" role="tablist">
 			<li class="nav-item ">
@@ -36,10 +50,10 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="jogos" role="tabpanel" aria-labelledby="jogos-tab">
 				<div class="container">
-					
-					<?php echo validation_errors(); ?>
+
+					<!-- <?php //echo validation_errors(); ?> -->
 					<?php  echo  form_open_multipart('index.php/CadastroJogo/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
-					
+
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Título</label>
 						<div class="col-sm-9">
@@ -392,7 +406,7 @@
 								<?php
 								$this->Formulario_model->selectModelo();	
 								?>
-								
+
 							</select>
 						</div>
 					</div>

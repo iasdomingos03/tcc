@@ -26,6 +26,8 @@ class Cadastros extends CI_Controller{
 		$this->load->view("Cadastro",$data);
 	}
 
+
+
 	public function cadastraCategoria(){
 
 		$this->load->helper(['form','url']);
@@ -40,7 +42,9 @@ class Cadastros extends CI_Controller{
 			$this->Formulario_model->inserirCategoria($data);
 			//$this->Formulario_model->selectCategoria();
 		//	------ correto
+
 			$this->load->view('Cadastro');
+
 //--------------------------------------------
 		}
 	}
@@ -116,13 +120,5 @@ class Cadastros extends CI_Controller{
 		}
 	}
 
-	
-	// public function selectCategoria(){
-	// 	$this->load->model('Formulario_model');
-	// 	$this->Formulario_model->selectCategoria();
-	// 	//echo json_encode($categoriaOptions);
-	// 	echo 'Aqui chegou!';
-	// 	$this->load->view('Cadastro');
-	// }
 
-}
+}//Fim controler
