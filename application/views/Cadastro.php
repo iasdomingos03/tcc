@@ -1,9 +1,9 @@
 
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta charset="utf-8" />
+	<meta lang="pt-br"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +51,8 @@
 			<div class="tab-pane active" id="jogos" role="tabpanel" aria-labelledby="jogos-tab">
 				<div class="container">
 
-					<!-- <?php //echo validation_errors(); ?> -->
+					<?php echo validation_errors(); ?> 
+					<?php if(isset($mensagens)) echo $mensagens; ?>
 					<?php  echo  form_open_multipart('index.php/CadastroJogo/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
 
 					<div class="form-group row">
@@ -64,7 +65,10 @@
 						<label for="" class="col-sm-4 col-form-label">Categoria</label>
 						<div class="col-sm-9">
 							<select id="cat_codigo" class="form-control" name="pro_categoria">
+								<option value="" selected>Escolha</option>
 								<?php
+								$this->load->model('Formulario_model');
+
 								$this->Formulario_model->selectCategoria();					
 								?>
 							</select>
@@ -74,7 +78,9 @@
 						<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
 						<div class="col-sm-9">
 							<select id="for_cnpj" class="form-control" name="pro_fornecedor">
+								<option value="" selected>Escolha</option>
 								<?php
+								$this->load->model('Formulario_model');
 								$this->Formulario_model->selectFornecedor();	
 								?>
 							</select>
@@ -84,7 +90,9 @@
 						<label for="" class="col-sm-4 col-form-label">Classificação</label>
 						<div class="col-sm-9">
 							<select  class="form-control" name="pro_classificacao" id="cla_codigo">
+								<option value="" selected>Escolha</option>
 								<?php
+								$this->load->model('Formulario_model');
 								$this->Formulario_model->selectClassificacao();	
 								?>
 							</select>
@@ -135,6 +143,7 @@
 
 				<div class="container">
 					<?php echo validation_errors(); ?>
+					<?php if(isset($mensagens)) echo $mensagens; ?>
 					<?php  echo form_open('index.php/Cadastros/cadastraCategoria'); ?> 
 
 					<div class="form-group row">
@@ -147,7 +156,6 @@
 
 					<?php echo form_close(); ?>
 
-					<?php echo validation_errors(); ?>
 					<?php  echo form_open('index.php/Cadastros/cadastraClassificacao'); ?>
 
 					<div class="form-group row">
@@ -161,7 +169,6 @@
 					<?php echo form_close(); ?>
 
 
-					<?php echo validation_errors(); ?>
 					<?php  echo form_open('index.php/Cadastros/cadastraModelo'); ?>
 
 					<div class="form-group row">
@@ -173,7 +180,6 @@
 					</div>
 					<?php echo form_close(); ?>
 
-					<?php echo validation_errors(); ?>
 					<?php  echo form_open('index.php/Cadastros/cadastraMarca'); ?>
 
 					<div class="form-group row">
@@ -189,7 +195,6 @@
 					<button type="submit" class="btn btn-success" >Cadastrar</button>
 					<?php echo form_close(); ?>
 
-					<?php echo validation_errors(); ?>
 					<?php  echo form_open('index.php/CadastroPecas/cadastraCategoriaPecas'); ?>
 
 					<div class="form-group row">
@@ -205,6 +210,7 @@
 			<!--FIM TAB CADASTRO-->
 			<div class="tab-pane" id="pecas" role="tabpanel" aria-labelledby="pecas-tab">
 				<?php echo validation_errors(); ?>
+				<?php if(isset($mensagens)) echo $mensagens; ?>
 				<?php  echo form_open_multipart('index.php/CadastroPecas/cadastraPecas'); ?>
 				<div class="container">
 
@@ -218,7 +224,7 @@
 						<label for="" class="col-sm-4 col-form-label">Marca</label>
 						<div class="col-sm-9">
 							<select id="mar_codigo" class="form-control" name="pec_marca">
-								<option selected>Escolha</option>
+								<option value="" selected>Escolha</option>
 								<?php
 								$this->Formulario_model->selectMarca();	
 								?>
@@ -229,7 +235,7 @@
 						<label for="" class="col-sm-4 col-form-label">Modelo</label>
 						<div class="col-sm-9">
 							<select id="mod_codigo" class="form-control" name="pec_modelo">
-								<option selected>Escolha</option>
+								<option value="" selected>Escolha</option>
 								<?php
 								$this->Formulario_model->selectModelo();	
 								?>
@@ -256,6 +262,7 @@
 						<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
 						<div class="col-sm-9">
 							<select id="for_cnpj" class="form-control" name="pec_fornecedor">
+								<option value="" selected>Escolha</option>
 								<?php
 								$this->Formulario_model->selectFornecedor();	
 								?>
@@ -272,7 +279,7 @@
 						<label for="" class="col-sm-4 col-form-label">Categoria</label>
 						<div class="col-sm-9">
 							<select id="catp_codigo" class="form-control" name="pec_categoria">
-								<option selected>Escolha</option>
+								<option value="" selected>Escolha</option>
 								<?php
 								$this->Formulario_model->selectCategoriaPecas();	
 								?>
@@ -287,12 +294,13 @@
 				<div class="container">
 
 					<?php echo validation_errors(); ?>
+					<?php if(isset($mensagens)) echo $mensagens; ?>
 					<?php  echo form_open('index.php/cadastroFornecedor/cadastraFornecedor'); ?><!--Nome do metodo que cadastra-->
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">CNPJ</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="" name="for_cnpj">
+							<input type="number" class="form-control" id="" name="for_cnpj" exact_length="14">
 						</div>
 					</div>  
 					<div class="form-group row">
@@ -373,6 +381,7 @@
 
 				<div class="container">
 					<?php echo validation_errors(); ?>
+					<?php if(isset($mensagens)) echo $mensagens; ?>
 					<?php  echo  form_open_multipart('index.php/CadastroComputador/cadastraComputador'); ?>
 
 					<div class="form-group row">
@@ -391,7 +400,7 @@
 						<label for="" class="col-sm-4 col-form-label">Marca</label>
 						<div class="col-sm-9">
 							<select id="mar_codigo" class="form-control" name="com_marca">
-								<option selected>Escolha</option>
+								<option value="" selected>Escolha</option>
 								<?php
 								$this->Formulario_model->selectMarca();	
 								?>
@@ -402,7 +411,7 @@
 						<label for="" class="col-sm-4 col-form-label">Modelo</label>
 						<div class="col-sm-9">
 							<select id="mod_codigo" class="form-control" name="com_modelo">
-								<option selected>Escolha</option>
+								<option value="" selected>Escolha</option>
 								<?php
 								$this->Formulario_model->selectModelo();	
 								?>
@@ -440,6 +449,7 @@
 
 				<div class="container">
 					<?php echo validation_errors(); ?>
+					<?php if(isset($mensagens)) echo $mensagens; ?>
 					<?php  echo  form_open('index.php/Cadastros/cadastraTipoManutencao'); ?>
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Tipo de Manutencao</label>

@@ -7,6 +7,7 @@ class Formulario_model extends CI_Model{
 
 	public function inserirJogos($data){
 		$this->db->insert("tbl_produtosJogos",$data);//nome da tabela
+		// $this->load->view("Cadastro");
 	}
 	public function exibirDados(){
 		$this->db

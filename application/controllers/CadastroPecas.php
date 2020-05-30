@@ -70,39 +70,61 @@ class CadastroPecas extends CI_Controller{
 				//"forms"=>$forms
 		);
 
-		$this->form_validation->set_rules('pec_nome','Titulo', 'required');
-		$this->form_validation->set_rules('pec_marca','Marca');
-		$this->form_validation->set_rules('pec_modelo','Modelo');
+		$this->form_validation->set_rules('pec_nome','Nome', 'required|min_length[2]',
+			array('required' => "<div class='alert alert-danger'> Preenchimento do Nome da peça obrigatoria</div>",
+				'min_length' => "<div class='alert alert-danger'>O tamanho mínimo do Nome é <b>3</b> caracteres</div>"));
+		$this->form_validation->set_rules('pec_marca','Marca','required',array('required' => "<div class='alert alert-danger'>Preenchimento da Marca obrigatório.</div>"));
+		$this->form_validation->set_rules('pec_modelo','Modelo','required',array('required' => "<div class='alert alert-danger'>Preenchimento do Modelo obrigatório.</div>"));;
 		$this->form_validation->set_rules('pec_descricao','descricao');
-		$this->form_validation->set_rules('pec_fornecedor','Fornecedor');
-		$this->form_validation->set_rules('pec_preco','preco', 'required');
-		$this->form_validation->set_rules('pec_categoria','Categoria Peca');
+		$this->form_validation->set_rules('pec_fornecedor','Fornecedor','required',array('required' => "<div class='alert alert-danger'>Preenchimento do Fornecedor obrigatório.</div>"));
+		$this->form_validation->set_rules('pec_preco','preco', 'required',array('required' => "<div class='alert alert-danger'>Preenchimento do Preço da peça obrigatório.</div>"));
+		$this->form_validation->set_rules('pec_categoria','Categoria Peca','required',array('required' => "<div class='alert alert-danger'>Preenchimento da Categoria da Peça obrigatório.</div>"));
 		
 
 		if($this->form_validation->run() == FALSE){
-			$this->load->view("Cadastro");
-		}else{
-			//$data=$this->input->post();
-			$this->load->model('Formulario_model');
-			$this->Formulario_model->inserirPecas($pecas);
-			$this->load->view('Cadastro');		}
-		}
-
-		public function cadastraCategoriaPecas(){
-
 			$this->load->helper(['form','url']);
 			$this->load->library('form_validation');
-			$this->form_validation->set_rules('catp_nome','Categoria Pecas','required');
+		//$this->imagemJogo();//mudei essa linha
+			$this->load->model('Formulario_model');
+			$forms= $this->Formulario_model->exibirDados();
+			$this->load->view("Cadastro");
 
-			if($this->form_validation->run() == FALSE){
-				$this->load->view("Cadastro");
-			}else{
-				$data=$this->input->post();
-				$this->load->model('Formulario_model');
-				$this->Formulario_model->inserirCategoriaPecas($data);
-				$this->load->view('Cadastro');			}
-			}
+		}else{
+			//$data=$this->input->post();
 
+			$this->load->model('Formulario_model');
+			$this->Formulario_model->inserirPecas($pecas);
+			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+			$this->load->view('Cadastro',$success);
+		}
+	}
+
+
+// $this->load->model('Formulario_model');
+// $this->Formulario_model->inserirPecas($pecas);
+// $this->load->view('Cadastro');		}
+// }
+
+	public function cadastraCategoriaPecas(){
+
+		$this->load->helper(['form','url']);
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('catp_nome','Categoria Pecas','required',
+			array('required' => "<div class='alert alert-danger'>Você deve preencher a Categoria da Peça.</div>"));
+
+		if($this->form_validation->run() == FALSE){
+			$this->load->model('Formulario_model');
+			$forms= $this->Formulario_model->exibirDados();
+			$this->load->view("Cadastro");
+		}else{
+			$data=$this->input->post();
+			$this->load->model('Formulario_model');
+			$this->Formulario_model->inserirCategoriaPecas($data);
+			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+			$this->load->view('Cadastro',$success);		
+				}
 		}
 
-		?>
+	}
+
+	?>

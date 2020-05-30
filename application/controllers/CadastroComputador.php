@@ -70,22 +70,33 @@ class CadastroComputador extends CI_Controller{
 				//"forms"=>$forms
 		);
 
-		$this->form_validation->set_rules('com_nome','Nome', 'required');
-		$this->form_validation->set_rules('com_descricao','Descricao');
-		$this->form_validation->set_rules('com_marca','Marca');
-		$this->form_validation->set_rules('com_modelo','Modelo');
-		$this->form_validation->set_rules('com_arquitetura','Arquitetura', 'required');
-		$this->form_validation->set_rules('com_preco','Preco', 'required');
+		$this->form_validation->set_rules('com_nome','Nome','required|min_length[2]',
+			array('required' => "<div class='alert alert-danger'>Preenchimento do Nome do computador obrigatorio.</div>",
+				'min_length' => "<div class='alert alert-danger'>O tamanho mínimo do Nome é <b>3</b> caracteres</div>"));
+		$this->form_validation->set_rules('com_descricao','Descricao','required',array('required' => "<div class='alert alert-danger'>Preenchimento da Descricao obrigatório.</div>"));
+		$this->form_validation->set_rules('com_marca','Marca','required', array('required' => "<div class='alert alert-danger'>Preenchimento da Marca obrigatória.</div>"));
+		$this->form_validation->set_rules('com_modelo','Modelo','required', array('required' => "<div class='alert alert-danger'>Preenchimento do Modelo obrigatória.</div>"));
+		$this->form_validation->set_rules('com_arquitetura','Arquitetura', 'required|min_length[2]',
+			array('required' => "<div class='alert alert-danger'>Preenchimento da Arquitetura do computador obrigatória.</div>",
+				'min_length' => "<div class='alert alert-danger'>O tamanho mínimo da Arquitetura é <b>2</b> caracteres</div>"));
+		$this->form_validation->set_rules('com_preco','Preco', 'required',array('required' => "<div class='alert alert-danger'>Preenchimento do Preço da peça obrigatório.</div>"));
 
 		if($this->form_validation->run() == FALSE){
+			$this->load->helper(['form','url']);
+			$this->load->library('form_validation');
+		//$this->imagemJogo();//mudei essa linha
+			$this->load->model('Formulario_model');
+			$forms= $this->Formulario_model->exibirDados();
 			$this->load->view("Cadastro");
+
 		}else{
 			//$com=$this->input->post();
 			$this->load->model('Formulario_model');
 			$this->Formulario_model->inserirComputador($com);
-			$this->load->view('Cadastro');		}
+			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+			$this->load->view('Cadastro',$success);
 		}
-
 	}
+}
 
-	?>
+?>
