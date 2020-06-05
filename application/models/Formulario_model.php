@@ -198,6 +198,7 @@ public function exibirTipoManutencao(){
 ->from("tbl_tipoManutencao");//Nome da tabela
 return $this->db->get()->result_array();
 }
+
 }
 
 ?>

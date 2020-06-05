@@ -6,7 +6,10 @@ class Cliente extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(array('form', 'url'));
+		$this->load->database();
+		// $this->load->helper(array('form', 'url'));
+		$this->load->library("session");
+		$this->load->helper('url');
 	}
 
 	public function index(){
@@ -104,14 +107,38 @@ class Cliente extends CI_Controller{
 	}
 
 	public function formLoginC(){
-		$data=$this->input->post();
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("cli_email","email","required");
+		$this->form_validation->set_rules("cli_senha","senha","required");
+
+
+		if($this->form_validation->run()==false){
+			echo "form_validation false";
+		}else{
+			$data=$this->input->post();
 		//var_dump($data);
-		$email=$data['cli_email'];
-		$senhaCMD5=MD5($data['cli_senha']);
-		//echo MD5($data['cli_senha']);
-		$this->load->model('Cliente_model');
-		$this->Cliente_model->verificarLogin($email,$senhaCMD5);
-		//$this->load->view('CadastroCliente');
+			$senhaCMD5=MD5($data['cli_senha']);
+		//echo MD5($data['usu_senha']);
+			$this->load->model('Cliente_model');
+			$resultc=$this->Cliente_model->verificarLoginCliente($data['cli_email'],$senhaCMD5);
+			if($resultc){
+				
+				$cli_email=$resultc->cli_email;
+				$cli_nome=$resultc->cli_nome;
+				
+				$this->session->set_userdata("cli_email",$cli_email);
+				$this->session->set_userdata("cli_nome",$cli_nome);
+
+				//Aqui ta funcionando...foi testado com o restrict
+				header("Location:".base_url()."index.php/");
+			}else{
+				echo "erro";
+			}
+		}
+	}
+	public function logoff(){
+		$this->session->sess_destroy();
+		header("Location: ".base_url()."index.php/");
 	}
 }
 

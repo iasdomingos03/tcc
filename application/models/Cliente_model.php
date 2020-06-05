@@ -21,21 +21,19 @@ class Cliente_model extends CI_Model{
 	}
 
 
-	public function verificarLogin($email,$senhaCMD5){
+	public function verificarLoginCliente($email,$senhaCMD5){
 		$this->db
 		->from("tblCliente")
 		->where("cli_email",$email)
 		->where("cli_senha",$senhaCMD5);
 		//$result->armazena os registros
-		$result=$this->db->get();
+		$resultc=$this->db->get();
 		//print_r($this->db->last_query());
 		
-		if($result->num_rows()>0){
-			echo "ola";
-			//redirect('index.php/Cadastros/exibeFormulario');
+		if($resultc->num_rows()>0){
+			return $resultc->row();
 		}else{
-			echo "erro";
-			//redirect('index.php/Restrict');	
+			return NULL;
 		}
 	}
 }

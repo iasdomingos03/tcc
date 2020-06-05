@@ -19,10 +19,18 @@
 				<li class="nav-item">
 					<a class="nav-link" href=<?php echo base_url() ?>index.php/Exibir/exibeLista/>Listar</a>
 				</li>
+				<li class="nav-item">
+					<a class="btn btn-success" href=<?=base_url()?>index.php/Login/logoffAdm/>Logoff</a>
+				</li>
 			</ul>
 		</div>
 	</header>
-	
+	<?php
+	//Para conseguir instanciar para essa página
+	$CI = & get_instance();
+	$CI->load->library('session');
+	echo "<p> Olá".$CI->session->userdata("adm_email")."</p>";
+	?>
 
 	<div class="container shadow-lg p-3 mb-5 bg-white rounded sm-5">
 		<ul class="nav nav-tabs " id="myTab" role="tablist">
