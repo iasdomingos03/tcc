@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSite">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href=<?php echo base_url()?>index.php/Cliente/logar><svg class="bi bi-people-circle" width="30px" height="30px"
+                        <a class="nav-link" href=<?php echo base_url()?>Cliente/logar><svg class="bi bi-people-circle" width="30px" height="30px"
                                 viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/3500/svg">
                                 <path
                                     d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z" />

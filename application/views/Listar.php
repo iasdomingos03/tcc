@@ -107,10 +107,10 @@
 		<div class="navbar-nav-scroll">
 			<ul class="navbar-nav bd-navbar-nav flex-row">
 				<li class="nav-item ">
-					<a class="nav-link text-primary" href=<?php echo base_url() ?>index.php/Cadastros/exibeFormulario/>Cadastrar</a>
+					<a class="nav-link text-primary" href=<?php echo base_url() ?>Cadastros/exibeFormulario/>Cadastrar</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-primary" href=<?php echo base_url() ?>index.php/Exibir/exibeLista/>Listar</a>
+					<a class="nav-link text-primary" href=<?php echo base_url() ?>Exibir/exibeLista/>Listar</a>
 				</li>
 			</ul>
 		</div>
@@ -291,7 +291,7 @@
 												<div class="modal-body">
 													<?php echo validation_errors(); ?>
 													<?php if(isset($mensagens)) echo $mensagens; ?>
-													<?php  echo  form_open_multipart('index.php/Exibir/alteraComputador'); ?>
+													<?php  echo  form_open_multipart('Exibir/alteraComputador'); ?>
 
 													<div class="form-group row">
 														<label for="" class="col-sm-4 col-form-label">Nome</label>
@@ -451,7 +451,7 @@
 												<div class="modal-body">
 													<?php echo validation_errors(); ?>
 													<?php if(isset($mensagens)) echo $mensagens; ?>
-													<?php  echo  form_open_multipart('index.php/Exibir/alteraJogo'); ?>
+													<?php  echo  form_open_multipart('Exibir/alteraJogo'); ?>
 													<div class="form-group">
 														<label for="nome" class="control-label">Nome:</label>
 														<input name="pro_titulo" type="text" class="form-control" id="pro_titulo" value="">
@@ -599,7 +599,7 @@
 												<div class="modal-body">
 													<?php echo validation_errors(); ?>
 													<?php if(isset($mensagens)) echo $mensagens; ?>
-													<?php  echo  form_open_multipart('index.php/Exibir/alteraTipoManutencao'); ?>
+													<?php  echo  form_open_multipart('Exibir/alteraTipoManutencao'); ?>
 													<div class="form-group">
 														<label for="tman_nome" class="control-label">Tipo Manutenção:</label>
 														<input name="tman_nome" type="text" class="form-control" id="tman_nome" value="">
@@ -723,7 +723,7 @@
 												<div class="modal-body">
 													<?php echo validation_errors(); ?>
 													<?php if(isset($mensagens)) echo $mensagens; ?>
-													<?php  echo  form_open_multipart('index.php/Exibir/alteraPeca'); ?>
+													<?php  echo  form_open_multipart('Exibir/alteraPeca'); ?>
 
 													<div class="form-group row">
 														<label for="" class="col-sm-4 col-form-label">Nome</label>

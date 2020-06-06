@@ -102,9 +102,7 @@ class Cliente extends CI_Controller{
 
 	}
 
-	public function logar(){
-		$this->load->view("LoginCliente");
-	}
+	
 
 	public function formLoginC(){
 		$this->load->library("form_validation");
@@ -125,20 +123,36 @@ class Cliente extends CI_Controller{
 				
 				$cli_email=$resultc->cli_email;
 				$cli_nome=$resultc->cli_nome;
+				$cli_senha=$resultc->cli_senha;
 				
 				$this->session->set_userdata("cli_email",$cli_email);
 				$this->session->set_userdata("cli_nome",$cli_nome);
+				$this->session->set_userdata("cli_senha",$cli_senha);
+
 
 				//Aqui ta funcionando...foi testado com o restrict
-				header("Location:".base_url()."index.php/");
+				header("Location:".base_url().'Cliente/logado');
 			}else{
 				echo "erro";
 			}
 		}
 	}
+
+	public function logar(){
+		$this->load->view("LoginCliente");
+	}
+
+	public function logado(){
+		$this->load->view("HomeLogado");
+	}
+
 	public function logoff(){
+		$this->session->unset_userdata("cli_email");
+		$this->session->unset_userdata("cli_nome");
+		$this->session->unset_userdata("cli_senha");
+
 		$this->session->sess_destroy();
-		header("Location: ".base_url()."index.php/");
+		header("Location: ".base_url());
 	}
 }
 

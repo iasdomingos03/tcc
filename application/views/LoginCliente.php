@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/estilo.css">
     <title>Loja virtual Dr. Pecê</title>
@@ -21,14 +21,16 @@
         <div class="card shadow-lg p-3 mb-5 bg-white rounded-lg my-3">
             <div class="card-body ">
                 <img src="../../public/img/McpreS.jpeg" height="300px" width="80%" class=" rounded-pill d-block mx-auto"
-                    alt="Responsive image">
+                alt="Responsive image">
                 <br>
-                <form name="login" action="../Cliente/formLoginC" method="POST">
+                <!--  <form name="login" action="Cliente/formLoginC" method="POST"> -->
+                    <?php echo validation_errors(); ?>
+                    <?php  echo  form_open_multipart('Cliente/formLoginC'); ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><h5>Endereço de e-mail</h5></label>
                         <input type="email" class="form-control" id="" name="cli_email" id="cli_email"aria-describedby="emailHelp">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
+                        else.</small>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1"><h5>Password</h5></label>
@@ -38,20 +40,22 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>-->
-                    <p>Não possui uma conta?<a href=<?php echo base_url()?>index.php/Cliente/cadastraCliente>Cadastre-se agora!</a></p>
+                    <p>Não possui uma conta?<a href=<?php echo base_url()?>Cliente/cadastraCliente>Cadastre-se agora!</a></p>
                     <button type="submit" class="btn btn-primary btn-lg  btn-block">Submit</button>
-                </form>
+                    <!--  </form> -->
+                    <?php echo form_close(); ?>
+
+                </div>
             </div>
         </div>
-    </div>
 
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </body>
 
-</html>
+    </html>

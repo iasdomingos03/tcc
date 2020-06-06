@@ -32,11 +32,13 @@ class Login extends CI_Controller {
 				
 				$adm_codigo=$result->adm_codigo;
 				$adm_email=$result->adm_email;
+				$adm_senha=$result->adm_senha;
 				
 				$this->session->set_userdata("adm_codigo",$adm_codigo);
 				$this->session->set_userdata("adm_email",$adm_email);
+				$this->session->set_userdata("adm_senha",$adm_senha);
 				
-				header("Location:".base_url()."index.php/Cadastros/exibeFormulario");
+				header("Location:".base_url()."Cadastros/exibeFormulario");
 			}else{
 				echo "erro";
 			}
@@ -44,8 +46,12 @@ class Login extends CI_Controller {
 	}
 
 	public function logoffAdm(){
+		$this->session->unset_userdata("adm_codigo");
+		$this->session->unset_userdata("adm_email");
+		$this->session->unset_userdata("adm_senha");
+
 		$this->session->sess_destroy();
-		header("Location: ".base_url()."index.php/Restrict");
+		header("Location: ".base_url()."Restrict");
 	}
 }
 ?>

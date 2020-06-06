@@ -14,21 +14,31 @@
 		<div class="navbar-nav-scroll">
 			<ul class="navbar-nav bd-navbar-nav flex-row">
 				<li class="nav-item">
-					<a class="nav-link" href=<?php echo base_url()?>index.php/Cadastros/exibeFormulario/>Cadastrar</a>
+					<a class="nav-link" href=<?php echo base_url()?>Cadastros/exibeFormulario/>Cadastrar</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href=<?php echo base_url() ?>index.php/Exibir/exibeLista/>Listar</a>
+					<a class="nav-link" href=<?php echo base_url() ?>Exibir/exibeLista/>Listar</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-success" href=<?=base_url()?>index.php/Login/logoffAdm/>Logoff</a>
+					<a class="btn btn-success" href=<?=base_url()?>Login/logoffAdm/>Logoff</a>
 				</li>
 			</ul>
 		</div>
 	</header>
 	<?php
+
 	//Para conseguir instanciar para essa página
 	$CI = & get_instance();
 	$CI->load->library('session');
+
+	if($CI->session->userdata("adm_email")=='' || $CI->session->userdata("adm_senha")==''){
+		$CI->session->unset_userdata("adm_codigo");
+		$CI->session->unset_userdata("adm_email");
+		$CI->session->unset_userdata("adm_senha");
+
+		$CI->session->sess_destroy();
+		header("Location: ".base_url()."Restrict");
+	}
 	echo "<p> Olá".$CI->session->userdata("adm_email")."</p>";
 	?>
 
@@ -61,7 +71,7 @@
 
 					<?php echo validation_errors(); ?> 
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo  form_open_multipart('index.php/CadastroJogo/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
+					<?php  echo  form_open_multipart('CadastroJogo/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Título</label>
@@ -152,7 +162,7 @@
 				<div class="container">
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo form_open('index.php/Cadastros/cadastraCategoria'); ?> 
+					<?php  echo form_open('Cadastros/cadastraCategoria'); ?> 
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Categoria</label>
@@ -164,7 +174,7 @@
 
 					<?php echo form_close(); ?>
 
-					<?php  echo form_open('index.php/Cadastros/cadastraClassificacao'); ?>
+					<?php  echo form_open('Cadastros/cadastraClassificacao'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Classificação</label>
@@ -177,7 +187,7 @@
 					<?php echo form_close(); ?>
 
 
-					<?php  echo form_open('index.php/Cadastros/cadastraModelo'); ?>
+					<?php  echo form_open('Cadastros/cadastraModelo'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Modelo</label>
@@ -188,7 +198,7 @@
 					</div>
 					<?php echo form_close(); ?>
 
-					<?php  echo form_open('index.php/Cadastros/cadastraMarca'); ?>
+					<?php  echo form_open('Cadastros/cadastraMarca'); ?>
 
 					<div class="form-group row">
 						<div class="col-sm-5">
@@ -203,7 +213,7 @@
 					<button type="submit" class="btn btn-success" >Cadastrar</button>
 					<?php echo form_close(); ?>
 
-					<?php  echo form_open('index.php/CadastroPecas/cadastraCategoriaPecas'); ?>
+					<?php  echo form_open('CadastroPecas/cadastraCategoriaPecas'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Categoria Peça</label>
@@ -219,7 +229,7 @@
 			<div class="tab-pane" id="pecas" role="tabpanel" aria-labelledby="pecas-tab">
 				<?php echo validation_errors(); ?>
 				<?php if(isset($mensagens)) echo $mensagens; ?>
-				<?php  echo form_open_multipart('index.php/CadastroPecas/cadastraPecas'); ?>
+				<?php  echo form_open_multipart('CadastroPecas/cadastraPecas'); ?>
 				<div class="container">
 
 					<div class="form-group row">
@@ -303,7 +313,7 @@
 
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo form_open('index.php/cadastroFornecedor/cadastraFornecedor'); ?><!--Nome do metodo que cadastra-->
+					<?php  echo form_open('cadastroFornecedor/cadastraFornecedor'); ?><!--Nome do metodo que cadastra-->
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">CNPJ</label>
@@ -390,7 +400,7 @@
 				<div class="container">
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo  form_open_multipart('index.php/CadastroComputador/cadastraComputador'); ?>
+					<?php  echo  form_open_multipart('CadastroComputador/cadastraComputador'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Nome</label>
@@ -458,7 +468,7 @@
 				<div class="container">
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo  form_open('index.php/Cadastros/cadastraTipoManutencao'); ?>
+					<?php  echo  form_open('Cadastros/cadastraTipoManutencao'); ?>
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Tipo de Manutencao</label>
 						<div class="col-sm-9">
