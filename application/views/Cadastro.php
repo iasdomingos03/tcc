@@ -318,7 +318,7 @@
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">CNPJ</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="" name="for_cnpj" exact_length="14">
+							<input type="text" class="form-control cnpj" id="" name="for_cnpj">
 						</div>
 					</div>  
 					<div class="form-group row">
@@ -336,7 +336,7 @@
 					<div class="form-group inline">
 						<label for="cep" class="col-sm-4 col-form-label">CEP</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="cep" name="for_cep"/>
+							<input type="text" class="form-control cep" id="cep" name="for_cep"/>
 						</div>
 					</div>
 					<button type="button" class="btn btn-success" id="btnPesquisar">Pesquisar</button>
@@ -375,13 +375,13 @@
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Telefone</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="" name="for_telefone">
+							<input type="text" class="form-control telefone" id="" name="for_telefone">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Celular</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="" name="for_celular">
+							<input type="text" class="form-control sp_celphones" id="" name="for_celular">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -535,33 +535,23 @@ fetch(url).then(response =>{
 			estado.value = dado.uf;
 		}
 	</script>
-
+	<script src="<?= base_url()?>../public/js/jquery.mask.min.js"></script>
 	<script type="text/javascript">
-	//	$(document).ready(function() {
-			// $('#btn_cat').on('click', function() {
+		$('.cep').mask('00000-000');
+		$('.telefone').mask('(99)9999-9999');
+		$('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+		$('.cpf').mask('000.000.000-00', {reverse: true});
 
-			// 	var categoria = $('cat_categoria').val();
-			// 	$.ajax({
-			// 		url: "<?php //echo base_url("Cadastros/cadastraCategoria");?>",
-			// 		type: "POST",
-			// 		data: {
-			// 			categoria
-			// 		},
-			// 		cache: false,
-			// 		success: function(data){
-			// 			alert(data.categoriaOptions);
-			// 			// var option = '<option>Selecione a Categoria</option>';
-			// 			// $.each(data, function(i, obj){
-			// 			// 	option += '<option value="'+obj.cat_codigo+'">'+obj.cat_categoria+'</option>';
-			// 			// })
-			// 			// $('#cat_codigo').html(option).show();
-			// 		}// },
-					// error:function(data){
-					// 	console.log("erro");
-					// }
-			// 		})//ajax
-			// })
-			// });//function ready
+		var cel = function (val) {
+			return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+		},
+		spOptions = {
+			onKeyPress: function(val, e, field, options) {
+				field.mask(cel.apply({}, arguments), options);
+			}
+		};
 
-		</script>
-		</html>
+		$('.sp_celphones').mask(cel, spOptions);
+	</script>
+
+	</html>

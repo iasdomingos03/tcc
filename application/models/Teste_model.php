@@ -17,6 +17,7 @@ class Teste_model extends CI_Model{
 		return $this->db->get();
 	}
 
+
 	public function exibirManutencao(){
 		$this->db
 		->from("tbl_tipoManutencao");//Nome da tabela
@@ -231,7 +232,27 @@ public function innerJoinMarcaPecas($pec_codigo){
 
 	print_r($this->db->last_query()); 
 }	
+/*-----------------------RANDOM DAS TABELAS ----------------------------------*/
+public function randonComputador(){
+	$this->db
+	->order_by('rand()')
+		->from("tbl_produtoComputador");//Nome da tabela
+		return $this->db->get();
+	}
 
+public function randonJogos(){
+		$this->db
+		->order_by('rand()')
+		->from("tbl_produtosJogos");//Nome da tabela
+		return $this->db->get();
+	}
+
+public function randonPecas(){
+		$this->db
+		->order_by('rand()')
+		->from("tbl_pecasComputador");//Nome da tabela
+		return $this->db->get();
+	}
 
 }	
 

@@ -84,11 +84,11 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 
                 <div class="container mt-5">
 
-                   <?php echo validation_errors(); ?>
-                   <?php if(isset($mensagens)) echo $mensagens; ?>
-                   <?php  echo form_open('Cliente/cadastraCliente'); ?>
+                 <?php echo validation_errors(); ?>
+                 <?php if(isset($mensagens)) echo $mensagens; ?>
+                 <?php  echo form_open('Cliente/cadastraCliente'); ?>
 
-                   <div class="form-group row">
+                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">Nome</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="" name="cli_nome">
@@ -97,14 +97,14 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">CPF</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="" name="cli_cpf">
+                        <input type="text" class="form-control cpf" id="cli_cpf" name="cli_cpf">
                     </div>
                 </div>
 
                 <div class="form-group inline">
                     <label for="cep" class="col-sm-4 col-form-label">CEP</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="cep" name="cli_cep"/>
+                        <input type="text" class="form-control cep" id="cep" name="cli_cep"/>
                     </div>
                 </div>
                 <button type="button" class="btn btn-success" id="btnPesquisaCep">Pesquisar</button>
@@ -143,13 +143,13 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">Telefone</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="" name="cli_telefone">
+                        <input type="text" class="form-control telefone" id="cli_telefone" name="cli_telefone">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">Celular</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="" name="cli_celular">
+                        <input type="text" class="form-control sp_celphones" id="cli_celular" name="cli_celular">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -214,6 +214,26 @@ fetch(url).then(response =>{
                     estado.value = dado.uf;
                 }
             </script>
-        </body>
 
-        </html>
+            <script src="<?= base_url()?>../public/js/jquery.mask.min.js"></script>
+            <script type="text/javascript">
+                $('.cep').mask('00000-000');
+                $('.telefone').mask('(99)9999-9999');
+                $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+                $('.cpf').mask('000.000.000-00', {reverse: true});
+
+                var cel = function (val) {
+                  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+              },
+              spOptions = {
+                  onKeyPress: function(val, e, field, options) {
+                      field.mask(cel.apply({}, arguments), options);
+                  }
+              };
+              $('.sp_celphones').mask(cel, spOptions);
+          </script>
+          <script type="text/javascript">
+      </script>
+      </body>
+
+      </html>

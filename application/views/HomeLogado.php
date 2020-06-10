@@ -55,7 +55,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                         </svg></a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item ml-2" href="#">Compras</a>
-                            <a class="dropdown-item ml-2" href="#">Dados</a>
+                            <a class="dropdown-item ml-2" href=<?=base_url().'Cliente/exibirDados'?>>Dados</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'Cliente/logoff'?>>Sair</a>
                         </div>
                     </li>
@@ -330,180 +330,249 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
             <div class="col-12 text-center  my-0">
                 <h2 class="display-3">
                     <!--Loja Virtual Dr.Pecê</h2>
-                        <p>Para um computador melhor.-->
-                        </p>
+                        <p>Para um computador melhor.
+                        </p>-->
                     </div>
                 </div>
             </div>
             <!--Cards-->
-            <div class="row my-3 justify-content-sm-center">
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <?php 
-                            $CI->load->model('Teste_model');
-                            $teste= $CI->Teste_model->exibirComputador();
-                            foreach($teste->result_array() as $rows_computador){ 
-                                $com_codigo=$rows_computador['com_codigo'];
-                            }
-                            ?>
-                            <h5 class="card-title">Nome</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title">Notebook</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title">Notebook</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title">Notebook</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="row my-3 justify-content-sm-center">
+             <?php 
+             $CI->load->model('Teste_model');
+             $teste= $CI->Teste_model->randonComputador();
+             $comp=0;
+             foreach($teste->result_array() as $rows_computador){ 
+                ?>
+                <!--TENTAR COLOCAR HEIGTH IGUAL AO WIDTH PARA FICAR FIXO-->
                 <div class="col-sm-auto col-md-3">
                     <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title">Notebook</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title">Notebook</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title">Notebook</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title">Notebook</h5>
-                            <p class="card-text">Descrição do Produto
-                            </p>
-                        </div>
-                        <div class="ml-4">
-                            <h6 id="">Preço</h6>
-                            <h6 id="">Parcela</h6>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
 
-            <div class="container-fluid">
-                <div class="card- text-white bg-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text">
+                        <img src="../../uploads/<?= $rows_computador['com_foto']; ?>" class="card-img-top" alt="Responsive image">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $rows_computador['com_nome']?></h5>
+                            <p class="card-text"><?php echo $rows_computador['com_descricao']?>
                         </p>
                     </div>
-
+                    <div class="ml-4">
+                        <h6 id=""><?php echo $rows_computador['com_preco']?></h6>
+                        <h6 id="">Parcela</h6>
+                    </div>
+                    <div class="card-body">
+                        <a href="#" class="btn-block btn btn-success">Ver</a>
+                    </div>
                 </div>
             </div>
+            <?php
+            if(++$comp==4) break;
+        }
+        ?>
+    </div>
 
-            <!-- Optional JavaScript -->
-            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        </body>
+    <div class="row my-3 justify-content-sm-center">
+       <?php 
+       $CI->load->model('Teste_model');
+       $teste= $CI->Teste_model->randonJogos();
+       foreach($teste->result_array() as $rows_jogos){ 
+        $jog=0;
+        ?>
+        <div class="col-sm-auto col-md-3">
+            <div class="card shadow" style="width: 18rem;">
+                <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
 
-        </html>
+                <img src="../../uploads/<?= $rows_jogos['pro_foto']; ?>" class="card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $rows_jogos['pro_titulo']?></h5>
+                    <p class="card-text"><?php echo $rows_jogos['pro_descricao']?>
+                </p>
+            </div>
+            <div class="ml-4">
+                <h6 id=""><?php echo $rows_jogos['pro_preco']?></h6>
+                <h6 id="">Parcela</h6>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn-block btn btn-success">Ver</a>
+            </div>
+        </div>
+    </div>
+    <?php
+    if(++$jog==4) break;
+}
+?>
+</div>
+
+
+
+<div class="row my-3 justify-content-sm-center">
+   <?php 
+   $CI->load->model('Teste_model');
+   $teste= $CI->Teste_model->exibirPecasComputador();
+   foreach($teste->result_array() as $rows_pecas){ 
+    $pec=0;
+    ?>
+    <div class="col-sm-auto col-md-3">
+        <div class="card shadow" style="width: 18rem;">
+            <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+            <?php
+            if($rows_pecas['pec_foto']==''){
+                ?>
+                <img src="../../uploads/semFoto.jpg" class="card-img-top" alt="Responsive image">
+                <?php
+            }else{
+                ?>
+
+                <img src="../../uploads/<?= $rows_pecas['pec_foto']; ?>" class="card-img-top" alt="Responsive image">
+                <?php
+            }
+            ?>
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $rows_pecas['pec_nome']?></h5>
+                <p class="card-text"><?php echo $rows_pecas['pec_descricao']?>
+            </p>
+        </div>
+        <div class="ml-4">
+            <h6 id=""><?php echo $rows_pecas['pec_preco']?></h6>
+            <h6 id="">Parcela</h6>
+        </div>
+        <div class="card-body">
+            <a href="#" class="btn-block btn btn-success">Ver</a>
+        </div>
+    </div>
+</div>
+<?php
+if(++$pec==4) break;
+}
+?>
+</div>
+    <!--     
+        <div class="col-sm-auto col-md-3">
+            <div class="card shadow" style="width: 18rem;">
+                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h5 class="card-title">Notebook</h5>
+                    <p class="card-text">Descrição do Produto
+                    </p>
+                </div>
+                <div class="ml-4">
+                    <h6 id="">Preço</h6>
+                    <h6 id="">Parcela</h6>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="btn-block btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div> -->
+  <!--       <div class="col-sm-auto col-md-3">
+            <div class="card shadow" style="width: 18rem;">
+                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h5 class="card-title">Notebook</h5>
+                    <p class="card-text">Descrição do Produto
+                    </p>
+                </div>
+                <div class="ml-4">
+                    <h6 id="">Preço</h6>
+                    <h6 id="">Parcela</h6>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="btn-block btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div>-->
+
+
+
+   <!--  <div class="row my-3 justify-content-sm-center">
+        <div class="col-sm-auto col-md-3">
+            <div class="card shadow" style="width: 18rem;">
+                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h5 class="card-title">Notebook</h5>
+                    <p class="card-text">Descrição do Produto
+                    </p>
+                </div>
+                <div class="ml-4">
+                    <h6 id="">Preço</h6>
+                    <h6 id="">Parcela</h6>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="btn-block btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="col-sm-auto col-md-3">
+            <div class="card shadow" style="width: 18rem;">
+                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h5 class="card-title">Notebook</h5>
+                    <p class="card-text">Descrição do Produto
+                    </p>
+                </div>
+                <div class="ml-4">
+                    <h6 id="">Preço</h6>
+                    <h6 id="">Parcela</h6>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="btn-block btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="col-sm-auto col-md-3">
+            <div class="card shadow" style="width: 18rem;">
+                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h5 class="card-title">Notebook</h5>
+                    <p class="card-text">Descrição do Produto
+                    </p>
+                </div>
+                <div class="ml-4">
+                    <h6 id="">Preço</h6>
+                    <h6 id="">Parcela</h6>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="btn-block btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="col-sm-auto col-md-3">
+            <div class="card shadow" style="width: 18rem;">
+                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h5 class="card-title">Notebook</h5>
+                    <p class="card-text">Descrição do Produto
+                    </p>
+                </div>
+                <div class="ml-4">
+                    <h6 id="">Preço</h6>
+                    <h6 id="">Parcela</h6>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="btn-block btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+<div class="container-fluid">
+    <div class="card- text-white bg-dark mb-3" style="max-width: 100%;">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -50,9 +50,9 @@ class Cliente extends CI_Controller{
 		$this->form_validation->set_rules('cli_nome','Nome Completo','required|min_length[3]',
 			array('required' => "<div class='alert alert-danger'>Nome obrigatorio</div>",
 				'min_length' => "<div class='alert alert-danger'>O tamanho mínimo do Nome é <b>3</b> caracteres</div>"));
-		$this->form_validation->set_rules('cli_cpf','CPF','required|exact_length[11]',
+		$this->form_validation->set_rules('cli_cpf','CPF','required|exact_length[14]',
 			array('required' => "<div class='alert alert-danger'>Preenchimento do CPF obrigatorio.</div>",
-				'exact_length'=>"<div class='alert alert-danger'>O CNPJ deve ser escrito com <b>11</b> números</div>"));
+				'exact_length'=>"<div class='alert alert-danger'>O CPF deve ser escrito com <b>11</b> números</div>"));
 		$this->form_validation->set_rules('cli_cep','CEP');
 		$this->form_validation->set_rules('cli_endereco','Rua','required',array('required' => "<div class='alert alert-danger'>Preenchimento da Rua obrigatorio.</div>"));
 		$this->form_validation->set_rules('cli_numero','Numero');
@@ -60,8 +60,8 @@ class Cliente extends CI_Controller{
 		$this->form_validation->set_rules('cli_cidade','Cidade','required',array('required' => "<div class='alert alert-danger'>Preenchimento da Cidade obrigatorio.</div>"));
 		$this->form_validation->set_rules('cli_estado','Estado','required',array('required' => "<div class='alert alert-danger'>Preenchimento da Cidade obrigatorio.</div>"));
 		$this->form_validation->set_rules('cli_telefone','Telefone');
-		$this->form_validation->set_rules('cli_celular','Celular','min_length[10]|max_length[11]',
-			array('max_length' => "<div class='alert alert-danger'>O celular não pode exceder <b>11</b> caracteres.</div>",
+		$this->form_validation->set_rules('cli_celular','Celular','min_length[14]|max_length[15]',
+			array('max_length' => "<div class='alert alert-danger'>O celular não pode exceder <b>12</b> caracteres.</div>",
 				'min_length' => "<div class='alert alert-danger'>O tamanho mínimo do celular é <b>12</b> caracteres</div>"));
 		$this->form_validation->set_rules('cli_email','Email','required',array('required' => "<div class='alert alert-danger'>Preenchimento do Email obrigatorio.</div>"));
 
@@ -78,7 +78,8 @@ class Cliente extends CI_Controller{
 			// $data['cli_senha']=MD5($data['cli_cpf']);
 			//$cli_senha=MD5($this->input->post('cli_cpf'));
 			// echo $data['cli_senha'];
-			$data=array(
+
+			$data2=preg_replace('/[\(\)\.\-]/','',$data=array(
 				'cli_nome' => $this->input->post('cli_nome'),
 				'cli_cpf' => $this->input->post('cli_cpf'),
 				'cli_endereco' => $this->input->post('cli_endereco'),
@@ -87,12 +88,13 @@ class Cliente extends CI_Controller{
 				'cli_cidade' => $this->input->post('cli_cidade'),
 				'cli_estado' => $this->input->post('cli_estado'),
 				'cli_cep' => $this->input->post('cli_cep'),
-				'cli_email' => $this->input->post('cli_email'),
 				'cli_telefone' => $this->input->post('cli_telefone'),
 				'cli_celular' => $this->input->post('cli_celular'),
-				'cli_senha'=>MD5($this->input->post('cli_cpf'))
-				//"forms"=>$forms
-			);
+				'cli_senha'=>$this->input->post('cli_cpf')
+			));
+			$data1=array('cli_email'=>$this->input->post('cli_email'));
+			$data2['cli_senha']=md5($data2['cli_senha']);
+			$data=$data2+$data1;
 
 			$this->load->model('Cliente_model');
 			$this->Cliente_model->inserirCliente($data);
@@ -153,6 +155,10 @@ class Cliente extends CI_Controller{
 
 		$this->session->sess_destroy();
 		header("Location: ".base_url());
+	}
+
+	public function exibirDados(){
+		$this->load->view("DadosCliente");
 	}
 }
 

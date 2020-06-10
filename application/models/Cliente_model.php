@@ -20,6 +20,22 @@ class Cliente_model extends CI_Model{
 		return $this->db->get()->result_array();
 	}
 
+	public function exibirDado($semail,$ssenha){
+		$this->db
+		->from("tblCliente")
+		->where("cli_email",$semail)
+		->where("cli_senha",$ssenha);//Nome da tabela
+		$exibec=$this->db->get();
+		//print_r($this->db->last_query());
+
+		if($exibec->num_rows()>0){
+			return $exibec;
+		}else{
+			return NULL;
+		}
+	}
+	
+
 
 	public function verificarLoginCliente($email,$senhaCMD5){
 		$this->db
