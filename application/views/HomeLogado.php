@@ -1,4 +1,10 @@
-<!doctype html>
+<?php
+defined('BASEPATH') or exit('No direct sript acess allowed');
+$CI = & get_instance();
+$CI->load->library('session');
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,15 +15,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="<?=base_url()?>/public/css/estilo.css">
+
     <title>Loja virtual Dr. Pecê</title>
 </head>
 <?php
 
     //Para conseguir instanciar para essa página
-$CI = & get_instance();
-$CI->load->library('session');
 
 if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha")==''){
     $CI->session->unset_userdata("cli_nome");
@@ -34,7 +38,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
     <!--Inicio Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand h1 mb-0" href="#">
+            <a class="navbar-brand h1 mb-0" href="<?= base_url();?>">
                 <h2 class="text-success">Dr. Pecê </h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
@@ -55,21 +59,21 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                         </svg></a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item ml-2" href="#">Compras</a>
-                            <a class="dropdown-item ml-2" href=<?=base_url().'Cliente/exibirDados'?>>Dados</a>
-                            <a class="dropdown-item ml-2" href=<?=base_url().'Cliente/logoff'?>>Sair</a>
+                            <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
+                            <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jogos</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Arte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Computadores</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Peças</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Manutenção</a>
@@ -180,10 +184,10 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
 
     <!--Scrollspy-->
 
-    <div class="row align-content-center ">
+    <div class="row align-content-center text-justify " >
         <div class="col-sm-4 col-md-3 ">
             <nav id="Scrollspy1" class="Scrollspy1" class="navbar-lg navbar-dark bg-light">
-                <nav class=" nav nav-pills  flex-column">
+                <nav class=" nav nav-pills flex-column ">
                     <li class="nav-item">
                         <a class="nav-link" href="#item-1">Jogos</a>
                     </li>
@@ -204,9 +208,9 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
             </nav>
         </div>
         <div class="col-sm-8 col-md-9">
-            <div data-spy="scroll" class="ScrollspySite" data-target="#Scrollspy1" data-offset="0">
+            <div data-spy="scroll" class="ScrollspySite"  data-target="#Scrollspy1" data-offset="0">
                 <h4 id="item-1">Jogos</h4>
-                <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
                     legível de uma página
                     quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
                     se distrairá
@@ -228,7 +232,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                     com o conteúdo de texto legível de uma página
                 quando estiver examinando sua diagramação.</p>
                 <h4 id="item-2">Artes</h4>
-                <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
                     legível de uma página
                     quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
                     se distrairá
@@ -256,7 +260,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                     com o conteúdo de texto legível de uma página
                 quando estiver examinando sua diagramação.</p>
                 <h4 id="item-3">Computadores</h4>
-                <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
                     legível de uma página
                     quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
                     se distrairá
@@ -275,7 +279,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                     com o conteúdo de texto legível de uma página
                 quando estiver examinando sua diagramação.</p>
                 <h4 id="item-4">Peças</h4>
-                <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
                     legível de uma página
                     quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
                     se distrairá
@@ -300,7 +304,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                     com o conteúdo de texto legível de uma página
                 quando estiver examinando sua diagramação.</p>
                 <h4 id="item-5">Manutenção</h4>
-                <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
                     legível de uma página
                     quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
                     se distrairá
@@ -336,64 +340,115 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                 </div>
             </div>
             <!--Cards-->
+            <div class="form-container2 align-items-center">
+                <div class="row">
+                   <?php 
+                   $CI->load->model('Teste_model');
+                   $teste= $CI->Teste_model->randonComputador();
+                   $comp=0;
+                   foreach($teste->result_array() as $rows_computador){ 
+                    ?>
+                    <!--Cards-->
+                    <div class="card-deck mx-auto justify-content-center">
+                        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
+                            <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
 
-            <div class="row my-3 justify-content-sm-center">
-             <?php 
-             $CI->load->model('Teste_model');
-             $teste= $CI->Teste_model->randonComputador();
-             $comp=0;
-             foreach($teste->result_array() as $rows_computador){ 
-                ?>
-                <!--TENTAR COLOCAR HEIGTH IGUAL AO WIDTH PARA FICAR FIXO-->
-                <div class="col-sm-auto col-md-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+                            <?php
+                            if($rows_computador['com_foto']==''){
+                                ?>
+                                <img src="../../uploads/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                                <?php
+                            }else{
+                                ?>
 
-                        <img src="../../uploads/<?= $rows_computador['com_foto']; ?>" class="card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $rows_computador['com_nome']?></h5>
-                            <p class="card-text"><?php echo $rows_computador['com_descricao']?>
-                        </p>
-                    </div>
-                    <div class="ml-4">
-                        <h6 id=""><?php echo $rows_computador['com_preco']?></h6>
-                        <h6 id="">Parcela</h6>
-                    </div>
-                    <div class="card-body">
-                        <a href="#" class="btn-block btn btn-success">Ver</a>
-                    </div>
-                </div>
-            </div>
-            <?php
-            if(++$comp==4) break;
-        }
-        ?>
-    </div>
+                                <img src="../../uploads/<?= $rows_com['com_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                                <?php
+                            }
+                            ?>
+                            <div class="card-body" style="max-height:10rem;">
+                                <h5 class="card-title"><?php echo $rows_computador['com_nome']?></h5>
+                                <?php
+                                if(strlen($rows_computador['com_descricao'])> 70){
+                                    $rows_pedacoC=substr($rows_computador['com_descricao'],0,70);
+                                    ?>
+                                    <p class="card-text"><?php echo $rows_pedacoC."...";?>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <p class="card-text"><?php echo $rows_computador['com_descricao'];?> 
+                                    <?php
+                                }
+                                ?>
+                            </p>
+                        </div>
+                        <div class="ml-4" style="height:2rem;">
+                            <h6 id=""><?php echo $rows_computador['com_preco']?></h6>
+                            <!--   <h6 id="">Parcela</h6> -->
+                        </div>
+                        <div class="card-footer">
+                         <a href="#" class="btn-block btn btn-success">Ver</a>
+                     </div>
+                 </div>
+             </div>
+             <?php
+             if(++$comp==4) break;
+         }
+         ?>
+     </div>
 
-
-    <div class="row my-3 justify-content-sm-center">
-       <?php 
-       $CI->load->model('Teste_model');
-       $teste= $CI->Teste_model->randonJogos();
-       foreach($teste->result_array() as $rows_jogos){ 
+     <div class="row">
+        <!--Cards-->       
+        <?php 
+        $CI->load->model('Teste_model');
+        $teste= $CI->Teste_model->randonJogos();
         $jog=0;
-        ?>
-        <div class="col-sm-auto col-md-3">
-            <div class="card shadow" style="width: 18rem;">
-                <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+        foreach($teste->result_array() as $rows_jogos){ 
+            $pro_codigo=$rows_jogos['pro_codigo'];
+            $pro_titulo=$rows_jogos['pro_titulo'];
+            $pro_titulo=preg_replace('/[ -]+/','-',$pro_titulo);
+            $icj=$CI->Teste_model->innerJoinCategoria($pro_codigo);
+            $ifj=$CI->Teste_model->innerJoinFornecedor($pro_codigo);
+            $iclaj=$CI->Teste_model->innerJoinClassificacao($pro_codigo);
 
-                <img src="../../uploads/<?= $rows_jogos['pro_foto']; ?>" class="card-img-top" alt="Responsive image">
-                <div class="card-body">
+
+            ?>
+            <div class="card-deck mx-auto justify-content-center">
+                <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
+                   <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+                   <?php
+                   if($rows_jogos['pro_foto']==''){
+                    ?>
+                    <img src="../../uploads/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                    <?php
+                }else{
+                    ?>
+
+                    <img src="../../uploads/<?= $rows_jogos['pro_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                    <?php
+                }
+                ?>
+                <div class="card-body" style="max-height:10rem;">
                     <h5 class="card-title"><?php echo $rows_jogos['pro_titulo']?></h5>
-                    <p class="card-text"><?php echo $rows_jogos['pro_descricao']?>
+                    <?php
+                    if(strlen($rows_jogos['pro_sinopse'])> 70){
+                        $rows_pedaco=substr($rows_jogos['pro_sinopse'],0,70);
+                        ?>
+                        <p class="card-text"><?php echo $rows_pedaco."...";?>
+                        <?php
+                    }else{
+                        ?>
+                        <p class="card-text"><?php echo $rows_jogos['pro_sinopse'];?> 
+                        <?php
+                    }
+                    ?>
                 </p>
             </div>
-            <div class="ml-4">
+            <div class="ml-4"  style="height:2rem;">
                 <h6 id=""><?php echo $rows_jogos['pro_preco']?></h6>
-                <h6 id="">Parcela</h6>
             </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
+            <div class="card-footer">
+                <!---------------------VEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRR PROOOOOOODUTTOOOOOOOOOOOOOOO-------->
+                <a href="<?= base_url();?>Produto/<?=$pro_codigo?>/<?=$pro_titulo?>" class="btn-block btn btn-success">Ver</a> 
             </div>
         </div>
     </div>
@@ -403,159 +458,129 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
 ?>
 </div>
 
+<div class="modal fade" id="modalExibeJogo<?php echo $rows_jogos['pro_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <table class="table">
+                    <thead>
+                        <tbody>
+                            <tr class="thead-dark">
+                                <th scope="row">Código</th>
+                                <td><?php echo $rows_jogos['pro_codigo']; ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Nome</th>
+                                <td><?php echo $rows_jogos['pro_titulo']; ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Categoria</th>
+                                <td><?php echo $icj[0]->cat_categoria; ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Fornecedor</th>
+                                <td><?php echo $ifj[0]->for_nomeFantasia; ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Classificação</th>
+                                <td><?php echo $iclaj[0]->cla_classificacao; ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Ano</th>
+                                <td><?php echo $rows_jogos['pro_anoLancamento'];  ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Sinopse</th>
+                                <td><?php echo $rows_jogos['pro_sinopse'];  ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Imagem</th>
+                                <td><?php echo $rows_jogos['pro_foto'];  ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Descrição</th>
+                                <td><?php echo $rows_jogos['pro_descricao'];  ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Preço</th>
+                                <td><?php echo $rows_jogos['pro_preco']; ?></td>
+                            </tr>
+                            <tr class="thead-dark">
+                                <th scope="row">Status</th>
+                                <td><?php echo $rows_jogos['pro_status']; ?></td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
 
 
-<div class="row my-3 justify-content-sm-center">
-   <?php 
-   $CI->load->model('Teste_model');
-   $teste= $CI->Teste_model->exibirPecasComputador();
-   foreach($teste->result_array() as $rows_pecas){ 
-    $pec=0;
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+ <?php 
+ $CI->load->model('Teste_model');
+ $teste= $CI->Teste_model->randonPecas();
+ $pec=0;
+ foreach($teste->result_array() as $rows_pecas){ 
     ?>
-    <div class="col-sm-auto col-md-3">
-        <div class="card shadow" style="width: 18rem;">
-            <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+    <div class="card-deck mx-auto justify-content-center">
+        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
+           <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+           <?php
+           if($rows_pecas['pec_foto']==''){
+            ?>
+            <img src="../../uploads/semFoto.jpg" class="card-img-top" alt="Responsive image" style="height:9rem;">
             <?php
-            if($rows_pecas['pec_foto']==''){
+        }else{
+            ?>
+
+            <img src="../../uploads/<?= $rows_pecas['pec_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+            <?php
+        }
+        ?>
+        <div class="card-body" style="max-height:10rem;">
+            <h5 class="card-title"><?php echo $rows_pecas['pec_nome']?></h5>
+            <?php
+            if(strlen($rows_pecas['pec_descricao'])> 70){
+                $rows_pedacoP=substr($rows_pecas['pec_descricao'],0,70);
                 ?>
-                <img src="../../uploads/semFoto.jpg" class="card-img-top" alt="Responsive image">
+                <p class="card-text"><?php echo $rows_pedacoP."...";?>
                 <?php
             }else{
                 ?>
-
-                <img src="../../uploads/<?= $rows_pecas['pec_foto']; ?>" class="card-img-top" alt="Responsive image">
+                <p class="card-text"><?php echo $rows_pecas['pec_descricao'];?> 
                 <?php
             }
             ?>
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $rows_pecas['pec_nome']?></h5>
-                <p class="card-text"><?php echo $rows_pecas['pec_descricao']?>
-            </p>
-        </div>
-        <div class="ml-4">
-            <h6 id=""><?php echo $rows_pecas['pec_preco']?></h6>
-            <h6 id="">Parcela</h6>
-        </div>
-        <div class="card-body">
-            <a href="#" class="btn-block btn btn-success">Ver</a>
-        </div>
+        </p>
     </div>
+    <div class="ml-4" style="height:2rem;">
+        <h6 id=""><?php echo $rows_pecas['pec_preco']?></h6>
+    </div>
+    <div class="card-footer">
+        <a href="#" class="btn-block btn btn-success">Ver</a>
+    </div>
+</div>
 </div>
 <?php
 if(++$pec==4) break;
 }
 ?>
 </div>
-    <!--     
-        <div class="col-sm-auto col-md-3">
-            <div class="card shadow" style="width: 18rem;">
-                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                <div class="card-body">
-                    <h5 class="card-title">Notebook</h5>
-                    <p class="card-text">Descrição do Produto
-                    </p>
-                </div>
-                <div class="ml-4">
-                    <h6 id="">Preço</h6>
-                    <h6 id="">Parcela</h6>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn-block btn btn-success">Ver</a>
-                </div>
-            </div>
-        </div> -->
-  <!--       <div class="col-sm-auto col-md-3">
-            <div class="card shadow" style="width: 18rem;">
-                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                <div class="card-body">
-                    <h5 class="card-title">Notebook</h5>
-                    <p class="card-text">Descrição do Produto
-                    </p>
-                </div>
-                <div class="ml-4">
-                    <h6 id="">Preço</h6>
-                    <h6 id="">Parcela</h6>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn-block btn btn-success">Ver</a>
-                </div>
-            </div>
-        </div>-->
 
+</div><!--Fechamento container-->
 
-
-   <!--  <div class="row my-3 justify-content-sm-center">
-        <div class="col-sm-auto col-md-3">
-            <div class="card shadow" style="width: 18rem;">
-                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                <div class="card-body">
-                    <h5 class="card-title">Notebook</h5>
-                    <p class="card-text">Descrição do Produto
-                    </p>
-                </div>
-                <div class="ml-4">
-                    <h6 id="">Preço</h6>
-                    <h6 id="">Parcela</h6>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn-block btn btn-success">Ver</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-auto col-md-3">
-            <div class="card shadow" style="width: 18rem;">
-                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                <div class="card-body">
-                    <h5 class="card-title">Notebook</h5>
-                    <p class="card-text">Descrição do Produto
-                    </p>
-                </div>
-                <div class="ml-4">
-                    <h6 id="">Preço</h6>
-                    <h6 id="">Parcela</h6>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn-block btn btn-success">Ver</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-auto col-md-3">
-            <div class="card shadow" style="width: 18rem;">
-                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                <div class="card-body">
-                    <h5 class="card-title">Notebook</h5>
-                    <p class="card-text">Descrição do Produto
-                    </p>
-                </div>
-                <div class="ml-4">
-                    <h6 id="">Preço</h6>
-                    <h6 id="">Parcela</h6>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn-block btn btn-success">Ver</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-auto col-md-3">
-            <div class="card shadow" style="width: 18rem;">
-                <img src="../../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                <div class="card-body">
-                    <h5 class="card-title">Notebook</h5>
-                    <p class="card-text">Descrição do Produto
-                    </p>
-                </div>
-                <div class="ml-4">
-                    <h6 id="">Preço</h6>
-                    <h6 id="">Parcela</h6>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn-block btn btn-success">Ver</a>
-                </div>
-            </div>
-        </div>
-    </div>
--->
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <div class="card- text-white bg-dark mb-3" style="max-width: 100%;">
         <div class="card-header"></div>
         <div class="card-body">
@@ -566,7 +591,7 @@ if(++$pec==4) break;
 
     </div>
 </div>
-
+-->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 

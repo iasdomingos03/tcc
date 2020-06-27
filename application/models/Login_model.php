@@ -16,8 +16,8 @@ class Login_model extends CI_Model{
 		
 		$this->db
 		->from("tbl_Adm")
-		->where("adm_email",$email);
-		// ->where("adm_senha",$senhaMD5);
+		->where("adm_email",$email)
+		->where("adm_senha",$senhaMD5);
 		//$result->armazena os registros
 		$result=$this->db->get();
 		

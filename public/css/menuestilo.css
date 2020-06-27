@@ -1,0 +1,77 @@
+/* BKG */ 
+/*.bkg-one {
+	background-color: #3c8dbc;
+}*/
+.bkg-one-dark {
+	background-color: #367fa9;
+}
+.bkg-two {
+	background-color: #222d32;
+}
+
+/*.btn-primary {
+	background-color: #3c8dbc; 
+	border-color: #367fa9;
+}
+
+.btn-primary:hover {
+	background-color: #367fa9; 
+	border-color: #367fa9;
+}*/
+
+/*Menu*/
+/*nav {}*/
+.main-header {
+	height: 40px; 
+	width: 80%; 
+	float: right;
+}
+.main-header ul {
+	padding: 5px !important;
+}
+.main-header ul li { 
+	list-style: none; 
+}
+.main-header ul li a { 
+	text-decoration: none; 
+	color: #fff; 
+	margin: 0 5px; 
+}
+
+.main-sidebar { 
+	height: 100%; 
+	width: 20%; 
+	position: fixed;
+}
+.main-sidebar ul {
+	padding: 0 !important;
+}
+.main-sidebar ul li { 
+	list-style: none;
+}
+.main-sidebar ul li a {
+	text-decoration: none; 
+	color: #fff; 
+	display: inline-block ; 
+}
+.main-sidebar .top {
+	width: 100%; 
+	height: 40px; 
+	float: left; 
+	text-align: center; 
+	font-weight: bold; 
+	padding: 10px; 
+}
+.main-sidebar .top a {
+	color: #fff; 
+	text-decoration: none;
+}
+.main-sidebar .main-menu { 
+	padding: 10px !important;
+}
+
+main { 
+	float: right; 
+	width: 80%; 
+	padding: 10px !important;
+}

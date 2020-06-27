@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] ='http://localhost/testeTCC/index.php/';
+$config['base_url'] ='http://localhost/testeTCC/';
 
 /*
 |--------------------------------------------------------------------------
@@ -400,6 +400,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
+
 $config['cookie_prefix']	= '';
 $config['cookie_domain']	= '';
 $config['cookie_path']		= '/';

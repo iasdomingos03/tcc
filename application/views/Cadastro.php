@@ -8,19 +8,23 @@
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/menuestilo2.css">
+
 </head>
+
 <body>   
 	<header class="navbar navbar-expand navbar-dark bg-dark">
 		<div class="navbar-nav-scroll">
 			<ul class="navbar-nav bd-navbar-nav flex-row">
 				<li class="nav-item">
-					<a class="nav-link" href=<?php echo base_url()?>Cadastros/exibeFormulario/>Cadastrar</a>
+					<a class="nav-link" href=<?php echo base_url()?>index.php/Cadastros/exibeFormulario/>Cadastrar</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href=<?php echo base_url() ?>Exibir/exibeLista/>Listar</a>
+					<a class="nav-link" href=<?php echo base_url() ?>index.php/Exibir/exibeLista/>Listar</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-success" href=<?=base_url()?>Login/logoffAdm/>Logoff</a>
+					<a class="btn btn-success" href=<?=base_url()?>index.php/Login/logoffAdm/>Logoff</a>
 				</li>
 			</ul>
 		</div>
@@ -33,13 +37,14 @@
 
 	if($CI->session->userdata("adm_email")=='' || $CI->session->userdata("adm_senha")==''){
 		$CI->session->unset_userdata("adm_codigo");
+		$CI->session->unset_userdata("adm_nome");
 		$CI->session->unset_userdata("adm_email");
 		$CI->session->unset_userdata("adm_senha");
 
 		$CI->session->sess_destroy();
-		header("Location: ".base_url()."Restrict");
+		header("Location: ".base_url()."index.php/Restrict");
 	}
-	echo "<p> Olá".$CI->session->userdata("adm_email")."</p>";
+	echo "<p> Olá ".$CI->session->userdata("adm_nome")."</p>";
 	?>
 
 	<div class="container shadow-lg p-3 mb-5 bg-white rounded sm-5">
@@ -71,7 +76,7 @@
 
 					<?php echo validation_errors(); ?> 
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo  form_open_multipart('CadastroJogo/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
+					<?php  echo  form_open_multipart('index.php/CadastroJogo/cadastraJogos'); ?><!--Nome do metodo que cadastra-->
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Título</label>
@@ -151,6 +156,10 @@
 							<input type="number" step="0.01" class="form-control" id="" name="pro_preco">
 						</div>
 					</div>  
+					<div class="form-group row">
+						<label for="pro_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
+						<input type="checkbox" name="pro_status">
+					</div>
 					<button type="submit" class="btn btn-success">Cadastrar</button>
 
 					<?php echo form_close(); ?>
@@ -162,7 +171,7 @@
 				<div class="container">
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo form_open('Cadastros/cadastraCategoria'); ?> 
+					<?php  echo form_open('index.php/Cadastros/cadastraCategoria'); ?> 
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Categoria</label>
@@ -174,7 +183,7 @@
 
 					<?php echo form_close(); ?>
 
-					<?php  echo form_open('Cadastros/cadastraClassificacao'); ?>
+					<?php  echo form_open('index.php/Cadastros/cadastraClassificacao'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Classificação</label>
@@ -187,7 +196,7 @@
 					<?php echo form_close(); ?>
 
 
-					<?php  echo form_open('Cadastros/cadastraModelo'); ?>
+					<?php  echo form_open('index.php/Cadastros/cadastraModelo'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Modelo</label>
@@ -198,7 +207,7 @@
 					</div>
 					<?php echo form_close(); ?>
 
-					<?php  echo form_open('Cadastros/cadastraMarca'); ?>
+					<?php  echo form_open('index.php/Cadastros/cadastraMarca'); ?>
 
 					<div class="form-group row">
 						<div class="col-sm-5">
@@ -213,7 +222,7 @@
 					<button type="submit" class="btn btn-success" >Cadastrar</button>
 					<?php echo form_close(); ?>
 
-					<?php  echo form_open('CadastroPecas/cadastraCategoriaPecas'); ?>
+					<?php  echo form_open('index.php/CadastroPecas/cadastraCategoriaPecas'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Categoria Peça</label>
@@ -229,7 +238,7 @@
 			<div class="tab-pane" id="pecas" role="tabpanel" aria-labelledby="pecas-tab">
 				<?php echo validation_errors(); ?>
 				<?php if(isset($mensagens)) echo $mensagens; ?>
-				<?php  echo form_open_multipart('CadastroPecas/cadastraPecas'); ?>
+				<?php  echo form_open_multipart('index.php/CadastroPecas/cadastraPecas'); ?>
 				<div class="container">
 
 					<div class="form-group row">
@@ -304,6 +313,10 @@
 							</select>
 						</div>
 					</div> 
+					<div class="form-group row">
+						<label for="pec_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
+						<input type="checkbox" name="pec_status">
+					</div>
 					<button type="submit" class="btn btn-success">Cadastrar</button>
 					<?php echo form_close(); ?>
 				</div>
@@ -313,7 +326,7 @@
 
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo form_open('cadastroFornecedor/cadastraFornecedor'); ?><!--Nome do metodo que cadastra-->
+					<?php  echo form_open('index.php/cadastroFornecedor/cadastraFornecedor'); ?><!--Nome do metodo que cadastra-->
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">CNPJ</label>
@@ -400,7 +413,7 @@
 				<div class="container">
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo  form_open_multipart('CadastroComputador/cadastraComputador'); ?>
+					<?php  echo  form_open_multipart('index.php/CadastroComputador/cadastraComputador'); ?>
 
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Nome</label>
@@ -458,7 +471,11 @@
 						<div class="col-sm-9">
 							<input type="number" step="0.01" class="form-control" id="" name="com_preco">
 						</div>
-					</div>  
+					</div> 
+					<div class="form-group row">
+						<label for="com_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
+						<input type="checkbox" name="com_status">
+					</div> 
 					<button type="submit" class="btn btn-success">Cadastrar</button>
 					<?php echo form_close(); ?>
 				</div>
@@ -468,7 +485,7 @@
 				<div class="container">
 					<?php echo validation_errors(); ?>
 					<?php if(isset($mensagens)) echo $mensagens; ?>
-					<?php  echo  form_open('Cadastros/cadastraTipoManutencao'); ?>
+					<?php  echo  form_open('index.php/Cadastros/cadastraTipoManutencao'); ?>
 					<div class="form-group row">
 						<label for="" class="col-sm-4 col-form-label">Tipo de Manutencao</label>
 						<div class="col-sm-9">
@@ -491,6 +508,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="<?php echo base_url()?>public/js/CEP.js"></script>
 	<script type="text/javascript">
 		$('#myTab a').on('click', function (e) {
 			e.preventDefault()
@@ -498,60 +516,8 @@
 		})
 
 	</script>
-	<script type="text/javascript">
+	<script src="<?= base_url()?>public/js/jquery.mask.min.js"></script>
+	<script src="<?= base_url()?>public/js/Mascara.js"></script>
 
-		const btnPesquisar = document.querySelector("#btnPesquisar");
-
-		btnPesquisar.addEventListener("click", e =>{ 
-	//Bloqueia o evento default
-	e.preventDefault();
-//pegando valores
-const inputDoCep = document.querySelector("#cep");
-const valorDoCep = inputDoCep.value;
-//fazendo a requisicao
-const url = `https://viacep.com.br/ws/${valorDoCep}/json/`;
-//fetch retorna uma promise
-fetch(url).then(response =>{
-	return response.json();
-}).then(dado =>{
-	if(dado.erro)
-	{
-		alert("O CEP DIGITADO ESTÁ INVÁLIDO");
-		return ;
-	}
-	atribuirCampos(dado);
-})
-})
-		function atribuirCampos(dado)
-		{
-			const rua = document.querySelector("#rua");
-			const bairro = document.querySelector("#bairro");
-			const cidade = document.querySelector("#cidade");
-			const estado = document.querySelector("#estado");
-
-			rua.value = dado.logradouro;
-			bairro.value = dado.bairro;
-			cidade.value = dado.localidade;
-			estado.value = dado.uf;
-		}
-	</script>
-	<script src="<?= base_url()?>../public/js/jquery.mask.min.js"></script>
-	<script type="text/javascript">
-		$('.cep').mask('00000-000');
-		$('.telefone').mask('(99)9999-9999');
-		$('.cnpj').mask('00.000.000/0000-00', {reverse: true});
-		$('.cpf').mask('000.000.000-00', {reverse: true});
-
-		var cel = function (val) {
-			return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-		},
-		spOptions = {
-			onKeyPress: function(val, e, field, options) {
-				field.mask(cel.apply({}, arguments), options);
-			}
-		};
-
-		$('.sp_celphones').mask(cel, spOptions);
-	</script>
 
 	</html>

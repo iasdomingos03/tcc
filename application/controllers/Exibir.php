@@ -30,6 +30,30 @@ class Exibir extends CI_Controller{
 		$this->load->model('Formulario_model');
 		
 		$codigo=$this->input->post('pro_codigo');
+
+		$config['upload_path']          = './uploads/';
+		$config['allowed_types']        = 'jpg|png|jpeg';
+		$config['max_size']             = 2000;
+		$config['max_width']            = 4000;
+		$config['max_height']           = 4000;
+
+		$this->load->library('upload', $config);
+
+		$imagem=array();
+//deixa a imagem não obrigatoria
+		if ( ! $this->upload->do_upload('pro_foto')){//nome do formulario
+			$teste='';
+		}else{
+			$imagem=$this->upload->data();
+			$teste=$imagem['file_name'];
+		}
+	//*********STATUS JOGOS	
+		if(isset($_POST["pro_status"])) {
+			$ckb_pro=1;
+
+		} else { 
+			$ckb_pro=0;
+		}
 		$jogos = array(  
 			'pro_titulo' => $this->input->post('pro_titulo'),
 			'pro_categoria' => $this->input->post('pro_categoria'),
@@ -37,9 +61,10 @@ class Exibir extends CI_Controller{
 			'pro_classificacao'=>$this->input->post('pro_classificacao'),
 			'pro_anoLancamento'=>$this->input->post('pro_anoLancamento'),
 			'pro_descricao'=>$this->input->post('pro_descricao'),
+			'pro_foto'=>$teste,
 			'pro_sinopse'=>$this->input->post('pro_sinopse'),
-			'pro_preco' => $this->input->post('pro_preco')
-
+			'pro_preco' => $this->input->post('pro_preco'),
+			'pro_status' =>$ckb_pro
 		);
 		$this->form_validation->set_rules('pro_titulo','Titulo', 'required|min_length[3]',
 			array('required' => "<div class='alert alert-danger'>Preenchimento do Título obrigatório.</div>",
@@ -59,37 +84,18 @@ class Exibir extends CI_Controller{
 		$this->form_validation->set_rules('pro_preco','Preco', 'required|numeric',
 			array('numeric'=>"<div class='alert alert-danger'>O Preco é um campo numérico</div>",'required' => "<div class='alert alert-danger'>Preenchimento do Preco obrigatório.</div>"));
 
-		// if($this->form_validation->run() == FALSE){
-		// 	$this->load->helper(['form','url']);
-		// 	$this->load->library('form_validation');
-		// //$this->imagemJogo();//mudei essa linha
-		// 	$this->load->model('Formulario_model');
-		// 	$forms= $this->Formulario_model->exibirDados();
-		// 	$this->load->view("Cadastro");
-
-
-		// 	//$this->load->view("Cadastro",$erros);
-		// }else{
-		// 	//$data=$this->input->post();
-		// 	$this->load->model('Formulario_model');
-		// 	$this->Formulario_model->inserirJogos($data);
-		// 	$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
-		// 	$this->load->view('Cadastro',$success);
-		// }
-
-		if ($this->form_validation->run() != FALSE && $this->Teste_model->updateJogos($codigo,$jogos)) {
-
-			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+		if ($this->form_validation->run() != FALSE){
+			$update=$this->Teste_model->updateJogos($codigo,$jogos);
+			$success = array('mensagens' => "<div class='alert alert-success'>Dados alterados com sucesso!</div>");
 			$this->load->view("Listar",$success);
 		} else {
 			$this->load->helper(['form','url']);
 			$this->load->library('form_validation');
-		//$this->imagemJogo();//mudei essa linha
 			$this->load->model('Formulario_model');
 			$forms= $this->Formulario_model->exibirDados();
 			$this->load->view("Listar");	
 		}
-		
+
 	}
 
 	public function exibeListaComputador(){	
@@ -108,25 +114,56 @@ class Exibir extends CI_Controller{
 		$this->load->library('form_validation');
 		$this->load->model('Formulario_model');
 		$this->load->model('Teste_model');
-		
+
 		$codigo=$this->input->post('com_codigo');
+
+		$config['upload_path']          = './uploads/';
+		$config['allowed_types']        = 'jpg|png|jpeg';
+		$config['max_size']             = 2000;
+		$config['max_width']            = 4000;
+		$config['max_height']           = 4000;
+
+		$this->load->library('upload', $config);
+
+		$imagem=array();
+//deixa a imagem não obrigatoria
+		if ( ! $this->upload->do_upload('com_foto')){//nome do formulario
+			$teste='';
+		}else{
+			$imagem=$this->upload->data();
+			$teste=$imagem['file_name'];
+		}
+//*************STATUS COMPUTADOR*********************
+		if(isset($_POST["com_status"])) {
+			$ckb_com=1;
+
+		} else { 
+			$ckb_com=0;
+		}
+
 		$computador = array(  
 			'com_nome' => $this->input->post('com_nome'),
 			'com_descricao' => $this->input->post('com_descricao'),
 			'com_marca' => $this->input->post('com_marca'),
 			'com_modelo' => $this->input->post('com_modelo'),
+			'com_foto'=>$teste,
 			'com_arquitetura' => $this->input->post('com_arquitetura'),
-			'com_preco' => $this->input->post('com_preco')
-
+			'com_preco' => $this->input->post('com_preco'),
+			'com_status'=>$ckb_com
 		);
 
-		if ($this->Teste_model->updateComputador($codigo,$computador)) {
-			echo 'sUCESSO';
+		if ($this->form_validation->run() != FALSE && $this->Teste_model->updateComputador($codigo,$computador)) {
+			$success = array('mensagens' => "<div class='alert alert-success'>Dados alterados com sucesso!</div>");
+			$this->load->view("Listar",$success);
 		} else {
-			
+			$this->load->helper(['form','url']);
+			$this->load->library('form_validation');
+			$this->load->model('Formulario_model');
+			$forms= $this->Formulario_model->exibirDados();
+			$this->load->view("Listar");	
 		}
-		$this->load->view("Listar",$computador);
 	}
+
 
 	public function alteraTipoManutencao(){
 
@@ -134,7 +171,7 @@ class Exibir extends CI_Controller{
 		$this->load->library('form_validation');
 		$this->load->model('Formulario_model');
 		$this->load->model('Teste_model');
-		
+
 		$codigo=$this->input->post('tman_codigo');
 		$tipomanutencao = array(  
 			'tman_nome' => $this->input->post('tman_nome'),
@@ -142,11 +179,15 @@ class Exibir extends CI_Controller{
 		);
 
 		if ($this->Teste_model->updateManutencao($codigo,$tipomanutencao)) {
-			echo 'sUCESSO';
+			$this->load->view("Listar",$success);
 		} else {
-			
+			$this->load->helper(['form','url']);
+			$this->load->library('form_validation');
+		//$this->imagemJogo();//mudei essa linha
+			$this->load->model('Formulario_model');
+			$forms= $this->Formulario_model->exibirDados();
+			$this->load->view("Listar");	
 		}
-		$this->load->view("Listar",$tipomanutencao);
 	}
 
 
@@ -166,8 +207,16 @@ class Exibir extends CI_Controller{
 		$this->load->library('form_validation');
 		$this->load->model('Teste_model');
 		$this->load->model('Formulario_model');
-		
+
 		$codigo=$this->input->post('pec_codigo');
+		//*************STATUS COMPUTADOR*********************
+		if(isset($_POST["pec_status"])) {
+			$ckb_pec=1;
+
+		} else { 
+			$ckb_pec=0;
+		}
+
 		$pecas = array(  
 			'pec_nome' => $this->input->post('pec_nome'),
 			'pec_marca' => $this->input->post('pec_marca'),
@@ -175,17 +224,20 @@ class Exibir extends CI_Controller{
 			'pec_descricao' => $this->input->post('pec_descricao'),
 			'pec_fornecedor' => $this->input->post('pec_fornecedor'),
 			'pec_preco' => $this->input->post('pec_preco'),
-			'pec_categoria' => $this->input->post('pec_categoria')
+			'pec_categoria' => $this->input->post('pec_categoria'),
+			'pec_status'=>$ckb_pec
 
 		);
 
 		if ($this->Teste_model->updatePecas($codigo,$pecas)) {
-			print_r('sUCESSO');
+			$success = array('mensagens' => "<div class='alert alert-success'>Dados alterados com sucesso!</div>");
+			$this->load->view("Listar",$success);
 		} else {
-			printf('ERRO');
+			$this->load->helper(['form','url']);
+			$this->load->library('form_validation');
+			$this->load->model('Formulario_model');
+			$forms= $this->Formulario_model->exibirDados();
+			$this->load->view("Listar");	
 		}
-		$this->load->view("Listar",$pecas);
 	}
-
-
 }//fim

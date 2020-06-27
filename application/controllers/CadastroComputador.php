@@ -32,8 +32,6 @@ class CadastroComputador extends CI_Controller{
 				//"forms"=>$forms
 		);
 		$this->load->view("Cadastro");
-
-
 	}
 
 	public function cadastraComputador(){
@@ -58,6 +56,13 @@ class CadastroComputador extends CI_Controller{
 			$imagem=$this->upload->data();
 			$teste=$imagem['file_name'];
 		}
+//Ativo/desativo
+		if(isset($_POST["com_status"])) {
+			$ckb_com=1;
+
+		} else { 
+			$ckb_com=0;
+		}
 
 		$com=array(
 			'com_nome' => $this->input->post('com_nome'),
@@ -66,7 +71,8 @@ class CadastroComputador extends CI_Controller{
 			'com_modelo' => $this->input->post('com_modelo'),
 			'com_foto'=>$teste,
 			'com_arquitetura' => $this->input->post('com_arquitetura'),
-			'com_preco' => $this->input->post('com_preco')
+			'com_preco' => $this->input->post('com_preco'),
+			'com_status'=>$ckb_com
 				//"forms"=>$forms
 		);
 

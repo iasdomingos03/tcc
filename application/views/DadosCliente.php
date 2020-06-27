@@ -1,4 +1,4 @@
-<!--doctype html-->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/estilo.css">
+
     <title>Loja virtual Dr. Pecê</title>
 </head>
 <?php
@@ -33,7 +34,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
     <!--Inicio Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand h1 mb-0" href="#">
+            <a class="navbar-brand h1 mb-0" href="<?=base_url();?>">
                 <h2 class="text-success">Dr. Pecê </h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
@@ -43,32 +44,25 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
             <div class="collapse navbar-collapse" id="navbarSite">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown" id="navDrop">
-                        <a class="nav-link"  data-toggle="dropdown" data-placement="bottom" title=<?php echo $CI->session->userdata("cli_nome");?>><svg class="bi bi-people-circle" width="30px" height="30px"
-                            viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/3500/svg">
-                            <path
-                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z" />
-                            <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                            <path fill-rule="evenodd"
-                            d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
-                            clip-rule="evenodd" />
-                        </svg></a>
+                        <!--TEM COMO A PESSOA COLOCAR IMAGEM. SALVA EM ALGUMA PASTA?SALVA NO BANCO?-->
+                        <a class="nav-link"  data-toggle="dropdown" data-placement="bottom" title=<?php echo $CI->session->userdata("cli_nome");?>><img src="../../public/img/circleImagem.jpg"class="rounded-circle" width="30px" height="30px"></a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item ml-2" href="#">Compras</a>
-                            <a class="dropdown-item ml-2" href=<?=base_url().'Cliente/exibirDados'?>>Dados</a>
-                            <a class="dropdown-item ml-2" href=<?=base_url().'Cliente/logoff'?>>Sair</a>
+                            <a class="dropdown-item ml-2" href="<?=base_url().'index.php/Cliente/exibirDados';?>">Dados</a>
+                            <a class="dropdown-item ml-2" href="<?=base_url().'index.php/Cliente/logoff';?>">Sair</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jogos</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Arte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Computadores</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Peças</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Manutenção</a>
@@ -100,7 +94,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                 </nav>
                 <div class="container">
                     <div class="row">
-                        <div class="col-2 shadow p-3 mb-5 bg-white rounded">
+                        <div class="col-lg-2 col-md-2 col-sm-12 shadow p-3 mb-5 bg-white rounded">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Dados</a>
                                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Compras</a>
@@ -124,20 +118,24 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                             $exibec=$CI->Cliente_model->exibirDado($semail,$ssenha);
                             foreach($exibec->result_array() as $rows_cli){ 
                                 ?>
-                                <div class="col-9 shadow p-3 mb-5 bg-white rounded">
+                                <div class="col-lg-9 col-md-9 col-sm-12 shadow p-3 mb-5 bg-white rounded" style="position:center;">
                                     <div class="tab-content" id="v-pills-tabContent">
                                       <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                          <div class="container">
-                                           <div class="form-group row">
+                                        <?php echo validation_errors(); ?>
+                                        <?php if(isset($mensagens)) echo $mensagens; ?>
+
+                                        <?php  echo form_open('index.php/Cliente/AlteraCliente'); ?>
+                                        <div class="container">
+                                         <div class="form-group row">
                                             <label for="" class="col-sm-4 col-form-label">Nome</label>
                                             <div class="col-sm-9">
-                                                <input type="text" disabled class="form-control" id="" name="cli_nome" value="<?= $rows_cli['cli_nome'];?>" >
+                                                <input type="text"  class="form-control" id="" name="cli_nome" readonly="readonly" value="<?= $rows_cli['cli_nome'];?>" >
                                             </div>
                                         </div>  
                                         <div class="form-group row">
                                             <label for="" class="col-sm-4 col-form-label">CPF</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control cpf" id="cli_cpf" name="cli_cpf" disabled value="<?= $rows_cli['cli_cpf'];?>">
+                                                <input type="text" class="form-control cpf" id="cli_cpf" name="cli_cpf" readonly="readonly" value="<?= $rows_cli['cli_cpf'];?>">
                                             </div>
                                         </div>
 
@@ -147,7 +145,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                                                 <input type="text" class="form-control cep" id="cep" name="cli_cep" value="<?= $rows_cli['cli_cep'];?>" >
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-success" id="btnPesquisaCep">Pesquisar</button>
+                                        <button type="button" class="btn btn-success" id="btnPesquisar">Pesquisar</button>
                                         <div class="form-group row">
                                             <label for="logradouro" class="col-sm-4 col-form-label">Rua</label>
                                             <div class="col-sm-9">
@@ -198,12 +196,49 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                                                 <input type="email" class="form-control" id="" name="cli_email" value="<?= $rows_cli['cli_email'];?>" >
                                             </div>
                                         </div>
+                                       <!--  <div class="form-group row">
+                                            <label for="" class="col-sm-4 col-form-label">Foto</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="form-control" id="" name="cli_imagem" >
+                                            </div>
+                                        </div> -->
                                         <?php
                                     }
-                                }
-                                ?>
+                                    ?>
+                                    <div class="col-sm-3 ">
+                                        <button type="submit" class="btn btn-warning btn-block">Alterar</button>
+                                    </div>
+                                </div>
+                                <?php echo form_close(); ?>
+
+                                <hr noshade=”noshade”/>
+                                <?php echo validation_errors(); ?>
+                                <?php if(isset($mensagens)) echo $mensagens; ?>
+                                <?php  echo form_open('index.php/Cliente/AlteraSenhaCliente'); ?>
+                                <div class="container">
+                                    <div class="form-group row">
+                                        <label for="" class="col-sm-4 col-form-label">Senha atual</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control" id="password1" name="cli_senhaAntiga"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="" class="col-sm-4 col-form-label">Nova senha</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control" id="password2" name="cli_senha"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <button type="submit" class="btn btn-warning btn-block">Alterar</button>
+                                    </div>
+                                </div>
+                                <?php echo form_close(); ?>
                             </div>
-                        </div>
+                            <?php
+
+                        }//fecha if
+                        ?>
+
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="container">
 
@@ -232,9 +267,12 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <script src="<?= base_url()?>../public/js/jquery.mask.min.js"></script>
+        <script src="<?= base_url()?>public/js/CEP.js"></script>
+        <script src="<?= base_url()?>public/js/jquery.mask.min.js"></script>
+        <script src="<?= base_url()?>public/js/Mascara.js"></script>
+
         <script type="text/javascript">
-            $('.cep').mask('00000-000');
+            /*$('.cep').mask('00000-000');
             $('.telefone').mask('(99)9999-9999');
             $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
             $('.cpf').mask('000.000.000-00', {reverse: true});
@@ -247,8 +285,22 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                   field.mask(cel.apply({}, arguments), options);
               }
           };
-          $('.sp_celphones').mask(cel, spOptions);
+          $('.sp_celphones').mask(cel, spOptions);*/
       </script>
-  </body>
+      <!-- <script type="text/javascript">
+          const password1=document.getElementById("password1");
+          const eyeBtn=document.getElementById("eye-btn");
 
-  </html>
+          eyeBtn.addEventListener("click",(e)=>{
+            if(password1.type ==="password"){
+                e.target.setAttribute("class","glyphicon glyphicon-eye-close");
+                password1.type="text";
+            }else{
+              e.target.setAttribute("class","glyphicon glyphicon-eye-open");
+              password1.type="password";   
+          }
+      });
+  </script> -->
+</body>
+
+</html>

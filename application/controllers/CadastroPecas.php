@@ -17,8 +17,6 @@ class CadastroPecas extends CI_Controller{
 	public function exibeFormulario(){
 		$this->load->helper(['form','url']);
 		$this->load->library('form_validation');
-		//$this->imagemJogo();//mudei essa linha
-
 		$this->load->model('Formulario_model');
 		$forms= $this->Formulario_model->exibirDados();
 		
@@ -33,8 +31,6 @@ class CadastroPecas extends CI_Controller{
 				//"forms"=>$forms
 		);
 		$this->load->view("Cadastro");
-
-
 	}
 
 	public function cadastraPecas(){
@@ -58,6 +54,12 @@ class CadastroPecas extends CI_Controller{
 			$teste=$imagem['file_name'];
 		}
 
+		if(isset($_POST["pec_status"])) {
+			$ckb_pec=1;
+
+		} else { 
+			$ckb_pec=0;
+		}
 		$pecas=array(
 			'pec_nome' => $this->input->post('pec_nome'),
 			'pec_marca' => $this->input->post('pec_marca'),
@@ -66,7 +68,8 @@ class CadastroPecas extends CI_Controller{
 			'pec_foto'=>$teste,
 			'pec_fornecedor' => $this->input->post('pec_fornecedor'),
 			'pec_preco' => $this->input->post('pec_preco'),
-			'pec_categoria' => $this->input->post('pec_categoria')
+			'pec_categoria' => $this->input->post('pec_categoria'),
+			'pec_status'=>$ckb_pec
 				//"forms"=>$forms
 		);
 
@@ -84,7 +87,6 @@ class CadastroPecas extends CI_Controller{
 		if($this->form_validation->run() == FALSE){
 			$this->load->helper(['form','url']);
 			$this->load->library('form_validation');
-		//$this->imagemJogo();//mudei essa linha
 			$this->load->model('Formulario_model');
 			$forms= $this->Formulario_model->exibirDados();
 			$this->load->view("Cadastro");
@@ -98,12 +100,6 @@ class CadastroPecas extends CI_Controller{
 			$this->load->view('Cadastro',$success);
 		}
 	}
-
-
-// $this->load->model('Formulario_model');
-// $this->Formulario_model->inserirPecas($pecas);
-// $this->load->view('Cadastro');		}
-// }
 
 	public function cadastraCategoriaPecas(){
 
@@ -122,9 +118,9 @@ class CadastroPecas extends CI_Controller{
 			$this->Formulario_model->inserirCategoriaPecas($data);
 			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
 			$this->load->view('Cadastro',$success);		
-				}
 		}
-
 	}
 
-	?>
+}
+
+?>

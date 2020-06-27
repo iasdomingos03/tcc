@@ -236,23 +236,56 @@ public function innerJoinMarcaPecas($pec_codigo){
 public function randonComputador(){
 	$this->db
 	->order_by('rand()')
-		->from("tbl_produtoComputador");//Nome da tabela
+		->from("tbl_produtoComputador")
+		->where('com_status',1);;//Nome da tabela
 		return $this->db->get();
 	}
 
-public function randonJogos(){
+	public function randonJogos(){
 		$this->db
 		->order_by('rand()')
-		->from("tbl_produtosJogos");//Nome da tabela
+		->from("tbl_produtosJogos")
+		->where('pro_status',1);//Nome da tabela
 		return $this->db->get();
 	}
 
-public function randonPecas(){
+	public function randonPecas(){
 		$this->db
 		->order_by('rand()')
-		->from("tbl_pecasComputador");//Nome da tabela
+		->from("tbl_pecasComputador")
+		->where('pec_status',1);;//Nome da tabela
 		return $this->db->get();
 	}
+
+// 	/*--------------------------STATUS DOS PRODUTOS-------------------------------*/
+// 	public function updateStatusJogos($statusJogos,$codigo){
+// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
+//  //print_r($this->db->last_query());    
+// 	$this->db->set('pro_status',$statusJogos);
+// 	$this->db->where('pro_codigo',$codigo);
+// 	$this->db->update('tbl_produtosJogos');//update
+// }
+
+// public function updateStatusComputador($codigo,$computador){
+// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
+// $this->db->where('com_codigo', $codigo); //where
+//  $this->db->update('tbl_produtoComputador',$computador);//update
+//  // print_r($this->db->last_query());    
+// }
+// public function updateStatusManutencao($codigo,$tipomanutencao){
+// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
+// $this->db->where('tman_codigo', $codigo); //where
+//  $this->db->update('tbl_tipoManutencao',$tipomanutencao);//update
+//  // print_r($this->db->last_query());    
+// }
+
+// public function updateStatusPecas($codigo,$pecas){
+// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
+// $this->db->where('pec_codigo', $codigo); //where
+//  $this->db->update('tbl_pecasComputador',$pecas);//update
+// }
+
+
 
 }	
 
