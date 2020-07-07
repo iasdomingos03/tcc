@@ -45,7 +45,7 @@ class Cliente extends CI_Controller{
 
 	public function cadastraCliente(){
 
-
+		$this->load->helper('security');
 		$this->load->helper(['form','url']);
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('cli_nome','Nome Completo','required|min_length[3]|regex_match[/^([a-z ])+$/i])',
@@ -129,7 +129,7 @@ class Cliente extends CI_Controller{
 
 // echo $this->email->print_debugger();
 
-
+	
 
 
 	public function formLoginC(){
@@ -303,5 +303,9 @@ class Cliente extends CI_Controller{
 		}
 	}
 
+	public function carrinho(){
+		$this->load->model('Produto_model');
+		$this->load->view("Carrinho");
+	}
 }//chave final
 

@@ -33,173 +33,244 @@ $CI->load->library('session');
 
             <div class="collapse navbar-collapse" id="navbarSite">
                 <ul class="navbar-nav mr-auto">
+                    <?php 
+                    if($CI->session->userdata("cli_email") !='' || $CI->session->userdata("cli_senha") !=''){
+                        ?>
+                        <li class="nav-item dropdown" id="navDrop">
+                            <a class="nav-link"  data-toggle="dropdown" data-placement="bottom" title=<?php echo $CI->session->userdata("cli_nome")?>><svg class="bi bi-people-circle" width="30px" height="30px"
+                                viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/3500/svg">
+                                <path
+                                d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z" />
+                                <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                                clip-rule="evenodd" />
+                            </svg></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item ml-2" href="#">Compras</a>
+                                <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
+                                <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
+                            </div>
+                        </li>
+                        <?php
+                    }else{
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?=base_url().'index.php/Cliente/logar';?>"><svg class="bi bi-people-circle" width="30px"
+                                height="30px" viewBox="0 0 16 16" fill="currentColor"
+                                xmlns="http://www.w3.org/3500/svg">
+                                <path
+                                d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z" />
+                                <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                                clip-rule="evenodd" />
+                            </svg></a>
+                        </li>
                         <?php 
-                        if($CI->session->userdata("cli_email") !='' || $CI->session->userdata("cli_senha") !=''){
-                            ?>
-                            <li class="nav-item dropdown" id="navDrop">
-                                <a class="nav-link"  data-toggle="dropdown" data-placement="bottom" title=<?php echo $CI->session->userdata("cli_nome")?>><svg class="bi bi-people-circle" width="30px" height="30px"
-                                    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/3500/svg">
-                                    <path
-                                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z" />
-                                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                    d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
-                                    clip-rule="evenodd" />
-                                </svg></a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item ml-2" href="#">Compras</a>
-                                    <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
-                                    <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
+                    }
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=base_url().'index.php/Manutencao';?>">Manutenção</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navDrop">
+                        Redes Sociais
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconFace.png" width="30px"
+                            height="30px" alt="Responsive image">Facebook</a>
+
+                            <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconInsta.jpg" width="30px"
+                                height="30px" alt="Responsive image">Instagram</a>
+                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconTwit.png" width="30px"
+                                    height="30px" alt="Responsive image">Twitter</a>
+
                                 </div>
                             </li>
-                            <?php
-                        }else{
-                            ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?=base_url().'index.php/Cliente/logar';?>"><svg class="bi bi-people-circle" width="30px"
-                                    height="30px" viewBox="0 0 16 16" fill="currentColor"
-                                    xmlns="http://www.w3.org/3500/svg">
-                                    <path
-                                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z" />
-                                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                    d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
-                                    clip-rule="evenodd" />
-                                </svg></a>
-                            </li>
-                            <?php 
-                        }
-                        ?>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Arte</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Manutenção</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navDrop">
-                            Redes Sociais
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconFace.png" width="30px"
-                                height="30px" alt="Responsive image">Facebook</a>
-
-                                <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconInsta.jpg" width="30px"
-                                    height="30px" alt="Responsive image">Instagram</a>
-                                    <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconTwit.png" width="30px"
-                                        height="30px" alt="Responsive image">Twitter</a>
-
-                                    </div>
-                                </li>
-                            </ul>
-                            <form class="form-check-inline">
-                                <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                                <button type="button" class="btn btn-success">Buscar</button>
-                            </form>
-                        </div>
-                    </div>
-
-                </nav>
-                <div class="container-fluid my-1">
-                    <div class="figure-img img-fluid" style="width: 100%; ">
-                        <img class="col-12" src="../public/img/imagem1.jpg" alt="Responsive image">
+                        </ul>
+                        <form class="form-check-inline" method="post" action="">
+                            <input class="form-control mr-2" type="search" placeholder="O que você procura?" id="txtBuscaPeca" name="txtBuscaPeca">
+                            <button type="submit" class="btn btn-success">Buscar</button>
+                        </form>
                     </div>
                 </div>
 
-                <div class="container" style="width: 100%;">
-                    <div class="row justify-content-md-center">
-                        <h1 class="col-12 text-center text-light">
-                            Os melhores jogos você encontra aqui.
-                        </h1>
-                        <div class="form-inline">
-                            <div class="col-12 my-1 p-2">
+            </nav>
+            <div class="container-fluid my-1">
+                <div class="figure-img img-fluid" style="width: 100%; ">
+                    <img class="col-12" src="<?=base_url();?>public/img/imagem1.jpg" alt="Responsive image">
+                </div>
+            </div>
 
-                                <div class="btn-group">
+            <div class="container" style="width: 100%;">
+                <div class="row justify-content-md-center">
+                    <h1 class="col-12 text-center text-light">
+                        Os melhores jogos você encontra aqui.
+                    </h1>
+                    <div class="form-inline">
+                        <div class="col-12 my-1 p-2">
 
-                                    <h3 class="text-light mr-2">Busque por categoria.</h3>
+                            <div class="btn-group">
 
-                                    <button type="button" class="btn btn-success rounded">Selecionar</button>
-                                    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
-                                    id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    data-reference="parent">
-                                </button>
-                                <div class="dropdown-menu col-12" aria-labelledby="dropdownMenuReference">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
+                                <h3 class="text-light mr-2">Busque por categoria.</h3>
+
+                                <button type="button" class="btn btn-success rounded">Selecionar</button>
+                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                                id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                data-reference="parent">
+                            </button>
+                            <div class="dropdown-menu col-12" aria-labelledby="dropdownMenuReference">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Separated link</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
-        <div class="form-container2 align-items-center">
-            <div class="row">
-             <?php 
-             $CI->load->model('Teste_model');
-             $teste= $CI->Teste_model->exibirPecasComputador();
-             foreach($teste->result_array() as $rows_pecas){ 
-                $pec=0;
+    </div>
+    <div class="form-container2 align-items-center">
+        <div class="row">
+           <?php 
+           $CI->load->model('Teste_model');
+           if(!isset($_POST['txtBuscaPeca'])){
+            $teste= $CI->Teste_model->exibirPecasComputador1();
+        }else{
+            $txtBuscaPeca=$this->input->post('txtBuscaPeca');
+            $teste=$CI->Teste_model->pesquisaPeca($txtBuscaPeca);
+            if($teste->num_rows()==0){
                 ?>
-                <div class="card-deck mx-auto justify-content-center">
-                    <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-                       <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
-                       <?php
-                       if($rows_pecas['pec_foto']==''){
+                <img src="<?=base_url();?>public/img/produtoNF.png">
+                <?php
+            }
+        }
+        foreach($teste->result_array() as $rows_pecas){ 
+            $pec_codigo=$rows_pecas['pec_codigo'];
+            $icp=$CI->Teste_model->innerJoinCategoriaPecas($pec_codigo);
+            $ifp=$CI->Teste_model->innerJoinFornecedorPecas($pec_codigo);
+            $imarp=$CI->Teste_model->innerJoinMarcaPecas($pec_codigo);
+            $imodp=$CI->Teste_model->innerJoinModeloPecas($pec_codigo);
+
+            ?>
+            <div class="card-deck mx-auto justify-content-center">
+                <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
+                 <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+                 <?php
+                 if($rows_pecas['pec_foto']==''){
+                    ?>
+                    <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                    <?php
+                }else{
+                    ?>
+
+                    <img src="<?=base_url();?>uploads/<?= $rows_pecas['pec_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                    <?php
+                }
+                ?>
+                <div class="card-body" style="max-height:10rem;">
+                    <h5 class="card-title"><?php echo $rows_pecas['pec_nome']?></h5>
+                    <?php
+                    if(strlen($rows_pecas['pec_descricao'])> 70){
+                        $rows_pedacoP=substr($rows_pecas['pec_descricao'],0,70);
                         ?>
-                        <img src="../uploads/semFoto.jpg" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                        <p class="card-text"><?php echo $rows_pedacoP."...";?></p>
                         <?php
                     }else{
                         ?>
-
-                        <img src="../uploads/<?= $rows_pecas['pec_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                        <p class="card-text"><?php echo $rows_pecas['pec_descricao'];?></p> 
                         <?php
                     }
                     ?>
-                    <div class="card-body" style="max-height:10rem;">
-                        <h5 class="card-title"><?php echo $rows_pecas['pec_nome']?></h5>
-                        <?php
-                        if(strlen($rows_pecas['pec_descricao'])> 70){
-                            $rows_pedacoP=substr($rows_pecas['pec_descricao'],0,70);
-                            ?>
-                            <p class="card-text"><?php echo $rows_pedacoP."...";?></p>
-                            <?php
-                        }else{
-                            ?>
-                            <p class="card-text"><?php echo $rows_pecas['pec_descricao'];?></p> 
-                            <?php
-                        }
-                        ?>
-                    </p>
-                </div>
-                <div class="ml-4" style="height:2rem;">
-                    <h6 id=""><?php echo $rows_pecas['pec_preco']?></h6>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn-block btn btn-success">Ver</a>
+                </p>
+            </div>
+            <div class="ml-4" style="height:2rem;">
+                <h6 id=""><?php echo $rows_pecas['pec_preco']?></h6>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalVerPecas<?php echo $rows_pecas['pec_codigo'];?>" data-whatevercodigo="<?php echo $rows_pecas['pec_codigo']; ?>" 
+                    data-whatevernome="<?php echo $rows_pecas['pec_nome']; ?>"
+                    data-whatevercategoria="<?php echo $icp[0]->catp_nome; ?>"
+                    data-whateverfornecedor="<?php echo $ifp[0]->for_nomeFantasia; ?>"
+                    data-whatevermarca="<?php echo $imarp[0]->mar_marca; ?>"
+                    data-whatevermodelo="<?php echo $imodp[0]->mod_modelo; ?>"
+                    data-whateverdescricao="<?php echo $rows_pecas['pec_descricao']; ?>"
+                    data-whateverpreco="<?php echo $rows_pecas['pec_preco']; ?>">
+                Visualizar</button>
+                <div class="modal fade" id="modalVerPecas<?php echo $rows_pecas['pec_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <thead>
+                                        <tbody>
+                                            <tr class="thead-dark">
+                                                <th scope="row">Código</th>
+                                                <td><?php echo $rows_pecas['pec_codigo']; ?></td>
+                                            </tr>
+                                            <tr class="thead-dark">
+                                                <th scope="row">Nome</th>           
+                                                <td><?php echo $rows_pecas['pec_nome']; ?></td>
+                                            </tr>
+                                            <tr class="thead-dark">
+                                                <th scope="row">Categoria</th>
+                                                <td><?php echo $icp[0]->catp_nome; ?></td>
+                                            </tr>
+                                            <tr class="thead-dark">
+                                                <th scope="row">Fornecedor</th>
+                                                <td><?php echo $ifp[0]->for_nomeFantasia; ?></td>
+                                            </tr>
+                                            <tr class="thead-dark">
+                                                <th scope="row">Marca</th>
+                                                <td><?php echo $imarp[0]->mar_marca; ?></td>
+                                            </tr>
+                                            <tr class="thead-dark">
+                                                <th scope="row">Modelo</th>
+                                                <td><?php echo $imodp[0]->mod_modelo;  ?></td>
+                                            </tr>
+                                            <tr class="thead-dark">
+                                                <th scope="row">Descricao</th>
+                                                <td><?php echo $rows_pecas['pec_descricao'];  ?></td>
+                                            </tr>
+
+                                            <tr class="thead-dark">
+                                                <th scope="row">Preço</th>
+                                                <td><?php echo $rows_pecas['pec_preco']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th></th><!--Pro botão ir pro meio-->
+                                                <td><a href="" class="btn btn-success">Comprar</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <?php
-        //if(++$pec==4) break;
-    }
-    ?>
+    </div>
+    <?php
+}
+?>
 </div>
 </div><!--Form Container-->
 

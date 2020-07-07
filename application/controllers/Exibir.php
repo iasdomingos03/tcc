@@ -209,10 +209,9 @@ class Exibir extends CI_Controller{
 		$this->load->model('Formulario_model');
 
 		$codigo=$this->input->post('pec_codigo');
-		//*************STATUS COMPUTADOR*********************
+		//*************STATUS Peca*********************
 		if(isset($_POST["pec_status"])) {
 			$ckb_pec=1;
-
 		} else { 
 			$ckb_pec=0;
 		}

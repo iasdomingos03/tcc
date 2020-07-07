@@ -38,19 +38,16 @@
                         </svg></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Jogos.html">Jogos</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Arte.html">Arte</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Computadores.html">Computadores</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Pecas.html">Peças</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Manutencao.html">Manutenção</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Manutencao';?>">Manutenção</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -59,12 +56,12 @@
                             Redes Sociais
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconFace.png" width="30px"
+                            <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconFace.png" width="30px"
                                 height="30px" alt="Responsive image">Facebook</a>
 
-                                <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconInsta.jpg" width="30px"
+                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconInsta.jpg" width="30px"
                                     height="30px" alt="Responsive image">Instagram</a>
-                                    <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconTwit.png" width="30px"
+                                    <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconTwit.png" width="30px"
                                         height="30px" alt="Responsive image">Twitter</a>
 
                                     </div>
@@ -79,43 +76,43 @@
                 </nav>
 
                 <div class="container01">
-                 <div class="box">
-                   <?php echo validation_errors(); ?>
-                   <?php if(isset($mensagens)) echo $mensagens; ?>
-                   <?php  echo  form_open_multipart('index.php/Cliente/formLoginC'); ?>
-                   <div class="form-container">
-                    <div class="form-group">
-                        <h3 class="text-success"
-                        style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-                        Login
-                    </h3>
-                    <label for="emailc"><strong>E-mail</strong></label>
-                    <input type="email" class="form-control" name="cli_email" id="emailc">
-                    <small id="emailHelp" class="form-text text-muted">Nós nunca iremos compartilhar seu e-mail.</small>
-                    <label for="senhac"><strong>Senha</strong></label>
-                    <div class="input-group" id="show_hide_password">
-                      <input class="form-control" type="password" name="cli_senha" id="senhac">
-                      <div class="input-group-text">
-                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true" style="color:green;"></i></a>
+                   <div class="box">
+                     <?php echo validation_errors(); ?>
+                     <?php if(isset($mensagens)) echo $mensagens; ?>
+                     <?php  echo  form_open_multipart('index.php/Cliente/formLoginC'); ?>
+                     <div class="form-container">
+                        <div class="form-group">
+                            <h3 class="text-success"
+                            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+                            Login
+                        </h3>
+                        <label for="emailc"><strong>E-mail</strong></label>
+                        <input type="email" class="form-control" name="cli_email" id="emailc">
+                        <small id="emailHelp" class="form-text text-muted">Nós nunca iremos compartilhar seu e-mail.</small>
+                        <label for="senhac"><strong>Senha</strong></label>
+                        <div class="input-group" id="show_hide_password">
+                          <input class="form-control" type="password" name="cli_senha" id="senhac">
+                          <div class="input-group-text">
+                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true" style="color:green;"></i></a>
+                        </div>
+                    </div>
+                    <!-- <input type="password" class="form-control" name="cli_senha" id="senhac"> -->
+                    <br>
+                    <div class="item">
+                        <h6 class="ml-2">
+                            Ainda não tem cadastro?
+                        </h6>
+                        <div class="btn btn-link "><a href="<?php echo base_url()?>index.php/Cliente/cadastraCliente">
+                            cadastre-se
+                        </a>
                     </div>
                 </div>
-                <!-- <input type="password" class="form-control" name="cli_senha" id="senhac"> -->
                 <br>
-                <div class="item">
-                    <h6 class="ml-2">
-                        Ainda não tem cadastro?
-                    </h6>
-                    <div class="btn btn-link "><a href="<?php echo base_url()?>index.php/Cliente/cadastraCliente">
-                        cadastre-se
-                    </a>
-                </div>
+                <button type="submit" class="btn btn-success btn-block">Entrar</button>
             </div>
-            <br>
-            <button type="submit" class="btn btn-success btn-block">Entrar</button>
+            <?php echo form_close(); ?>
         </div>
-        <?php echo form_close(); ?>
     </div>
-</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

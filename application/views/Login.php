@@ -28,7 +28,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                 <?php echo validation_errors(); ?>
                 <?php if(isset($mensagens)) echo $mensagens; ?>
                 <?php  echo  form_open('index.php/Login/formLogin'); ?>
-                <img src="../public/img/McpreS.jpeg" height="300px" width="80%" class=" rounded-pill d-block mx-auto"
+                <img src="<?=base_url();?>/public/img/McpreS.jpeg" height="300px" width="80%" class=" rounded-pill d-block mx-auto"
                 alt="Responsive image">
                 <br>
                 <!--                 <form name="login" action="../Login/formLogin" method="POST"> -->

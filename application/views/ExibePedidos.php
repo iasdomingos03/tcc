@@ -93,7 +93,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 			<li class="breadcrumb-item active" aria-current="page"></li>
 		</ol>
 	</nav> -->
-<!--********************************** MEXEEEEEEEEEEEEEEEEEEEEER AQUIIIIIIIIIIIII***************** -->
+	<!--********************************** MEXEEEEEEEEEEEEEEEEEEEEER AQUIIIIIIIIIIIII***************** -->
 	
 	<div class="container theme-showcase flex-row" role="main" id="container-computador">
 		<div class="row">
@@ -537,34 +537,96 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Titulo</th>
+											<th>Cliente</th>
+											<th>Manutencao</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php 
 										$this->load->model('Teste_model');
 
-										$teste= $this->Teste_model->exibirManutencao();
+										$man=$this->Teste_model->exibeMandaManutencao();
+										//$manman=$this->Teste_model->exibeMandaItensManutencao();
+										foreach($man->result_array() as $rows_mmanutencao){ 
+											$pman_codigo=$rows_mmanutencao['pman_codigo']; 
+											$nome_man=$this->Teste_model->exibeMandaItensManutencao($pman_codigo);
+												//print_r($this->db->last_query()); 
 
-										foreach($teste->result_array() as $rows_tmanutencao){ 
-											$tman_codigo=$rows_tmanutencao['tman_codigo'];
-								// $pro_categoria=$rows_jogos['pro_categoria'];
 											?>
 											<tr>
-												<td><?php echo $rows_tmanutencao['tman_codigo']; ?></td>
-												<td><?php echo $rows_tmanutencao['tman_nome']; ?></td>
+												<td><?php echo $nome_man[0]->tman_nome; ?></td>
+												<td><?php echo $rows_mmanutencao['pman_codigo']; ?></td>
+												<td><?php echo $rows_mmanutencao['ipm_codigo']; ?></td>
+											<?php } ?>
+										</tr>
+										
+
+										<!--Modal que altera-->
+
+										<!-- Fim Modal -->
+									</tbody>
+								</table>
+							</div>
+						</div>		
+					</div>
+					<div class="container theme-showcase flex-row" role="main" id="container-pecas">
+						<div class="row">
+							<div class="col-md-7">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Titulo</th>
+											<th>Preço</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php 
+										$this->load->model('Teste_model');
+
+										$teste= $this->Teste_model->exibirPecasComputador();
+
+										foreach($teste->result_array() as $rows_pecas){ 
+											$pec_codigo=$rows_pecas['pec_codigo'];
+											?>
+											<tr>
+												<td><?php echo $rows_pecas['pec_codigo']; ?></td>
+												<td><?php echo $rows_pecas['pec_nome']; ?></td>
+												<td><?php echo $rows_pecas['pec_preco']; ?></td>
+
 												<td>
-													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExibeTipoManutencao<?php echo $rows_tmanutencao['tman_codigo'];?>" data-whatevercodigotman="<?php echo $rows_tmanutencao['tman_codigo']; ?>" 
-														data-whatevernometman="<?php echo $rows_tmanutencao['tman_nome']; ?>"
-														data-whateverdescricaotman="<?php echo $rows_tmanutencao['tman_descricao']; ?>">
+													<?php 
+													$icp=$this->Teste_model->innerJoinCategoriaPecas($pec_codigo);
+													$ifp=$this->Teste_model->innerJoinFornecedorPecas($pec_codigo);
+													$imarp=$this->Teste_model->innerJoinMarcaPecas($pec_codigo);
+													$imodp=$this->Teste_model->innerJoinModeloPecas($pec_codigo);
+
+
+
+
+													?>
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExibePecas<?php echo $rows_pecas['pec_codigo'];?>" data-whatevercodigo="<?php echo $rows_pecas['pec_codigo']; ?>" 
+														data-whatevernome="<?php echo $rows_pecas['pec_nome']; ?>"
+														data-whatevercategoria="<?php echo $icp[0]->catp_nome; ?>"
+														data-whateverfornecedor="<?php echo $ifp[0]->for_nomeFantasia; ?>"
+														data-whatevermarca="<?php echo $imarp[0]->mar_marca; ?>"
+														data-whatevermodelo="<?php echo $imodp[0]->mod_modelo; ?>"
+														data-whateverdescricao="<?php echo $rows_pecas['pec_descricao']; ?>"
+														data-whateverpreco="<?php echo $rows_pecas['pec_preco']; ?>"
+														data-whateverstatus="<?php echo $rows_pecas['pec_status']; ?>">
 													Visualizar</button>
-													<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalAlteraTipoManutencao" data-whatevercodigotman="<?php echo $rows_tmanutencao['tman_codigo']; ?>" 
-														data-whatevernometman="<?php echo $rows_tmanutencao['tman_nome']; ?>"
-														data-whateverdescricaotman="<?php echo $rows_tmanutencao['tman_descricao']; ?>">
-													Editar</button>								
+													<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalAlteraPecas" data-whatevercodigo="<?php echo $rows_pecas['pec_codigo']; ?>" data-whatevernome="<?php echo $rows_pecas['pec_nome']; ?>"
+														data-whatevercategoria="<?php echo $rows_pecas['pec_categoria']; ?>"
+														data-whateverfornecedor="<?php echo $rows_pecas['pec_fornecedor']; ?>"
+														data-whatevermarca="<?php echo $rows_pecas['pec_marca']; ?>"
+														data-whatevermodelo="<?php echo $rows_pecas['pec_modelo']; ?>"
+														data-whateverdescricao="<?php echo $rows_pecas['pec_descricao']; ?>"
+														data-whateverpreco="<?php echo $rows_pecas['pec_preco']; ?>"
+														data-whateverstatus="<?php echo $rows_pecas['pec_status']; ?>">
+													Editar</button>
 													<!-- Inicio Modal Modaaaaal de mostrar -->
 													<!--Como é um modal só, usa-se o data-whatever-->
-													<div class="modal fade" id="modalExibeTipoManutencao<?php echo $rows_tmanutencao['tman_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
+													<div class="modal fade" id="modalExibePecas<?php echo $rows_pecas['pec_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
 														<div class="modal-dialog" role="document">
 															<div class="modal-content">
 																<div class="modal-header">
@@ -576,15 +638,40 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 																			<tbody>
 																				<tr class="thead-dark">
 																					<th scope="row">Código</th>
-																					<td><?php echo$rows_tmanutencao['tman_codigo']; ?></td>
+																					<td><?php echo $rows_pecas['pec_codigo']; ?></td>
 																				</tr>
 																				<tr class="thead-dark">
-																					<th scope="row">Nome</th>
-																					<td><?php echo $rows_tmanutencao['tman_nome']; ?></td>
+																					<th scope="row">Nome</th>			
+																					<td><?php echo $rows_pecas['pec_nome']; ?></td>
 																				</tr>
 																				<tr class="thead-dark">
-																					<th scope="row">Descrição</th>
-																					<td><?php echo $rows_tmanutencao['tman_descricao']; ?></td>
+																					<th scope="row">Categoria</th>
+																					<td><?php echo $icp[0]->catp_nome; ?></td>
+																				</tr>
+																				<tr class="thead-dark">
+																					<th scope="row">Fornecedor</th>
+																					<td><?php echo $ifp[0]->for_nomeFantasia; ?></td>
+																				</tr>
+																				<tr class="thead-dark">
+																					<th scope="row">Marca</th>
+																					<td><?php echo $imarp[0]->mar_marca; ?></td>
+																				</tr>
+																				<tr class="thead-dark">
+																					<th scope="row">Modelo</th>
+																					<td><?php echo $imodp[0]->mod_modelo;  ?></td>
+																				</tr>
+																				<tr class="thead-dark">
+																					<th scope="row">Descricao</th>
+																					<td><?php echo $rows_pecas['pec_descricao'];  ?></td>
+																				</tr>
+
+																				<tr class="thead-dark">
+																					<th scope="row">Preço</th>
+																					<td><?php echo $rows_pecas['pec_preco']; ?></td>
+																				</tr>
+																				<tr class="thead-dark">
+																					<th scope="row">Status</th>
+																					<td><?php echo $rows_pecas['pec_status']; ?></td>
 																				</tr>
 																			</tbody>
 																		</thead>
@@ -594,31 +681,88 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 														</div>
 													</div>
 
+
+
+
 													<!--Modal que altera-->
-													<div class="modal fade" id="modalAlteraTipoManutencao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+													<div class="modal fade" id="modalAlteraPecas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 														<div class="modal-dialog" role="document">
 															<div class="modal-content">
 																<div class="modal-header">
 																	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																	<h4 class="modal-title" id="exampleModalLabel">Jogo</h4>
+																	<h4 class="modal-title" id="exampleModalLabel">Pecas</h4>
 																</div>
 																<div class="modal-body">
 																	<?php echo validation_errors(); ?>
 																	<?php if(isset($mensagens)) echo $mensagens; ?>
-																	<?php  echo  form_open_multipart('index.php/Exibir/alteraTipoManutencao'); ?>
-																	<div class="form-group">
-																		<label for="tman_nome" class="control-label">Tipo Manutenção:</label>
-																		<input name="tman_nome" type="text" class="form-control" id="tman_nome" value="">
-																	</div>
+																	<?php  echo  form_open_multipart('index.php/Exibir/alteraPeca'); ?>
 
+																	<div class="form-group row">
+																		<label for="" class="col-sm-4 col-form-label">Nome</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control" name="pec_nome" id="pec_nome">
+																		</div>
+																	</div>  
+																	<div class="form-group row">
+																		<label for="" class="col-sm-4 col-form-label">Marca</label>
+																		<div class="col-sm-9">
+																			<select id="mar_codigo" class="form-control" name="pec_marca">
+																				<option selected>Escolha</option>
+																				<?php
+																				$this->Teste_model->selectMarca();	
+																				?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="" class="col-sm-4 col-form-label">Modelo</label>
+																		<div class="col-sm-9">
+																			<select id="mod_codigo" class="form-control" name="pec_modelo">
+																				<option selected>Escolha</option>
+																				<?php
+																				$this->Teste_model->selectModelo();	
+																				?>
+																			</select>
+																		</div>
+																	</div>
 																	<div class="form-group">
 																		<label for="" class="col-sm-4 col-form-label">Descrição</label>
 																		<div class="col-sm-9">
-																			<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="tman_descricao" rows="4" name="tman_descricao"></textarea>
+																			<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="pec_descricao" rows="4" name="pec_descricao"></textarea>
 																		</div>
 																	</div>
-
-																	<input name="tman_codigo" type="hidden" class="form-control" id="tman_codigo" value="">
+																	<div class="form-group row">
+																		<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
+																		<div class="col-sm-9">
+																			<select id="for_cnpj" class="form-control" name="pec_fornecedor">
+																				<?php
+																				$this->Teste_model->selectFornecedor();	
+																				?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="" class="col-sm-4 col-form-label">Preço</label>
+																		<div class="col-sm-9">
+																			<input type="number" step="0.01" class="form-control" id="pec_preco"name="pec_preco">
+																		</div>
+																	</div> 
+																	<div class="form-group row">
+																		<label for="" class="col-sm-4 col-form-label">Categoria</label>
+																		<div class="col-sm-9">
+																			<select id="catp_codigo" class="form-control" name="pec_categoria">
+																				<option selected>Escolha</option>
+																				<?php
+																				$this->Teste_model->selectCategoriaPecas();	
+																				?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="com_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
+																		<input type="checkbox" name="pec_status">
+																	</div> 
+																	<input name="pec_codigo" type="hidden" class="form-control" id="pec_codigo" value="">
 																	<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
 																	<button type="submit" class="btn btn-danger">Alterar</button>
 
@@ -635,228 +779,18 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 									</div>
 								</div>		
 							</div>
-							<div class="container theme-showcase flex-row" role="main" id="container-pecas">
-								<div class="row">
-									<div class="col-md-7">
-										<table class="table">
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Titulo</th>
-													<th>Preço</th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php 
-												$this->load->model('Teste_model');
 
-												$teste= $this->Teste_model->exibirPecasComputador();
-
-												foreach($teste->result_array() as $rows_pecas){ 
-													$pec_codigo=$rows_pecas['pec_codigo'];
-													?>
-													<tr>
-														<td><?php echo $rows_pecas['pec_codigo']; ?></td>
-														<td><?php echo $rows_pecas['pec_nome']; ?></td>
-														<td><?php echo $rows_pecas['pec_preco']; ?></td>
-
-														<td>
-															<?php 
-															$icp=$this->Teste_model->innerJoinCategoriaPecas($pec_codigo);
-															$ifp=$this->Teste_model->innerJoinFornecedorPecas($pec_codigo);
-															$imarp=$this->Teste_model->innerJoinMarcaPecas($pec_codigo);
-															$imodp=$this->Teste_model->innerJoinModeloPecas($pec_codigo);
+						</div> <!--Wapper-->
 
 
+					</body>
+
+					<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+					<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+					<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 
-															?>
-															<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExibePecas<?php echo $rows_pecas['pec_codigo'];?>" data-whatevercodigo="<?php echo $rows_pecas['pec_codigo']; ?>" 
-																data-whatevernome="<?php echo $rows_pecas['pec_nome']; ?>"
-																data-whatevercategoria="<?php echo $icp[0]->catp_nome; ?>"
-																data-whateverfornecedor="<?php echo $ifp[0]->for_nomeFantasia; ?>"
-																data-whatevermarca="<?php echo $imarp[0]->mar_marca; ?>"
-																data-whatevermodelo="<?php echo $imodp[0]->mod_modelo; ?>"
-																data-whateverdescricao="<?php echo $rows_pecas['pec_descricao']; ?>"
-																data-whateverpreco="<?php echo $rows_pecas['pec_preco']; ?>"
-																data-whateverstatus="<?php echo $rows_pecas['pec_status']; ?>">
-															Visualizar</button>
-															<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalAlteraPecas" data-whatevercodigo="<?php echo $rows_pecas['pec_codigo']; ?>" data-whatevernome="<?php echo $rows_pecas['pec_nome']; ?>"
-																data-whatevercategoria="<?php echo $rows_pecas['pec_categoria']; ?>"
-																data-whateverfornecedor="<?php echo $rows_pecas['pec_fornecedor']; ?>"
-																data-whatevermarca="<?php echo $rows_pecas['pec_marca']; ?>"
-																data-whatevermodelo="<?php echo $rows_pecas['pec_modelo']; ?>"
-																data-whateverdescricao="<?php echo $rows_pecas['pec_descricao']; ?>"
-																data-whateverpreco="<?php echo $rows_pecas['pec_preco']; ?>"
-																data-whateverstatus="<?php echo $rows_pecas['pec_status']; ?>">
-															Editar</button>
-															<!-- Inicio Modal Modaaaaal de mostrar -->
-															<!--Como é um modal só, usa-se o data-whatever-->
-															<div class="modal fade" id="modalExibePecas<?php echo $rows_pecas['pec_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
-																<div class="modal-dialog" role="document">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																		</div>
-																		<div class="modal-body">
-																			<table class="table">
-																				<thead>
-																					<tbody>
-																						<tr class="thead-dark">
-																							<th scope="row">Código</th>
-																							<td><?php echo $rows_pecas['pec_codigo']; ?></td>
-																						</tr>
-																						<tr class="thead-dark">
-																							<th scope="row">Nome</th>			
-																							<td><?php echo $rows_pecas['pec_nome']; ?></td>
-																						</tr>
-																						<tr class="thead-dark">
-																							<th scope="row">Categoria</th>
-																							<td><?php echo $icp[0]->catp_nome; ?></td>
-																						</tr>
-																						<tr class="thead-dark">
-																							<th scope="row">Fornecedor</th>
-																							<td><?php echo $ifp[0]->for_nomeFantasia; ?></td>
-																						</tr>
-																						<tr class="thead-dark">
-																							<th scope="row">Marca</th>
-																							<td><?php echo $imarp[0]->mar_marca; ?></td>
-																						</tr>
-																						<tr class="thead-dark">
-																							<th scope="row">Modelo</th>
-																							<td><?php echo $imodp[0]->mod_modelo;  ?></td>
-																						</tr>
-																						<tr class="thead-dark">
-																							<th scope="row">Descricao</th>
-																							<td><?php echo $rows_pecas['pec_descricao'];  ?></td>
-																						</tr>
+					<script src=<?=base_url()?>public/js/Listar.js></script>
 
-																						<tr class="thead-dark">
-																							<th scope="row">Preço</th>
-																							<td><?php echo $rows_pecas['pec_preco']; ?></td>
-																						</tr>
-																						<tr class="thead-dark">
-																							<th scope="row">Status</th>
-																							<td><?php echo $rows_pecas['pec_status']; ?></td>
-																						</tr>
-																					</tbody>
-																				</thead>
-																			</table>
-																		</div>
-																	</div>
-																</div>
-															</div>
-
-
-
-
-															<!--Modal que altera-->
-															<div class="modal fade" id="modalAlteraPecas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-																<div class="modal-dialog" role="document">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																			<h4 class="modal-title" id="exampleModalLabel">Pecas</h4>
-																		</div>
-																		<div class="modal-body">
-																			<?php echo validation_errors(); ?>
-																			<?php if(isset($mensagens)) echo $mensagens; ?>
-																			<?php  echo  form_open_multipart('index.php/Exibir/alteraPeca'); ?>
-
-																			<div class="form-group row">
-																				<label for="" class="col-sm-4 col-form-label">Nome</label>
-																				<div class="col-sm-9">
-																					<input type="text" class="form-control" name="pec_nome" id="pec_nome">
-																				</div>
-																			</div>  
-																			<div class="form-group row">
-																				<label for="" class="col-sm-4 col-form-label">Marca</label>
-																				<div class="col-sm-9">
-																					<select id="mar_codigo" class="form-control" name="pec_marca">
-																						<option selected>Escolha</option>
-																						<?php
-																						$this->Teste_model->selectMarca();	
-																						?>
-																					</select>
-																				</div>
-																			</div>
-																			<div class="form-group row">
-																				<label for="" class="col-sm-4 col-form-label">Modelo</label>
-																				<div class="col-sm-9">
-																					<select id="mod_codigo" class="form-control" name="pec_modelo">
-																						<option selected>Escolha</option>
-																						<?php
-																						$this->Teste_model->selectModelo();	
-																						?>
-																					</select>
-																				</div>
-																			</div>
-																			<div class="form-group">
-																				<label for="" class="col-sm-4 col-form-label">Descrição</label>
-																				<div class="col-sm-9">
-																					<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="pec_descricao" rows="4" name="pec_descricao"></textarea>
-																				</div>
-																			</div>
-																			<div class="form-group row">
-																				<label for="" class="col-sm-4 col-form-label">Fornecedor</label>
-																				<div class="col-sm-9">
-																					<select id="for_cnpj" class="form-control" name="pec_fornecedor">
-																						<?php
-																						$this->Teste_model->selectFornecedor();	
-																						?>
-																					</select>
-																				</div>
-																			</div>
-																			<div class="form-group row">
-																				<label for="" class="col-sm-4 col-form-label">Preço</label>
-																				<div class="col-sm-9">
-																					<input type="number" step="0.01" class="form-control" id="pec_preco"name="pec_preco">
-																				</div>
-																			</div> 
-																			<div class="form-group row">
-																				<label for="" class="col-sm-4 col-form-label">Categoria</label>
-																				<div class="col-sm-9">
-																					<select id="catp_codigo" class="form-control" name="pec_categoria">
-																						<option selected>Escolha</option>
-																						<?php
-																						$this->Teste_model->selectCategoriaPecas();	
-																						?>
-																					</select>
-																				</div>
-																			</div>
-																			<div class="form-group row">
-																				<label for="com_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
-																				<input type="checkbox" name="pec_status">
-																			</div> 
-																			<input name="pec_codigo" type="hidden" class="form-control" id="pec_codigo" value="">
-																			<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-																			<button type="submit" class="btn btn-danger">Alterar</button>
-
-																			<?php echo form_close(); ?>
-																		</div>
-
-																	</div>
-																</div>
-															</div>
-															<!-- Fim Modal -->
-														<?php } ?>
-													</tbody>
-												</table>
-											</div>
-										</div>		
-									</div>
-
-								</div> <!--Wapper-->
-
-
-							</body>
-
-							<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-							<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-							<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-							<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-
-							<script src=<?=base_url()?>public/js/Listar.js></script>
-							
-							</html>
+					</html>

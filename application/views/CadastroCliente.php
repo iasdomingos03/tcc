@@ -45,9 +45,6 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                         <a class="nav-link" href="<?=base_url()?>index.php/Jogos">Jogos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url()?>index.php/Arte">Arte</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="<?=base_url()?>index.php/Computador">Computadores</a>
                     </li>
                     <li class="nav-item">
@@ -63,12 +60,12 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                             Redes Sociais
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#"><img src="img/IconFace.png" width="30px"
+                            <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconFace.png" width="30px"
                                 height="30px" alt="Responsive image">Facebook</a>
 
-                                <a class="dropdown-item ml-2" href="#"><img src="img/IconInsta.jpg" width="30px"
+                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconInsta.jpg" width="30px"
                                     height="30px" alt="Responsive image">Instagram</a>
-                                    <a class="dropdown-item ml-2" href="#"><img src="img/IconTwit.png" width="30px"
+                                    <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconTwit.png" width="30px"
                                         height="30px" alt="Responsive image">Twitter</a>
 
                                     </div>

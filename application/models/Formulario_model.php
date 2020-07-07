@@ -52,9 +52,6 @@ class Formulario_model extends CI_Model{
 	}
 	/*-----------FIM CATEGORIA-----------------*/	
 
-
-	/*---------INICIO CATEGORIA---------------------------------------------*/	
-
 	public function inserirClassificacao($data){
 $this->db->insert("tbl_classificacao",$data);//nome da tabela
 }
@@ -197,7 +194,7 @@ $this->db->insert("tbl_tipoManutencao",$data);//nome da tabela
 public function exibirTipoManutencao(){
 	$this->db
 ->from("tbl_tipoManutencao");//Nome da tabela
-return $this->db->get()->result_array();
+return $this->db->get();
 }
 
 }

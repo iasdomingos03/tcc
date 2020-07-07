@@ -56,16 +56,13 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                         <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Arte</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manutenção</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Manutencao';?>">Manutenção</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -74,12 +71,12 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                             Redes Sociais
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#"><img src="../../public/img/IconFace.png" width="30px"
+                            <a class="dropdown-item ml-2" href="#"><img src=".<?=base_url();?>public/public/img/IconFace.png" width="30px"
                                 height="30px" alt="Responsive image"></a>
 
-                                <a class="dropdown-item ml-2" href="#"><img src="../../public/img/IconInsta.jpg" width="30px"
+                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/public/img/IconInsta.jpg" width="30px"
                                     height="30px" alt="Responsive image"></a>
-                                    <a class="dropdown-item ml-2" href="#"><img src="../../public/img/IconTwit.png" width="30px"
+                                    <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/public/img/IconTwit.png" width="30px"
                                         height="30px" alt="Responsive image"></a>
 
                                     </div>

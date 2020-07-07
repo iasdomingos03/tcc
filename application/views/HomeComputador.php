@@ -75,16 +75,13 @@ $CI->load->library('session');
                     <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Arte</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manutenção</a>
+                    <a class="nav-link" href="<?=base_url().'index.php/Manutencao';?>">Manutenção</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -93,20 +90,20 @@ $CI->load->library('session');
                         Redes Sociais
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconFace.png" width="30px"
+                        <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconFace.png" width="30px"
                             height="30px" alt="Responsive image">Facebook</a>
 
-                            <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconInsta.jpg" width="30px"
+                            <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconInsta.jpg" width="30px"
                                 height="30px" alt="Responsive image">Instagram</a>
-                                <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconTwit.png" width="30px"
+                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconTwit.png" width="30px"
                                     height="30px" alt="Responsive image">Twitter</a>
 
                                 </div>
                             </li>
                         </ul>
-                        <form class="form-check-inline">
-                            <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                            <button type="button" class="btn btn-success">Buscar</button>
+                        <form class="form-check-inline" method="post" action="">
+                            <input class="form-control mr-2" type="search" placeholder="O que você procura?" id="txtBuscaComputador" name="txtBuscaComputador">
+                            <button type="submit" class="btn btn-success">Buscar</button>
                         </form>
                     </div>
                 </div>
@@ -151,12 +148,25 @@ $CI->load->library('session');
     </div>
     <div class="form-container2 align-items-center">
         <div class="row">
-           <?php 
+         <?php 
 
-           $CI->load->model('Teste_model');
-           $teste= $CI->Teste_model->randonComputador();
-           $comp=0;
-           foreach($teste->result_array() as $rows_computador){ 
+         $CI->load->model('Teste_model');
+         if(!isset($_POST['txtBuscaComputador'])){
+             $teste=$CI->Teste_model->exibirComputador1();
+         }else{
+            $txtBuscaComputador=$this->input->post('txtBuscaComputador');
+            $teste=$CI->Teste_model->pesquisaJogos($txtBuscaComputador);
+            if($teste->num_rows()==0){
+                ?>
+                <img src="<?=base_url();?>public/img/produtoNF.png">
+                <?php
+            }
+        }
+        foreach($teste->result_array() as $rows_computador){
+            $com_codigo=$rows_computador['com_codigo']; 
+            $imarc=$CI->Teste_model->innerJoinMarca($com_codigo);
+            $imodc=$CI->Teste_model->innerJoinModelo($com_codigo);
+
             ?>
             <!--Cards-->
             <div class="card-deck mx-auto justify-content-center">
@@ -166,12 +176,12 @@ $CI->load->library('session');
                     <?php
                     if($rows_computador['com_foto']==''){
                         ?>
-                        <img src="../uploads/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                        <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
                         <?php
                     }else{
                         ?>
 
-                        <img src="../uploads/<?= $rows_computador['com_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                        <img src="<?=base_url();?>uploads/<?= $rows_computador['com_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
                         <?php
                     }
                     ?>
@@ -194,7 +204,71 @@ $CI->load->library('session');
                         <h6 id=""><?php echo $rows_computador['com_preco']?></h6>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn-block btn btn-success">Ver</a>
+
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalExibeComputador<?php echo $rows_computador['com_codigo'];?>" data-whatevercodigo="<?php echo $rows_computador['com_codigo']; ?>" 
+                            data-whatevernome="<?php echo $rows_computador['com_nome'];?>"
+                            data-whateverdescricao="<?php echo $rows_computador['com_descricao']; ?>"
+                            data-whatevermarca="<?php echo $imarc[0]->mar_marca; ?>"
+                            data-whatevermodelo="<?php echo $imodc[0]->mod_modelo; ?>" 
+                            data-whateverfoto="<?php echo $rows_computador['com_foto']; ?>"
+                            data-whateverarquitetura="<?php echo $rows_computador['com_arquitetura']; ?>"
+                            data-whateverpreco="<?php echo $rows_computador['com_preco']; ?>">
+                        Visualizar</button>
+                        <!-- Inicio Modal Modaaaaal de mostrar -->
+                        <!--Como é um modal só, usa-se o data-whatever-->
+                        <div class="modal fade" id="modalExibeComputador<?php echo $rows_computador['com_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tbody>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Código</th>
+                                                        <td><?php echo $rows_computador['com_codigo']; ?></td>
+                                                    </tr>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Nome</th>
+                                                        <td><?php echo $rows_computador['com_nome']; ?></td>
+                                                    </tr>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Descrição</th>
+                                                        <td id='limit'><?php echo $rows_computador['com_descricao']; ?></td>
+                                                    </tr>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Marca</th>
+                                                        <td><?php echo $imarc[0]->mar_marca; ?></td>
+                                                    </tr>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Modelo</th>
+                                                        <td><?php echo $imodc[0]->mod_modelo; ?></td>
+                                                    </tr>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Imagem</th>
+                                                        <td><?php echo $rows_computador['com_foto']; ?></td>
+                                                    </tr>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Arquitetura</th>
+                                                        <td><?php echo $rows_computador['com_arquitetura']; ?></td>
+                                                    </tr>
+                                                    <tr class="thead-dark">
+                                                        <th scope="row">Preço</th>
+                                                        <td><?php echo $rows_computador['com_preco']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th></th><!--Pro botão ir pro meio-->
+                                                        <td><a href="" class="btn btn-success">Comprar</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

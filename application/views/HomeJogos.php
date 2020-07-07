@@ -74,16 +74,13 @@ $CI->load->library('session');
                         <a class="nav-link" href="<?=base_url().'index.php/Jogos';?>">Jogos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Arte</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="<?=base_url().'index.php/Computador';?>">Computadores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=base_url().'index.php/Pecas';?>">Peças</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manutenção</a>
+                        <a class="nav-link" href="<?=base_url().'index.php/Manutencao';?>">Manutenção</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -92,20 +89,20 @@ $CI->load->library('session');
                             Redes Sociais
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconFace.png" width="30px"
+                            <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconFace.png" width="30px"
                                 height="30px" alt="Responsive image">Facebook</a>
 
-                                <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconInsta.jpg" width="30px"
+                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconInsta.jpg" width="30px"
                                     height="30px" alt="Responsive image">Instagram</a>
-                                    <a class="dropdown-item ml-2" href="#"><img src="../public/img/IconTwit.png" width="30px"
+                                    <a class="dropdown-item ml-2" href="#"><img src=".<?=base_url();?>public/img/IconTwit.png" width="30px"
                                         height="30px" alt="Responsive image">Twitter</a>
 
                                     </div>
                                 </li>
                             </ul>
-                            <form class="form-check-inline">
-                                <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                                <button type="button" class="btn btn-success">Buscar</button>
+                            <form class="form-check-inline" method="post" action="">
+                                <input class="form-control mr-2" type="search" placeholder="O que você procura?" id="txtBuscaJogo" name="txtBuscaJogo">
+                                <button type="submit" class="btn btn-success">Buscar</button>
                             </form>
                         </div>
                     </div>
@@ -113,7 +110,7 @@ $CI->load->library('session');
                 </nav>
                 <div class="container-fluid my-1">
                     <div class="figure-img img-fluid" style="width: 100%; ">
-                        <img class="col-12" src="../public/img/imagem1.jpg" alt="Responsive image">
+                        <img class="col-12" src="<?=base_url();?>public/img/imagem1.jpg" alt="Responsive image">
                     </div>
                 </div>
 
@@ -152,56 +149,145 @@ $CI->load->library('session');
             <div class="row">
              <?php 
              $CI->load->model('Teste_model');
-             $teste1= $CI->Teste_model->exibirJogos();
-             foreach($teste1->result_array() as $rows_jogos){ 
-                ?>
-                <!--Cards-->
-                <div class="card-deck mx-auto justify-content-center">
-                    <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
-                        <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+             if(!isset($_POST['txtBuscaJogo'])){
+                 $teste1=$CI->Teste_model->exibirJogos1();
+             }else{
+                $txtBuscaJogo=$this->input->post('txtBuscaJogo');
+                $teste1=$CI->Teste_model->pesquisaJogos($txtBuscaJogo);
+                if($teste1->num_rows()==0){
+                    ?>
+                    <img src="<?=base_url();?>public/img/produtoNF.png">
+                    <?php
+                }
+            }
+            foreach($teste1->result_array() as $rows_jogos){ 
+             $pro_codigo=$rows_jogos['pro_codigo'];
+             $pro_titulo=$rows_jogos['pro_titulo'];
+             $icj=$CI->Teste_model->innerJoinCategoria($pro_codigo);
+             $ifj=$CI->Teste_model->innerJoinFornecedor($pro_codigo);
+             $iclaj=$CI->Teste_model->innerJoinClassificacao($pro_codigo);
+             ?>
+             <!--Cards-->
+             <div class="card-deck mx-auto justify-content-center">
+                <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
+                    <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
 
+                    <?php
+                    if($rows_jogos['pro_foto']==''){
+                        ?>
+                        <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
                         <?php
-                        if($rows_jogos['pro_foto']==''){
+                    }else{
+                        ?>
+
+                        <img src="<?=base_url();?>uploads/<?= $rows_jogos['pro_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                        <?php
+                    }
+                    ?>
+                    <div class="card-body" style="max-height:10rem;">
+                        <h5 class="card-title"><?php echo $rows_jogos['pro_titulo']?></h5>
+                        <?php
+                        if(strlen($rows_jogos['pro_sinopse'])> 70){
+                            $rows_pedaco=substr($rows_jogos['pro_sinopse'],0,70);
                             ?>
-                            <img src="../uploads/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                            <p class="card-text"><?php echo $rows_pedaco."...";?></p>
                             <?php
                         }else{
                             ?>
-
-                            <img src="../uploads/<?= $rows_jogos['pro_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                            <p class="card-text"><?php echo $rows_jogos['pro_sinopse'];?></p> 
                             <?php
                         }
                         ?>
-                        <div class="card-body" style="max-height:10rem;">
-                            <h5 class="card-title"><?php echo $rows_jogos['pro_titulo']?></h5>
-                            <?php
-                            if(strlen($rows_jogos['pro_sinopse'])> 70){
-                                $rows_pedaco=substr($rows_jogos['pro_sinopse'],0,70);
-                                ?>
-                                <p class="card-text"><?php echo $rows_pedaco."...";?></p>
-                                <?php
-                            }else{
-                                ?>
-                                <p class="card-text"><?php echo $rows_jogos['pro_sinopse'];?></p> 
-                                <?php
-                            }
-                            ?>
-                        </div>
-                        <div class="ml-4" style="height:2rem;">
-                            <h6 id=""><?php echo $rows_jogos['pro_preco']?></h6>
-                            <!-- <h6 id="">Parcela</h6> -->
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-block btn btn-success">Ver</a>
+                    </div>
+                    <div class="ml-4" style="height:2rem;">
+                        <h6 id=""><?php echo $rows_jogos['pro_preco']?></h6>
+                        <!-- <h6 id="">Parcela</h6> -->
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalVerJogo<?php echo $rows_jogos['pro_codigo'];?>" data-whatevercodigo="<?php echo $rows_jogos['pro_codigo']; ?>" 
+                            data-whatevernome="<?php echo $rows_jogos['pro_titulo']; ?>"
+                            data-whatevercategoria="<?php echo $icj[0]->cat_categoria; ?>"
+                            data-whateverfornecedor="<?php echo $ifj[0]->for_nomeFantasia; ?>" data-whateverclassificacao="<?php echo $iclaj[0]->cla_classificacao; ?>"
+                            data-whateverano="<?php echo $rows_jogos['pro_anoLancamento'] ?>"
+                            data-whateversinopse="<?php echo $rows_jogos['pro_sinopse']; ?>"
+                            data-whateverdescricao="<?php echo $rows_jogos['pro_descricao']; ?>"
+                            data-whateverfoto="<?php echo $rows_jogos['pro_foto']; ?>"
+                            data-whateverpreco="<?php echo $rows_jogos['pro_preco']; ?>">
+                        Visualizar</button>
+                    </div>
+                    <div class="modal fade" id="modalVerJogo<?php echo $rows_jogos['pro_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <table class="table">
+                                        <thead>
+                                            <tbody>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Código</th>
+                                                    <td><?php echo $rows_jogos['pro_codigo']; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Nome</th>
+                                                    <td><?php echo $rows_jogos['pro_titulo']; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Categoria</th>
+                                                    <td><?php echo $icj[0]->cat_categoria; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Fornecedor</th>
+                                                    <td><?php echo $ifj[0]->for_nomeFantasia; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Classificação</th>
+                                                    <td><?php echo $iclaj[0]->cla_classificacao; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Ano</th>
+                                                    <td><?php echo $rows_jogos['pro_anoLancamento'];  ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Sinopse</th>
+                                                    <td><?php echo $rows_jogos['pro_sinopse'];  ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Imagem</th>
+                                                    <td><?php echo $rows_jogos['pro_foto'];  ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Descrição</th>
+                                                    <td><?php echo $rows_jogos['pro_descricao'];  ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Preço</th>
+                                                    <td><?php echo $rows_jogos['pro_preco']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th><!--Pro botão ir pro meio-->
+                                                    <td><a href="" class="btn btn-success">Comprar</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </thead>
+                                    </table>
+
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <?php
-           // if(++$jog==4) break;
-            }
-            ?>
-        </div>
-    </div><!--Form Container-->
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+</div>
+<!--Form Container-->
 
 
 <!--    <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">

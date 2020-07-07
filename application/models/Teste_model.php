@@ -236,8 +236,8 @@ public function innerJoinMarcaPecas($pec_codigo){
 public function randonComputador(){
 	$this->db
 	->order_by('rand()')
-		->from("tbl_produtoComputador")
-		->where('com_status',1);;//Nome da tabela
+	->from("tbl_produtoComputador")
+		->where('com_status',1);//Nome da tabela
 		return $this->db->get();
 	}
 
@@ -253,39 +253,93 @@ public function randonComputador(){
 		$this->db
 		->order_by('rand()')
 		->from("tbl_pecasComputador")
-		->where('pec_status',1);;//Nome da tabela
+		->where('pec_status',1);//Nome da tabela
+		return $this->db->get();
+	}
+	/*-----------------------Manutencao  ----------------------------------*/
+	public function mandaManutencao($dataPed){
+		$this->db->insert("tbl_pedidoManutencao",$dataPed);
+	}
+	public function mandaManutencaoItens($dataIped){
+		$this->db->insert("tbl_itensPedidoManutencao",$dataIped);
+	}
+
+	public function exibeMandaManutencao(){
+		$this->db->from("tbl_pedidoManutencao");
+		return $this->db->get();		
+
+	}
+	public function exibeMandaItensManutencao($pman_codigo){
+		$query=$this->db->select("tbl_tipoManutencao.tman_nome","tbl_itensPedidoManutencao.pman_codigo","tbl_itensPedidoManutencao.ipm_codigo")
+		->join("tbl_itensPedidoManutencao",
+			"tbl_tipoManutencao.tman_codigo=tbl_tipoManutencao.tman_codigo")
+		->where("pman_codigo=$pman_codigo")
+		->get("tbl_tipoManutencao")->result();
+		return $query;
+		// $this->db->from("tbl_itensPedidoManutencao");
+	}
+
+	/*-----------------------PESQUISAS ----------------------------------*/
+	public function pesquisaJogos($txtBuscaJogo){
+		$this->db->from("tbl_produtosJogos");
+		$this->db->like('pro_titulo',$txtBuscaJogo)
+		->where('pro_status',1);
 		return $this->db->get();
 	}
 
-// 	/*--------------------------STATUS DOS PRODUTOS-------------------------------*/
-// 	public function updateStatusJogos($statusJogos,$codigo){
-// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
-//  //print_r($this->db->last_query());    
-// 	$this->db->set('pro_status',$statusJogos);
-// 	$this->db->where('pro_codigo',$codigo);
-// 	$this->db->update('tbl_produtosJogos');//update
-// }
+	public function pesquisaComputador($txtBuscaComputador){
+		$this->db->from("tbl_produtoComputador");
+		$this->db->like('com_nome',$txtBuscaComputador)
+		->where('com_status',1);
+		return $this->db->get();
+	}
 
-// public function updateStatusComputador($codigo,$computador){
-// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
-// $this->db->where('com_codigo', $codigo); //where
-//  $this->db->update('tbl_produtoComputador',$computador);//update
-//  // print_r($this->db->last_query());    
-// }
-// public function updateStatusManutencao($codigo,$tipomanutencao){
-// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
-// $this->db->where('tman_codigo', $codigo); //where
-//  $this->db->update('tbl_tipoManutencao',$tipomanutencao);//update
-//  // print_r($this->db->last_query());    
-// }
+	public function pesquisaPeca($txtBuscaPeca){
+		$this->db->from("tbl_pecasComputador");
+		$this->db->like('pec_nome',$txtBuscaPeca)
+		->where('pec_status',1);
+		return $this->db->get();
+	}
 
-// public function updateStatusPecas($codigo,$pecas){
-// //$result_cursos = "UPDATE cursos SET nome='$nome', detalhes =  '$detalhes' WHERE id = '$id'";
-// $this->db->where('pec_codigo', $codigo); //where
-//  $this->db->update('tbl_pecasComputador',$pecas);//update
-// }
+	public function pesquisaCategoria(){
+		$this->load->model('Formulario_model');
+		$catCodigo=$this->Formulario_model->selectCategoria();
+		$this->db->from("tbl_produtosJogos")
+		->where('pro_status',1)
+		->where('pro_categoria',$catCodigo);
+		return $this->db->get();
+		print_r($this->db->last_query()); 
+
+	}
 
 
+	/*-----------------------EXIBICAO PARA O USUARIO ----------------------------------*/
 
+	public function exibirJogos1(){
+		
+		$this->db->from("tbl_produtosJogos")
+		->where('pro_status',1);//Nome da tabela
+		return $this->db->get();
+	}
+	public function exibirComputador1(){
+		$this->db
+		->from("tbl_produtoComputador")
+		->where('com_status',1);//Nome da tabela
+		return $this->db->get();
+	}
+
+
+	public function exibirManutencao1(){
+		$this->db
+		->from("tbl_tipoManutencao");//Nome da tabela
+		return $this->db->get();
+	}
+
+	public function exibirPecasComputador1(){
+		$this->db
+		->from("tbl_pecasComputador")
+		->where('pec_status',1);//Nome da tabela
+		return $this->db->get();
+	}
 }	
 

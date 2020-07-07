@@ -278,7 +278,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 													</div>  
 													<div class="form-group row">
 														<label for="com_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
-														<input type="checkbox" name="com_status" id="com_status">
+														<input type="checkbox" name="com_status" id="com_status" data-toggle="tooltip" data-placement="top" title="" id="com_status" onmousemove="checadoC()">
 													</div>
 													<input name="com_codigo" type="hidden" class="form-control" id="com_codigo" value="">
 													<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
@@ -508,7 +508,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 															</div>
 															<div class="form-group row">
 																<label for="pro_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
-																<input type="checkbox" name="pro_status">
+																<input type="checkbox" name="pro_status" data-toggle="tooltip" data-placement="top" title="" id="pro_status" onmousemove="checadoJ()">
 															</div>
 															<input name="pro_codigo" type="hidden" class="form-control" id="pro_codigo" value="">
 															<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
@@ -825,8 +825,8 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 																				</div>
 																			</div>
 																			<div class="form-group row">
-																				<label for="com_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
-																				<input type="checkbox" name="pec_status">
+																				<label for="pec_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
+																				<input type="checkbox" name="pec_status" data-toggle="tooltip" data-placement="top" title="" id="pec_status" onmousemove="checadoṔ()">
 																			</div> 
 																			<input name="pec_codigo" type="hidden" class="form-control" id="pec_codigo" value="">
 																			<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
@@ -858,4 +858,6 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 
 
 							<script src=<?=base_url()?>public/js/Listar.js></script>
+							<script src="<?= base_url()?>public/js/Checkbox.js"></script>
+
 							</html>
