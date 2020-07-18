@@ -24,7 +24,6 @@ class Cadastros extends CI_Controller{
 			"forms"=>$forms
 		);
 
-		 // $logado = $_SESSION['adm_email'];
 		$this->load->view("Cadastro",$data);
 	}
 
@@ -142,14 +141,26 @@ class Cadastros extends CI_Controller{
 			$forms= $this->Formulario_model->exibirDados();
 			$this->load->view("Cadastro");
 		}else{
-			$data=$this->input->post();
-			$this->load->model('Formulario_model');
-			$this->Formulario_model->inserirTipoManutencao($data);
-			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
-			$this->load->view('Cadastro',$success);
 
+			if(isset($_POST["tman_status"])) {
+				$ckb_man=1;
+
+			} else { 
+				$ckb_man=0;
+			}
+
+			$data=array(
+				'tman_nome' => $this->input->post('tman_nome'),
+				'tman_descricao' => $this->input->post('tman_descricao'),
+				'tman_status' => $ckb_man
+			);
+				$this->load->model('Formulario_model');
+				$this->Formulario_model->inserirTipoManutencao($data);
+				$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+				$this->load->view('Cadastro',$success);
+
+			}
 		}
-	}
 
 
 }//Fim controler

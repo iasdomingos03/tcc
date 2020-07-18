@@ -51,6 +51,21 @@ class Cliente_model extends CI_Model{
 		}
 	}
 
+	public function verificarCliente($cpf,$email){
+		$this->db
+		->from("tblCliente")
+		->where("cli_email",$email)
+		->or_where("cli_cpf",$cpf);
+		//$result->armazena os registros
+		$verificac=$this->db->get();
+		if($verificac->num_rows()>0){
+			return $verificac->row();
+		}else{
+			return NULL;
+		}
+		print_r($this->db->last_query());
+	}
+
 	public function updateCliente($cpf,$cliente){
 		$CI = & get_instance();
 		$CI->load->library('session');

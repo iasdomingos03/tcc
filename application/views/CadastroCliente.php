@@ -1,3 +1,5 @@
+
+
 <?php
 defined('BASEPATH') or exit('No direct sript acess allowed');
 ?>
@@ -93,7 +95,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control cpf" id="cpf" name="cli_cpf" placeholder="xxx.xxx.xxx-xx">
+                                    <input type="text" class="form-control cpf" id="cpf" name="cli_cpf" placeholder="xxx.xxx.xxx-xx" onblur="return validaCPF(this)">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -151,14 +153,6 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                                 <input type="email"  class="form-control" id="email" name="cli_email">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <div class="col-sm-3 mr-1 ">
                                 <input type="submit" class="btn btn-success btn-block" value="Cadastrar" />
@@ -182,11 +176,6 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 
 
             <script type="text/javascript">
-              //   $('.cep').mask('00000-000');
-              //   $('.telefone').mask('(99)9999-9999');
-              //   $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
-              //   $('.cpf').mask('000.000.000-00', {reverse: true});
-
               //   var cel = function (val) {
               //     return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
               // },
@@ -196,7 +185,34 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
               //     }
               // };
               // $('.sp_celphones').mask(cel, spOptions);
-          </script>
+            //   function validaCPF(cpf) {
+            //     var Soma;
+            //     var Resto;
+            //     Soma = 0;
+            //     cpf=document.getElementById('cpf').value;
+            //     cpf=cpf.replace('.','').replace('.','').replace('-','');
+            //      // cpf=cpf.replace('/[\.\-]/g','');
+            //      if (cpf == "00000000000"){
+            //        alert(cpf);
+            //    }
 
-      </body>
-      </html>
+            //      for (i=1; i<=9; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (11 - i);
+            //         Resto = (Soma * 10) % 11;
+
+            //     if ((Resto == 10) || (Resto == 11))  Resto = 0;
+            //     if (Resto != parseInt(cpf.substring(9, 10)) ) return false;
+
+            //     Soma = 0;
+            //     for (i = 1; i <= 10; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (12 - i);
+            //         Resto = (Soma * 10) % 11;
+
+            //     if ((Resto == 10) || (Resto == 11))  Resto = 0;
+            //     if (Resto != parseInt(cpf.substring(10, 11) ) ) return false;
+            //     return true;
+            //     alert(validaCPF(cpf));
+            // }
+
+        </script>
+
+    </body>
+    </html>

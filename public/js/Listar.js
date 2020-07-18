@@ -12,6 +12,8 @@ $(document).ready(function () {
 	$("#container-jogos").hide();
 	$("#container-manutencao").hide();
 	$("#container-pecas").hide();
+	$("#container-Pmontagem").hide();
+	$("#container-Pmanutencao").hide();
 	$("input[name='rdb']").click(function(){
 		var select = $(this).val();
 		console.log(select);
@@ -20,24 +22,47 @@ $(document).ready(function () {
 			$("#container-computador").hide();
 			$("#container-manutencao").hide();
 			$("#container-pecas").hide();
+			$("#container-Pmontagem").hide();
+			$("#container-Pmanutencao").hide();
 		}else if(select=="Computador"){
 			$("#container-jogos").hide();
 			$("#container-computador").show();
 			$("#container-manutencao").hide();
 			$("#container-pecas").hide();
+			$("#container-Pmontagem").hide();
+			$("#container-Pmanutencao").hide();
 		}else if(select=="Manutencao"){
+			$("#container-computador").hide();
+			$("#container-jogos").hide();
 			$("#container-manutencao").show();
-			$("#container-computador").hide();
-			$("#container-jogos").hide();
 			$("#container-pecas").hide();
+			$("#container-Pmontagem").hide();
+			$("#container-Pmanutencao").hide();
 		}else if(select=="Pecas"){
-			$("#container-manutencao").hide();
 			$("#container-computador").hide();
 			$("#container-jogos").hide();
+			$("#container-manutencao").hide();
 			$("#container-pecas").show();
+			$("#container-Pmontagem").hide();
+			$("#container-Pmanutencao").hide();
+		}else if(select=="PManutencao"){
+			$("#container-computador").hide();
+			$("#container-jogos").hide();
+			$("#container-manutencao").hide();
+			$("#container-pecas").hide();
+			$("#container-Pmanutencao").show();
+			$("#container-Pmontagem").hide();
+		}else if(select=="PMontagem"){
+			$("#container-computador").hide();
+			$("#container-jogos").hide();
+			$("#container-manutencao").hide();
+			$("#container-pecas").hide();
+			$("#container-Pmanutencao").hide();
+			$("#container-Pmontagem").show();
 		}
 	});
 });
+
 
 
 $('#modalAlteraJogo').on('show.bs.modal', function (event) {
@@ -109,12 +134,18 @@ $('#modalAlteraTipoManutencao').on('show.bs.modal', function (event) {
 	var codigotman = button.data('whatevercodigotman') 
 	var nometman = button.data('whatevernometman')
 	var descricaotman = button.data('whateverdescricaotman')
+	var statusM = button.data('whateverstatustman')
 
 	var modal = $(this)
 	modal.find('.modal-title').text(codigotman)
 	modal.find('#tman_codigo').val(codigotman)
 	modal.find('#tman_nome').val(nometman)
 	modal.find('#tman_descricao').val(descricaotman)
+	if(statusM==1){
+		modal.find(".modal-body input[name='tman_status']").attr('checked', true);
+	}else{
+		modal.find(".modal-body input[name='tman_status']").attr('checked', false);  	
+	}
 })
 
 $('#modalAlteraPecas').on('show.bs.modal', function (event) {

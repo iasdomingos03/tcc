@@ -47,7 +47,7 @@ $CI->load->library('session');
                                 clip-rule="evenodd" />
                             </svg></a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item ml-2" href="#">Compras</a>
+                                <a class="dropdown-item ml-2" href="#">Pedidos</a>
                                 <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                                 <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                             </div>
@@ -120,157 +120,137 @@ $CI->load->library('session');
                     <h1 class="col-12 text-center text-light">
                         Os melhores jogos você encontra aqui.
                     </h1>
-                    <div class="form-inline">
-                        <div class="col-12 my-1 p-2">
-
-                            <div class="btn-group">
-
-                                <h3 class="text-light mr-2">Busque por categoria.</h3>
-
-                                <button type="button" class="btn btn-success rounded">Selecionar</button>
-                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
-                                id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                data-reference="parent">
-                            </button>
-                            <div class="dropdown-menu col-12" aria-labelledby="dropdownMenuReference">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </div>
-                    </div>
+                
                 </div>
             </div>
         </div>
-    </div>
-    <div class="form-container2 align-items-center">
-        <div class="row">
-           <?php 
-           $CI->load->model('Teste_model');
-           if(!isset($_POST['txtBuscaPeca'])){
-            $teste= $CI->Teste_model->exibirPecasComputador1();
-        }else{
-            $txtBuscaPeca=$this->input->post('txtBuscaPeca');
-            $teste=$CI->Teste_model->pesquisaPeca($txtBuscaPeca);
-            if($teste->num_rows()==0){
-                ?>
-                <img src="<?=base_url();?>public/img/produtoNF.png">
-                <?php
-            }
-        }
-        foreach($teste->result_array() as $rows_pecas){ 
-            $pec_codigo=$rows_pecas['pec_codigo'];
-            $icp=$CI->Teste_model->innerJoinCategoriaPecas($pec_codigo);
-            $ifp=$CI->Teste_model->innerJoinFornecedorPecas($pec_codigo);
-            $imarp=$CI->Teste_model->innerJoinMarcaPecas($pec_codigo);
-            $imodp=$CI->Teste_model->innerJoinModeloPecas($pec_codigo);
-
-            ?>
-            <div class="card-deck mx-auto justify-content-center">
-                <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-                 <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
-                 <?php
-                 if($rows_pecas['pec_foto']==''){
+        <div class="form-container2 align-items-center">
+            <div class="row">
+             <?php 
+             $CI->load->model('Teste_model');
+             if(!isset($_POST['txtBuscaPeca'])){
+                $teste= $CI->Teste_model->exibirPecasComputador1();
+            }else{
+                $txtBuscaPeca=$this->input->post('txtBuscaPeca');
+                $teste=$CI->Teste_model->pesquisaPeca($txtBuscaPeca);
+                if($teste->num_rows()==0){
                     ?>
-                    <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
-                    <?php
-                }else{
-                    ?>
-
-                    <img src="<?=base_url();?>uploads/<?= $rows_pecas['pec_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
+                    <img src="<?=base_url();?>public/img/produtoNF.png">
                     <?php
                 }
+            }
+            foreach($teste->result_array() as $rows_pecas){ 
+                $pec_codigo=$rows_pecas['pec_codigo'];
+                $icp=$CI->Teste_model->innerJoinCategoriaPecas($pec_codigo);
+                $ifp=$CI->Teste_model->innerJoinFornecedorPecas($pec_codigo);
+                $imarp=$CI->Teste_model->innerJoinMarcaPecas($pec_codigo);
+                $imodp=$CI->Teste_model->innerJoinModeloPecas($pec_codigo);
+
                 ?>
-                <div class="card-body" style="max-height:10rem;">
-                    <h5 class="card-title"><?php echo $rows_pecas['pec_nome']?></h5>
-                    <?php
-                    if(strlen($rows_pecas['pec_descricao'])> 70){
-                        $rows_pedacoP=substr($rows_pecas['pec_descricao'],0,70);
+                <div class="card-deck mx-auto justify-content-center">
+                    <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
+                       <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+                       <?php
+                       if($rows_pecas['pec_foto']==''){
                         ?>
-                        <p class="card-text"><?php echo $rows_pedacoP."...";?></p>
+                        <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
                         <?php
                     }else{
                         ?>
-                        <p class="card-text"><?php echo $rows_pecas['pec_descricao'];?></p> 
+
+                        <img src="<?=base_url();?>uploads/<?= $rows_pecas['pec_foto']; ?>" class="card-img-top" alt="Responsive image" style="height:9rem;">
                         <?php
                     }
                     ?>
-                </p>
-            </div>
-            <div class="ml-4" style="height:2rem;">
-                <h6 id=""><?php echo $rows_pecas['pec_preco']?></h6>
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalVerPecas<?php echo $rows_pecas['pec_codigo'];?>" data-whatevercodigo="<?php echo $rows_pecas['pec_codigo']; ?>" 
-                    data-whatevernome="<?php echo $rows_pecas['pec_nome']; ?>"
-                    data-whatevercategoria="<?php echo $icp[0]->catp_nome; ?>"
-                    data-whateverfornecedor="<?php echo $ifp[0]->for_nomeFantasia; ?>"
-                    data-whatevermarca="<?php echo $imarp[0]->mar_marca; ?>"
-                    data-whatevermodelo="<?php echo $imodp[0]->mod_modelo; ?>"
-                    data-whateverdescricao="<?php echo $rows_pecas['pec_descricao']; ?>"
-                    data-whateverpreco="<?php echo $rows_pecas['pec_preco']; ?>">
-                Visualizar</button>
-                <div class="modal fade" id="modalVerPecas<?php echo $rows_pecas['pec_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table">
-                                    <thead>
-                                        <tbody>
-                                            <tr class="thead-dark">
-                                                <th scope="row">Código</th>
-                                                <td><?php echo $rows_pecas['pec_codigo']; ?></td>
-                                            </tr>
-                                            <tr class="thead-dark">
-                                                <th scope="row">Nome</th>           
-                                                <td><?php echo $rows_pecas['pec_nome']; ?></td>
-                                            </tr>
-                                            <tr class="thead-dark">
-                                                <th scope="row">Categoria</th>
-                                                <td><?php echo $icp[0]->catp_nome; ?></td>
-                                            </tr>
-                                            <tr class="thead-dark">
-                                                <th scope="row">Fornecedor</th>
-                                                <td><?php echo $ifp[0]->for_nomeFantasia; ?></td>
-                                            </tr>
-                                            <tr class="thead-dark">
-                                                <th scope="row">Marca</th>
-                                                <td><?php echo $imarp[0]->mar_marca; ?></td>
-                                            </tr>
-                                            <tr class="thead-dark">
-                                                <th scope="row">Modelo</th>
-                                                <td><?php echo $imodp[0]->mod_modelo;  ?></td>
-                                            </tr>
-                                            <tr class="thead-dark">
-                                                <th scope="row">Descricao</th>
-                                                <td><?php echo $rows_pecas['pec_descricao'];  ?></td>
-                                            </tr>
+                    <div class="card-body" style="max-height:10rem;">
+                        <h5 class="card-title"><?php echo $rows_pecas['pec_nome']?></h5>
+                        <?php
+                        if(strlen($rows_pecas['pec_descricao'])> 70){
+                            $rows_pedacoP=substr($rows_pecas['pec_descricao'],0,70);
+                            ?>
+                            <p class="card-text"><?php echo $rows_pedacoP."...";?></p>
+                            <?php
+                        }else{
+                            ?>
+                            <p class="card-text"><?php echo $rows_pecas['pec_descricao'];?></p> 
+                            <?php
+                        }
+                        ?>
+                    </p>
+                </div>
+                <div class="ml-4" style="height:2rem;">
+                    <h6 id=""><?php echo $rows_pecas['pec_preco']?></h6>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalVerPecas<?php echo $rows_pecas['pec_codigo'];?>" data-whatevercodigo="<?php echo $rows_pecas['pec_codigo']; ?>" 
+                        data-whatevernome="<?php echo $rows_pecas['pec_nome']; ?>"
+                        data-whatevercategoria="<?php echo $icp[0]->catp_nome; ?>"
+                        data-whateverfornecedor="<?php echo $ifp[0]->for_nomeFantasia; ?>"
+                        data-whatevermarca="<?php echo $imarp[0]->mar_marca; ?>"
+                        data-whatevermodelo="<?php echo $imodp[0]->mod_modelo; ?>"
+                        data-whateverdescricao="<?php echo $rows_pecas['pec_descricao']; ?>"
+                        data-whateverpreco="<?php echo $rows_pecas['pec_preco']; ?>">
+                    Visualizar</button>
+                    <div class="modal fade" id="modalVerPecas<?php echo $rows_pecas['pec_codigo']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tbody>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Código</th>
+                                                    <td><?php echo $rows_pecas['pec_codigo']; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Nome</th>           
+                                                    <td><?php echo $rows_pecas['pec_nome']; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Categoria</th>
+                                                    <td><?php echo $icp[0]->catp_nome; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Fornecedor</th>
+                                                    <td><?php echo $ifp[0]->for_nomeFantasia; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Marca</th>
+                                                    <td><?php echo $imarp[0]->mar_marca; ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Modelo</th>
+                                                    <td><?php echo $imodp[0]->mod_modelo;  ?></td>
+                                                </tr>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Descricao</th>
+                                                    <td><?php echo $rows_pecas['pec_descricao'];  ?></td>
+                                                </tr>
 
-                                            <tr class="thead-dark">
-                                                <th scope="row">Preço</th>
-                                                <td><?php echo $rows_pecas['pec_preco']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th></th><!--Pro botão ir pro meio-->
-                                                <td><a href="" class="btn btn-success">Comprar</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </thead>
-                                </table>
+                                                <tr class="thead-dark">
+                                                    <th scope="row">Preço</th>
+                                                    <td><?php echo $rows_pecas['pec_preco']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th><!--Pro botão ir pro meio-->
+                                                    <td><a href="" class="btn btn-success">Comprar</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?php
-}
-?>
+        <?php
+    }
+    ?>
 </div>
 </div><!--Form Container-->
 

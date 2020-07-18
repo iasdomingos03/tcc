@@ -27,3 +27,12 @@
 				_ckbComputador.setAttribute('title', 'Desativado');
 			}
 		}
+
+		_ckbManutencao=document.querySelector('#man_status');
+		function checadoM(){
+			if(_ckbManutencao.checked){
+				_ckbManutencao.setAttribute('title', 'Ativado');
+			}else{
+				_ckbManutencao.setAttribute('title', 'Desativado');
+			}
+		}

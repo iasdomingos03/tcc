@@ -257,6 +257,12 @@ public function randonComputador(){
 		return $this->db->get();
 	}
 	/*-----------------------Manutencao  ----------------------------------*/
+	public function selecionaCliente($cli_cpf){
+		$this->db->select("cli_nome,cli_email")
+		->from("tblCliente")
+		->where("cli_cpf=$cli_cpf");
+		return $this->db->get();
+	}
 	public function mandaManutencao($dataPed){
 		$this->db->insert("tbl_pedidoManutencao",$dataPed);
 	}
@@ -270,15 +276,83 @@ public function randonComputador(){
 
 	}
 	public function exibeMandaItensManutencao($pman_codigo){
-		$query=$this->db->select("tbl_tipoManutencao.tman_nome","tbl_itensPedidoManutencao.pman_codigo","tbl_itensPedidoManutencao.ipm_codigo")
+		$this->db->select("tbl_itensPedidoManutencao.pman_codigo,tbl_itensPedidoManutencao.ipm_codigo,tbl_tipoManutencao.tman_nome,tbl_tipoManutencao.tman_codigo, tbl_itensPedidoManutencao.pman_descricao")
 		->join("tbl_itensPedidoManutencao",
-			"tbl_tipoManutencao.tman_codigo=tbl_tipoManutencao.tman_codigo")
-		->where("pman_codigo=$pman_codigo")
-		->get("tbl_tipoManutencao")->result();
-		return $query;
-		// $this->db->from("tbl_itensPedidoManutencao");
+			"tbl_tipoManutencao.tman_codigo=tbl_itensPedidoManutencao.tman_codigo")
+		->where("pman_codigo=$pman_codigo");
+		$query = $this->db->get('tbl_tipoManutencao');
+		$data = array();
+		if($query !== FALSE && $query->num_rows() > 0){
+			foreach ($query->result_array() as $row) {
+				$data[] = $row;
+			}
+		}
+		return $data;
+		
 	}
+	/*----------------------- Montagem ----------------------------------*/
 
+	public function mandaMontagem($dataPedMon){
+		$this->db->insert("tbl_pedidoMontagem",$dataPedMon);
+	}
+	public function mandaMontagemItens($monArray){
+		$this->db->insert("tbl_itensMontagem",$monArray);
+	}
+	public function exibirPecaspCategoria($catp_codigo){
+		$this->db->from("tbl_pecasComputador")
+		->where("pec_categoria=$catp_codigo");//Nome da tabela
+		return $this->db->get();
+	}
+	public function exibeMandaMontagem(){
+		$this->db->from("tbl_pedidoMontagem");
+		return $this->db->get();		
+
+	}
+	public function mostrarPecaspCategoriaCliente($monArray){
+		$tamanho=count($monArray);
+		foreach ($monArray as $row) {
+			for($a=0;$a<$tamanho;$a++){
+				$data[$a] = $row;
+
+				// print_r($data);
+				$this->db->select(" tbl_pecasComputador.pec_nome, tbl_categoriaPecas.catp_nome")
+				->join("tbl_categoriaPecas","tbl_pecasComputador.pec_categoria=tbl_categoriaPecas.catp_codigo")
+				->where("catp_codigo",$data[0]['catp_codigo'])
+				->where("pec_codigo",$data[0]['pec_codigo']);
+				$query=$this->db->get("tbl_pecasComputador");
+			}
+		}
+		$data = array();
+		if($query !== FALSE && $query->num_rows() > 0){
+			foreach ($query->result_array() as $row) {
+				$data[] = $row;
+			}
+		}else{
+			echo "Não há registros!";
+		}
+		return $data;
+	}
+	
+	public function exibeMandaItensMontagem($pmon_codigo){
+		$this->db->select("tbl_itensMontagem.mon_codigo,tbl_itensMontagem.pmon_codigo, tbl_pecasComputador.pec_nome, tbl_pecasComputador.pec_codigo,tbl_categoriaPecas.catp_codigo,tbl_categoriaPecas.catp_nome")
+		->join("tbl_pecasComputador","tbl_pecasComputador.pec_codigo=tbl_itensMontagem.pec_codigo")
+		->join("tbl_categoriaPecas","tbl_pecasComputador.pec_categoria=tbl_categoriaPecas.catp_codigo")
+		->where("pmon_codigo=$pmon_codigo");
+		$query = $this->db->get('tbl_itensMontagem');
+
+		// SELECT `tbl_itensMontagem`.`mon_codigo`, `tbl_itensMontagem`.`pmon_codigo`, `tbl_pecasComputador`.`pec_nome`, `tbl_pecasComputador`.`pec_codigo`,`tbl_categoriaPecas`.`catp_codigo`, `tbl_categoriaPecas`.`catp_nome` FROM `tbl_itensMontagem` JOIN `tbl_pecasComputador` ON `tbl_pecasComputador`.`pec_codigo`=`tbl_itensMontagem`.`pec_codigo` 
+		// JOIN `tbl_categoriaPecas` ON `tbl_pecasComputador`.`pec_categoria`=`tbl_categoriaPecas`.`catp_codigo` 
+		// where pmon_codigo=7;
+
+		$data = array();
+		if($query !== FALSE && $query->num_rows() > 0){
+			foreach ($query->result_array() as $row) {
+				$data[] = $row;
+			}
+		}
+		return $data;
+		
+	}
 	/*-----------------------PESQUISAS ----------------------------------*/
 	public function pesquisaJogos($txtBuscaJogo){
 		$this->db->from("tbl_produtosJogos");
@@ -316,7 +390,7 @@ public function randonComputador(){
 	/*-----------------------EXIBICAO PARA O USUARIO ----------------------------------*/
 
 	public function exibirJogos1(){
-		
+
 		$this->db->from("tbl_produtosJogos")
 		->where('pro_status',1);//Nome da tabela
 		return $this->db->get();
@@ -331,7 +405,8 @@ public function randonComputador(){
 
 	public function exibirManutencao1(){
 		$this->db
-		->from("tbl_tipoManutencao");//Nome da tabela
+		->from("tbl_tipoManutencao")
+		->where('tman_status',1);//Nome da tabela
 		return $this->db->get();
 	}
 
@@ -341,5 +416,6 @@ public function randonComputador(){
 		->where('pec_status',1);//Nome da tabela
 		return $this->db->get();
 	}
+
 }	
 

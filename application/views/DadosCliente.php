@@ -94,7 +94,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                         <div class="col-lg-2 col-md-2 col-sm-12 shadow p-3 mb-5 bg-white rounded">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Dados</a>
-                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Compras</a>
+                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Pedidos</a>
                             </div>
                         </div> <!--FECHA O NAV FLEX-->
                         <?php 
@@ -238,7 +238,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
 
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="container">
-
+                                <!--FAZER OS PEDIDOS DE ACORDO COM O CLIENTE-->
                             </div>
                         </div>
                     </div>

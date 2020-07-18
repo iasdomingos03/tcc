@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta lang="pt-br"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Page Title</title>
+	<title>Cadastros-ADM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/estilo.css">
@@ -22,6 +22,9 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href=<?php echo base_url() ?>index.php/Exibir/exibeLista/>Listar</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href=<?php echo base_url() ?>index.php/Pedidos/exibePedidos/>Pedidos</a>
 				</li>
 				<li class="nav-item">
 					<a class="btn btn-success" href=<?=base_url()?>index.php/Login/logoffAdm/>Logoff</a>
@@ -497,6 +500,10 @@
 						<div class="col-sm-9">
 							<textarea class="form-control" placeholder="max:500 caracteres" maxlength="500" id="" rows="4" name="tman_descricao"></textarea>
 						</div>
+					</div>
+					<div class="form-group row">
+						<label for="tman_status" class="col-sm-4 col-form-label">Ativar/Desativar</label>
+						<input type="checkbox" name="tman_status" data-toggle="tooltip" data-placement="top" title="" id="tman_status" onmousemove="checadoM()">
 					</div>
 					<button type="submit" class="btn btn-success">Cadastrar</button>
 					<?php echo form_close();?>

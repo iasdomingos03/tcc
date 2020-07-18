@@ -32,7 +32,6 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
     $CI->session->sess_destroy();
     header("Location: ".base_url());
 }
-//echo "<p> Olá".$CI->session->userdata("adm_email")."</p>";
 ?>
 
 <body>
@@ -59,7 +58,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                             clip-rule="evenodd" />
                         </svg></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#">Compras</a>
+                            <a class="dropdown-item ml-2" href="#">Pedidos</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                         </div>
@@ -94,10 +93,6 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                                     </div>
                                 </li>
                             </ul>
-                            <form class="form-check-inline">
-                                <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                                <button type="button" class="btn btn-success">Buscar</button>
-                            </form>
                         </div>
                     </div>
 
@@ -150,157 +145,129 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                     <p class="text-light text-md-center text-sm-center">
                         O melhor para seu computador.
                     </p>
-        <!--<div class="row ">
-            <div class="col-2 ml-auto my-2">
-                <div class="container align-content-start bg-success rounded">
-                    <img src="img/game.png" class="img-thumbnail img-fluid" alt="Responsive image">
                 </div>
-            </div>
-            <div class="col-2  my-2">
-                <div class="container align-content-start bg-success rounded">
-                    <img src="img/ferra.png" class="img-thumbnail" alt="Responsive image">
-                </div>
-            </div>
 
-            <div class="col-2  my-2">
-                <div class="container align-content-start bg-success rounded">
-                    <img src="img/arte.png" class="img-thumbnail" alt="Responsive image">
-                </div>
-            </div>
-            <div class="col-2  my-2">
-                <div class="container align-content-start bg-success rounded">
-                    <img src="img/peças.png" class="img-thumbnail" alt="Responsive image">
-                </div>
-            </div>
-            <div class="col-2 my-2 mr-auto">
-                <div class="container align-content-start bg-success rounded">
-                    <img src="img/" class="img-thumbnail" alt="Responsive image">
-                </div>
-            </div>
-        </div>-->
-    </div>
+                <!--Scrollspy-->
+                <div class="container">
+                    <div class="row align-content-center text-justify " >
+                        <div class="col-sm-4 col-md-3 ">
+                            <nav id="Scrollspy1" class="Scrollspy1" class="navbar-lg navbar-dark bg-light">
+                                <nav class=" nav nav-pills flex-column ">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#item-1">Jogos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#item-3">Computadores</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#item-4">Peças</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#item-5">Manutenção</a>
+                                    </li>
 
-    <!--Scrollspy-->
-    <div class="container">
-        <div class="row align-content-center text-justify " >
-            <div class="col-sm-4 col-md-3 ">
-                <nav id="Scrollspy1" class="Scrollspy1" class="navbar-lg navbar-dark bg-light">
-                    <nav class=" nav nav-pills flex-column ">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#item-1">Jogos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#item-3">Computadores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#item-4">Peças</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#item-5">Manutenção</a>
-                        </li>
-
-                    </nav>
-                </nav>
-            </div>
-            <div class="col-sm-8 col-md-9">
-                <div data-spy="scroll" class="ScrollspySite"  data-target="#Scrollspy1" data-offset="0">
-                    <h4 id="item-1">Jogos</h4>
-                    <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
-                        legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                    quando estiver examinando sua diagramação.</p>
-                    <h4 id="item-3">Computadores</h4>
-                    <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
-                        legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                    quando estiver examinando sua diagramação.</p>
-                    <h4 id="item-4">Peças</h4>
-                    <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
-                        legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                    quando estiver examinando sua diagramação.</p>
-                    <h4 id="item-5">Manutenção</h4>
-                    <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
-                        legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                        quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
-                        se distrairá
-                        com o conteúdo de texto legível de uma página
-                    quando estiver examinando sua diagramação.</p>
-                </div>
-            </div>
-        </div>
-    </div><!--CONTAINER-->
-    <!--faixa negra-->
-    <div class="container-fluid align-content-center bg-dark rounded" style="height: 100px;">
-        <div class="row">
-            <div class="col-12 text-center  my-0">
-                <h2 class="display-3">
+                                </nav>
+                            </nav>
+                        </div>
+                        <div class="col-sm-8 col-md-9">
+                            <div data-spy="scroll" class="ScrollspySite"  data-target="#Scrollspy1" data-offset="0">
+                                <h4 id="item-1">Jogos</h4>
+                                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                                    legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                quando estiver examinando sua diagramação.</p>
+                                <h4 id="item-3">Computadores</h4>
+                                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                                    legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                quando estiver examinando sua diagramação.</p>
+                                <h4 id="item-4">Peças</h4>
+                                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                                    legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                quando estiver examinando sua diagramação.</p>
+                                <h4 id="item-5">Manutenção</h4>
+                                <p class="ml-4">É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto
+                                    legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                    quando estiver examinando sua diagramação.É um fato conhecido de todos que um leitor
+                                    se distrairá
+                                    com o conteúdo de texto legível de uma página
+                                quando estiver examinando sua diagramação.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--CONTAINER-->
+                <!--faixa negra-->
+                <div class="container-fluid align-content-center bg-dark rounded" style="height: 100px;">
+                    <div class="row">
+                        <div class="col-12 text-center  my-0">
+                            <h2 class="display-3">
                     <!--Loja Virtual Dr.Pecê</h2>
                         <p>Para um computador melhor.
                         </p>-->
@@ -310,11 +277,11 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
             <!--Cards-->
             <div class="form-container2 align-items-center">
                 <div class="row">
-                   <?php 
-                   $CI->load->model('Teste_model');
-                   $teste= $CI->Teste_model->randonComputador();
-                   $comp=0;
-                   foreach($teste->result_array() as $rows_computador){ 
+                 <?php 
+                 $CI->load->model('Teste_model');
+                 $teste= $CI->Teste_model->randonComputador();
+                 $comp=0;
+                 foreach($teste->result_array() as $rows_computador){ 
                     $com_codigo=$rows_computador['com_codigo']; 
                     $imarc=$CI->Teste_model->innerJoinMarca($com_codigo);
                     $imodc=$CI->Teste_model->innerJoinModelo($com_codigo);
@@ -407,10 +374,6 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                                                             <th scope="row">Preço</th>
                                                             <td><?php echo $rows_computador['com_preco']; ?></td>
                                                         </tr>
-                                                        <tr>
-                                                            <th></th><!--Pro botão ir pro meio-->
-                                                            <td><a href="" class="btn btn-success">Comprar</a></td>
-                                                        </tr>
                                                     </tbody>
                                                 </thead>
                                             </table>
@@ -445,9 +408,9 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                 ?>
                 <div class="card-deck mx-auto justify-content-center">
                     <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
-                       <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
-                       <?php
-                       if($rows_jogos['pro_foto']==''){
+                     <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+                     <?php
+                     if($rows_jogos['pro_foto']==''){
                         ?>
                         <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
                         <?php
@@ -537,10 +500,6 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                                                 <th scope="row">Preço</th>
                                                 <td><?php echo $rows_jogos['pro_preco']; ?></td>
                                             </tr>
-                                            <tr>
-                                                <th></th><!--Pro botão ir pro meio-->
-                                                <td><a href="" class="btn btn-success">Comprar</a></td>
-                                            </tr>
                                         </tbody>
                                     </thead>
                                 </table>
@@ -562,11 +521,11 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
 
 
 <div class="row">
- <?php 
- $CI->load->model('Teste_model');
- $teste= $CI->Teste_model->randonPecas();
- $pec=0;
- foreach($teste->result_array() as $rows_pecas){
+   <?php 
+   $CI->load->model('Teste_model');
+   $teste= $CI->Teste_model->randonPecas();
+   $pec=0;
+   foreach($teste->result_array() as $rows_pecas){
     $pec_codigo=$rows_pecas['pec_codigo'];
     $icp=$CI->Teste_model->innerJoinCategoriaPecas($pec_codigo);
     $ifp=$CI->Teste_model->innerJoinFornecedorPecas($pec_codigo);
@@ -576,9 +535,9 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
     ?>
     <div class="card-deck mx-auto justify-content-center">
         <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
-           <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
-           <?php
-           if($rows_pecas['pec_foto']==''){
+         <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+         <?php
+         if($rows_pecas['pec_foto']==''){
             ?>
             <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
             <?php
@@ -657,10 +616,6 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                                         <th scope="row">Preço</th>
                                         <td><?php echo $rows_pecas['pec_preco']; ?></td>
                                     </tr>
-                                    <tr>
-                                        <th></th><!--Pro botão ir pro meio-->
-                                        <td><a href="" class="btn btn-success">Comprar</a></td>
-                                    </tr>
                                 </tbody>
                             </thead>
                         </table>
@@ -679,18 +634,6 @@ if(++$pec==4) break;
 
 </div><!--Fechamento container-->
 
-<!-- <div class="container-fluid">
-    <div class="card- text-white bg-dark mb-3" style="max-width: 100%;">
-        <div class="card-header"></div>
-        <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text">
-            </p>
-        </div>
-
-    </div>
-</div>
--->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 

@@ -39,7 +39,6 @@ class Formulario_model extends CI_Model{
 		//return $this->db->get()->result_array();
 	}
 	public function selectCategoria(){
-		//O primeiro não funciona ???? pq?
 		$categoriaOptions="<option value=''>Selecione a categoria</option>";
 		$cat_codigo=$this->exibirCategoria();
 		foreach ($cat_codigo->result_array() as $cat) {

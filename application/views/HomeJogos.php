@@ -119,27 +119,6 @@ $CI->load->library('session');
                         <h1 class="col-12 text-center text-light">
                             Os melhores jogos você encontra aqui.
                         </h1>
-                        <div class="form-inline">
-                            <div class="col-12 my-1 p-2">
-
-                                <div class="btn-group">
-
-                                    <h3 class="text-light mr-2">Busque por categoria.</h3>
-
-                                    <button type="button" class="btn btn-success rounded">Selecionar</button>
-                                    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
-                                    id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    data-reference="parent">
-                                </button>
-                                <div class="dropdown-menu col-12" aria-labelledby="dropdownMenuReference">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -265,10 +244,6 @@ $CI->load->library('session');
                                                 <tr class="thead-dark">
                                                     <th scope="row">Preço</th>
                                                     <td><?php echo $rows_jogos['pro_preco']; ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th></th><!--Pro botão ir pro meio-->
-                                                    <td><a href="" class="btn btn-success">Comprar</a></td>
                                                 </tr>
                                             </tbody>
                                         </thead>

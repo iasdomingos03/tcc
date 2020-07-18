@@ -101,9 +101,15 @@ class Cliente extends CI_Controller{
 			$data=$data1+$data2+$data3+$data4;
 
 			$this->load->model('Cliente_model');
-			$this->Cliente_model->inserirCliente($data);
-			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
-			$this->load->view('CadastroCliente',$success);		
+			$verificac=$this->Cliente_model->verificarCliente($data2['cli_cpf'],$data4['cli_email']);
+			if($verificac){
+				$error = array('mensagens' => "<div class='alert alert-danger'>Esse Usuário já está cadastrado!</div>");
+				$this->load->view('CadastroCliente',$error);		
+			}else{
+				$this->Cliente_model->inserirCliente($data);
+				$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+				$this->load->view('CadastroCliente',$success);	
+			}	
 		}
 	}
 		//			$this->load->library('email');

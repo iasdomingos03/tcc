@@ -19,7 +19,7 @@ $CI->load->library('session');
     <title>Loja virtual Dr. Pecê</title>
 </head>
 
-<body>
+<body style="background-image: url(img/fundo-manu.jpg);">
     <!--Inicio Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -55,7 +55,7 @@ $CI->load->library('session');
                             clip-rule="evenodd" />
                         </svg></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#">Compras</a>
+                            <a class="dropdown-item ml-2" href="#">Pedidos</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                         </div>
@@ -94,182 +94,59 @@ $CI->load->library('session');
                             </div>
                         </li>
                     </ul>
-                    <form class="form-check-inline">
-                        <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                        <button type="button" class="btn btn-success">Buscar</button>
-                    </form>
                 </div>
             </div>
 
         </nav>
 
-        <div class="form-container2 p-2 container">
+        <div class="container p-5 bg-white rounded" style="width: 50%; margin-top: 100px;">
          <?php echo validation_errors(); ?> 
          <?php if(isset($vman)) echo $vman; ?>
          <?php  echo  form_open('index.php/Manutencao/verificaManutencao'); ?>
-         <h1 class="text-success text-center">Selecione os tipos de Manutenção que você deseja</h1>
+         <h3 class="text-success text-center">Selecione os tipos de Manutenção que você deseja</h3>
          <br>
          <?php
-         $man=$this->Formulario_model->exibirTipoManutencao();
-         foreach($man->result_array() as $rows_manutencao){ 
-            ?>
-            <div class="container"> 
-                <div class="row">
-                    <div class="col-6 mb-4">
-                        <input type="checkbox" name="tman[]" value="<?= $rows_manutencao['tman_codigo'];?>">
-                        <span class="checkmark" data-toggle="tooltip" data-placement="bottom" title="<?= $rows_manutencao['tman_descricao'];?>"><?= $rows_manutencao['tman_nome'];?></span>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-success">Ver Detalhes</button>
-                    </div>
+         $man=$this->Teste_model->exibirManutencao1();
+         ?>
+         <div class="container"> 
+            <?php
+            foreach($man->result_array() as $rows_manutencao){ 
+             ?>
+             <div class="row">
+                <div class="col-6 mb-4">
+                    <input type="checkbox" name="tman[]" value="<?= $rows_manutencao['tman_codigo'];?>">
+                    <span class="checkmark" data-toggle="tooltip" data-placement="bottom" title="<?= $rows_manutencao['tman_descricao'];?>"><?= $rows_manutencao['tman_nome'];?></span>
                 </div>
-            </div>
-
-                   <!--  <label class="container">Two
-                        <input type="checkbox" name="">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="container">Three
-                        <input type="checkbox" name="">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="container">Four
-                        <input type="checkbox" name="">
-                        <span class="checkmark"></span>
-                    </label> -->
-                    <?php
-                }
-                ?>
-                
-                <div class="container">
-                    <div class=" form-row  text-center">
-                        <div class="col-sm-3  ">
-                            <button type="submit" class="btn btn-success btn-block" style="float: right;">Enviar</button>
-                        </div>
-                        <div class="col-sm-3 ">
-                            <button type="reset" class="btn btn-secondary btn-block" style="float: left;">Limpar</button>
-
-                        </div>
-                    </div>
-                </div>
-                <?php echo form_close(); ?>
             </div>
             
-
-        <!--<div class="row ">
-                    <div class="col-4 order-last ">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <label class="container">One
-                                    <input type="checkbox" name="">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Two
-                                    <input type="checkbox" name="">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Three
-                                    <input type="checkbox" name="">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Four
-                                    <input type="checkbox" name="">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-4 order-last">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 order-last">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-4 order-last ">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4  order-last">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 order-last   ">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="form-group ">
-                    <div class="row">
-                        <div class="col-sm-6 mr-1 ">
-                            <button type="submit" class="btn btn-success btn-block">Enviar</button>
-                        </div>
-                        <div class="col-sm-6 ">
-                            <button type="submit" class="btn btn-secondary btn-block">Limpar</button>
-
-                        </div>
-                    </div>
-                </div>-->
+            <?php
+        }
+        ?>
+       
+        <div class="form-group">
+<!--              <p class="text-justify">Descreva o tipo de Manutenção que você deseja.</p>
+ -->            <label for="pman_descricao"><strong>Descreva os detalhes da manutenção que você deseja.</strong></label>
+            <textarea class="form-control" id="pman_descricao" name="pman_descricao" rows="3"
+            placeholder="Descreva o tamanho, modelo, ano, tipo de produto, polegadas etc..."></textarea>
+        </div>
+    <div class="container">
+        <div class=" form-row  text-center">
+            <div class="col-sm-3  ">
+                <button type="submit" class="btn btn-success btn-block" style="float: right;">Enviar</button>
+            </div>
+            <div class="col-sm-3 ">
+                <button type="reset" class="btn btn-secondary btn-block" style="float: left;">Limpar</button>
+            </div>
+        </div>
+    </div>
+    <?php echo form_close(); ?>
+</div>
 
 
 
-                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-            </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
 
-            </html>
+</html>

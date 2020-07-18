@@ -118,42 +118,23 @@ $CI->load->library('session');
             <div class="container" style="width: 100%;">
                 <div class="row justify-content-md-center">
                     <h1 class="col-12 text-center text-light">
-                        Os melhores jogos você encontra aqui.
+                        Os melhores computadores você encontra aqui.
                     </h1>
-                    <div class="form-inline">
-                        <div class="col-12 my-1 p-2">
-
-                            <div class="btn-group">
-
-                                <h3 class="text-light mr-2">Busque por categoria.</h3>
-
-                                <button type="button" class="btn btn-success rounded">Selecionar</button>
-                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
-                                id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                data-reference="parent">
-                            </button>
-                            <div class="dropdown-menu col-12" aria-labelledby="dropdownMenuReference">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
-
+    </div>
+    <div class="row justify-content-md-center">
+        <h6 class="text-light mr-2">Não encontrou o que queria?</h6>
+        <a type="button" href="<?=base_url();?>index.php/MontagemComputador/" class="btn btn-success rounded">Monte seu computador!</a>
     </div>
     <div class="form-container2 align-items-center">
         <div class="row">
-         <?php 
+           <?php 
 
-         $CI->load->model('Teste_model');
-         if(!isset($_POST['txtBuscaComputador'])){
-             $teste=$CI->Teste_model->exibirComputador1();
-         }else{
+           $CI->load->model('Teste_model');
+           if(!isset($_POST['txtBuscaComputador'])){
+               $teste=$CI->Teste_model->exibirComputador1();
+           }else{
             $txtBuscaComputador=$this->input->post('txtBuscaComputador');
             $teste=$CI->Teste_model->pesquisaJogos($txtBuscaComputador);
             if($teste->num_rows()==0){
@@ -257,10 +238,6 @@ $CI->load->library('session');
                                                     <tr class="thead-dark">
                                                         <th scope="row">Preço</th>
                                                         <td><?php echo $rows_computador['com_preco']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th></th><!--Pro botão ir pro meio-->
-                                                        <td><a href="" class="btn btn-success">Comprar</a></td>
                                                     </tr>
                                                 </tbody>
                                             </thead>
