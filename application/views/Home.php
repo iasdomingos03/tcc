@@ -32,8 +32,8 @@ $CI->load->library('session');
 
             <div class="collapse navbar-collapse" id="navbarSite">
                 <ul class="navbar-nav mr-auto">
-                 <?php 
-                 if($CI->session->userdata("cli_email") !='' || $CI->session->userdata("cli_senha") !=''){
+                   <?php 
+                   if($CI->session->userdata("cli_email") !='' || $CI->session->userdata("cli_senha") !=''){
                     ?>
                     <li class="nav-item dropdown" id="navDrop">
                         <a class="nav-link"  data-toggle="dropdown" data-placement="bottom" title=<?php echo $CI->session->userdata("cli_nome")?>><svg class="bi bi-people-circle" width="30px" height="30px"
@@ -46,7 +46,6 @@ $CI->load->library('session');
                             clip-rule="evenodd" />
                         </svg></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#">Compras</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                         </div>
@@ -283,11 +282,11 @@ $CI->load->library('session');
             <!--Cards-->
             <div class="form-container2 align-items-center">
                 <div class="row">
-                 <?php 
-                 $CI->load->model('Teste_model');
-                 $teste= $CI->Teste_model->randonComputador();
-                 $comp=0;
-                 foreach($teste->result_array() as $rows_computador){ 
+                   <?php 
+                   $CI->load->model('Teste_model');
+                   $teste= $CI->Teste_model->randonComputador();
+                   $comp=0;
+                   foreach($teste->result_array() as $rows_computador){ 
                     $com_codigo=$rows_computador['com_codigo']; 
                     $imarc=$CI->Teste_model->innerJoinMarca($com_codigo);
                     $imodc=$CI->Teste_model->innerJoinModelo($com_codigo);
@@ -414,9 +413,9 @@ $CI->load->library('session');
                 ?>
                 <div class="card-deck mx-auto justify-content-center">
                     <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
-                     <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
-                     <?php
-                     if($rows_jogos['pro_foto']==''){
+                       <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+                       <?php
+                       if($rows_jogos['pro_foto']==''){
                         ?>
                         <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
                         <?php
@@ -527,11 +526,11 @@ $CI->load->library('session');
 
 
 <div class="row">
-   <?php 
-   $CI->load->model('Teste_model');
-   $teste= $CI->Teste_model->randonPecas();
-   $pec=0;
-   foreach($teste->result_array() as $rows_pecas){
+ <?php 
+ $CI->load->model('Teste_model');
+ $teste= $CI->Teste_model->randonPecas();
+ $pec=0;
+ foreach($teste->result_array() as $rows_pecas){
     $pec_codigo=$rows_pecas['pec_codigo'];
     $icp=$CI->Teste_model->innerJoinCategoriaPecas($pec_codigo);
     $ifp=$CI->Teste_model->innerJoinFornecedorPecas($pec_codigo);
@@ -541,9 +540,9 @@ $CI->load->library('session');
     ?>
     <div class="card-deck mx-auto justify-content-center">
         <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 15rem;">
-         <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
-         <?php
-         if($rows_pecas['pec_foto']==''){
+           <!--SAIR 2 VEZES DA PASTA PQ OS UPLOADS ENCONTRAM-SE FORA DO INDEX.PHP -->
+           <?php
+           if($rows_pecas['pec_foto']==''){
             ?>
             <img src="<?=base_url();?>public/img/semFoto.jpg" class="card-img-top" class="card-img-top" alt="Responsive image" style="height:9rem;">
             <?php
@@ -622,10 +621,6 @@ $CI->load->library('session');
                                         <th scope="row">Preço</th>
                                         <td><?php echo $rows_pecas['pec_preco']; ?></td>
                                     </tr>
-                                    <tr>
-                                        <th></th><!--Pro botão ir pro meio-->
-                                        <td><a href="" class="btn btn-success">Comprar</a></td>
-                                    </tr>
                                 </tbody>
                             </thead>
                         </table>
@@ -634,14 +629,13 @@ $CI->load->library('session');
             </div>
         </div>
     </div>
-</div>
 
+</div>
+</div>
 <?php
 if(++$pec==4) break;
 }
 ?>
-</div>
-</div>
 </div>
 </div>
 <!--Fechamento container-->
@@ -670,97 +664,93 @@ if(++$pec==4) break;
             <div class="container-fluid  mt-5">
                 <h2 class="text-center text-success" style="font-size: 60px; 
                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-                Sobre o nosso sistema.
+                Sobre o nosso site.
             </h2>
         </div>
     </div>
 </div>
-<div class="container mt-5" style="height: 300px;">
-    <div class="row mt-3 text-center">
-        <div class="col md-8  text-justify">
-            <p> O sistema <strong>MCPreS</strong> 
-                , é um software para empresas dentro da área de tecnologia que possuem atividades de manutenção
-                de computadores e prestações de serviços, podendo ser facilmete moldado para atender todos os requisitos pré-estabelecidos 
-            pelo empreendedor e modelo de sua empresa.  </p>
-        </div>
-        <div class="col md-4 text-center">
-            <img src="<?=base_url();?>public/img/MCPreS2.jpg" class="card-img-top h-100" alt="Responsive image">
-        </div>
 
+<div class="row mt-3">
+    <div class="col md-4 p-0">
+        <div class="card border border-0"style="width: 20rem;">
+            <img src="<?=base_url()?>public/img/gleyci.jpeg"class="card-img-top img2 "alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Gleyciane Paiva</h5>
+                <p class="card-text text-justify"style="font-size: large;">
+                    Gleyciane Paiva nasceu no ano 2000, na cidade de Coroatá,
+                    filha de Evaneide Oliveira e José Pereira,
+                    cursou informática básica, atendimento ao
+                    cliente e marketing. Mudou-se para a Cidade de Guaratinguetá - SP
+                    em 2018 para estudar e atualmente mora na cidade. Iniciou o curso técnico em
+                    desenvolvimento de sistema, foi voluntaria no "Projeto do
+                    Menor" dando aula de informática básico para pessoas de 7 até
+                    45 anos.
+                </p>
+            </div>
+        </div>
     </div>
-</div>
-<hr>
+    <div class="col md-4 p-0">
+        <div class="card border border-0"style="width: 20rem;">
+            <img src="<?=base_url()?>public/img/ingrid.jpeg"class="card-img-top img2 "alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Ingrid Nayara</h5>
+                <p class="card-text text-justify"style="font-size: large;">
+                    Ingrid Nayara A. Rodrigues nasceu no no de 1995 na cidade de Pindamonhangaba-SP,
+                    onde viveu até seus 5 anos de idade. Foi criada em Caraguatatuba-SP e aos 18 anos
+                    desenvolvendo
+                    alguns talentos artisticos,
+                    após esses período se mudou para Guaratinguetá também do estado de São Paulo onde se formou
+                    em
+                    técnico em Administração e
+                    Desenvolvimento de sistemas.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col md-4">
+        <div class="card border border-0"style="width: 20rem;">
+            <img src="<?=base_url()?>public/img/iris.jpeg"class="card-img-top img2"alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Iris Agnes</h5>
+                <p class="card-text text-justify"style="font-size: large;">
+                    Iris Agnes Domingos nasceu no ano de 2000, filha de Renata Cibéle, cresceu na
+                    cidade de
+                    Guaratinguetá-SP, é formada em técnico em
+                    informatica Industrial e Desenvolvimento de Sistemas, está cursando o ensino superior em
+                    Gestão
+                    Comercial.
+                </p>
+            </div>
+        </div>
+    </div>
 
-<div class="container" style="height: 300px; width: 100%;">
+</div>
+
+
+<footer class="container-fluid bg-dark">
+    <h3 class="text-white text-center mb-5">
+        Faça seu pedido pelos telefones:
+    </h3>
+
     <div class="row">
-        <div class="col-12 md-12">
-            <div class="container-fluid  mt-5">
-                <h2 class="text-center text-success" style="font-size: 60px; 
-                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-                Desenvolvedoras
-                <br />do sistema.
-            </h2>
+        <div class="col-4">
+            <h5 class="text-white">Telefone:</h5>
+            <p class="text-break text-white"  style="font-size: 20px;">(12) XXXX-XXXX</p>
+
+        </div>
+
+        <div class="col-4">
+            <h5 class="text-white">Celular:</h5>
+            <p class="text-break text-white" style="font-size: 20px;">(12) XXXXX-XXXX</p>
+        </div>
+        <div class=" col-4 container text-center mb-2">
+            <h5 class="text-white">WhatsApp:</h5>
+            <p class="text-white" style="font-size: 20px;"><img src="<?=base_url();?>public/img/Whatsapp.png" width="40px" height="40px" alt="Responsive image">  XXXXX-XXXX</p>
         </div>
     </div>
-</div>
-<div class="container" style="height: 300px; width: 100%;">
-    <dv class="row mt-5">
-        <div class="col-4 md-4">
-            <img src="<?=base_url();?>public/img/gleyci.jpeg" class="img-fluid h-25 text-md-center" alt="Responsive image">
-            <br>
-            <h5><strong>Gleyciane Paiva</strong></h5>
 
-        </div>
-        <div class="col-4 md-4 sm-12">
-            <img src="<?=base_url();?>public/img/ingrid.jpeg" class="img-fluid h-25" alt="Responsive image">
-            <br>
-            <h5><strong>Ingrid Nayara</strong></h5>
 
-        </div>
-        <div class="col-4 md-4">
-            <img src="<?=base_url();?>public/img/iris.jpeg" class="img-fluid h-25" alt="Responsive image">
-            <br>
-            <h5><strong>Iris Agnes</strong></h5>
-
-        </div>
-    </div>
-    <dv class="row mt-1">
-
-        <div class="col-4 md-4">
-            <p class="text-justify">
-                <!--Gleyci-->
-                Gleyciane Paiva nasceu no ano 2000, na cidade de Coroatá,
-                filha de Evaneide Oliveira e José Pereira,
-                coursou informática básica, atendimento ao
-                cliente e marketing. Mudou-se para a Cidade de Guaratinguetá - SP
-                em 2018 para estudar e atualmente mora na cidade. Iniciou o curso técnico em
-                desenvolvimento de sistema, foi voluntaria no "Projeto do
-                Menor" dando aula de informática básico para pessoas de 7 até
-                45 anos.
-            </p>
-        </div>
-        <div class="col-4 md-4">
-            <p class="text-justify">
-                <!--Ingrid-->
-                Ingrid Nayara A. Rodrigues nasceu no no de 1995 na cidade de Pindamonhangaba-SP,
-                onde viveu até seus 5 anos de idade. Foi criada em Caraguatatuba-SP e aos 18 anos desenvolvendo
-                alguns talentos artisticos,
-                após esses período se mudou para Guaratinguetá também do estado de São Paulo onde se formou em
-                técnico em Administração e
-                Desenvolvimento de sistemas.
-            </p>
-        </div>
-        <div class="col-4 md-4">
-            <p class="text-justify">
-                <!--iris-->
-                Iris Agnes Domingos nasceu no ano de 2000, filha de Renata Cibéle, nasceu e cresceu na cidade de Guaratinguetá-SP, é formada em técnico em
-                informatica Industrial e desenvolvimento de sistemas, está cursando o ensino superior em Gestão Comercial.
-            </p>
-        </div>
-
-    </div>
-</div>
-
+</footer>
 <!-- <div class="container-fluid">
     <div class="card- text-white bg-dark mb-3" style="max-width: 100%;">
         <div class="card-header"></div>

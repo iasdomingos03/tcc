@@ -21,12 +21,6 @@ class Formulario_model extends CI_Model{
 		$result=$this->db->get();
 		return $result->num_rows();
 	}
-	// public function ano(){
-	// 	//get_where equivale ao where
-	// 	$this->db->get_where("tbl_produtosJogos", array('jog_anoLancamento'=>'2007'));
-	// $result=$this->db->get();
-	// 	return $result->num_rows();
-	// }
 
 	/*---------INICIO CATEGORIA---------------------------------------------*/	
 	public function inserirCategoria($data){
@@ -94,6 +88,21 @@ public function selectFornecedor(){
 	}
 	?>
 	<?php
+}
+
+public function verificarFornecedor($cnpj,$email){
+	$this->db
+	->from("tbl_fornecedor")
+	->where("for_email",$email)
+	->or_where("for_cnpj",$cnpj);
+		//$result->armazena os registros
+	$verificac=$this->db->get();
+	if($verificac->num_rows()>0){
+		return $verificac->row();
+	}else{
+		return NULL;
+	}
+	print_r($this->db->last_query());
 }
 /*-----------FIM FORNECEDOR-----------------*/	
 

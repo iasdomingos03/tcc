@@ -63,7 +63,6 @@ $CI->load->library('session');
                             clip-rule="evenodd" />
                         </svg></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#">Pedidos</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                         </div>
@@ -106,10 +105,11 @@ $CI->load->library('session');
             </div>
         </nav>
         <!--Collapse-->
-        <?php echo validation_errors(); ?> 
-        <?php if(isset($vman)) echo $vman; ?>
-        <?php  echo  form_open('index.php/MontagemComputador/verificaMontagem'); ?>
-        <div class="container">
+        
+        <div class="container" style="background-color: white">
+            <?php echo validation_errors(); ?> 
+            <?php if(isset($vman)) echo $vman; ?>
+            <?php  echo  form_open('index.php/MontagemComputador/verificaMontagem'); ?>
             <?php
             $i=1;
             $this->load->model('Formulario_model');
@@ -156,10 +156,6 @@ $CI->load->library('session');
                                                 <table class="table">
                                                     <thead>
                                                         <tbody>
-                                                            <tr class="thead-dark">
-                                                                <th scope="row">Código</th>
-                                                                <td><?php echo $pec['pec_codigo']; ?></td>
-                                                            </tr>
                                                             <tr class="thead-dark">
                                                                 <th scope="row">Nome</th>           
                                                                 <td><?php echo $pec['pec_nome']; ?></td>
@@ -215,10 +211,6 @@ $CI->load->library('session');
                                                     <thead>
                                                         <tbody>
                                                             <tr class="thead-dark">
-                                                                <th scope="row">Código</th>
-                                                                <td><?php echo $pec['pec_codigo']; ?></td>
-                                                            </tr>
-                                                            <tr class="thead-dark">
                                                                 <th scope="row">Nome</th>           
                                                                 <td><?php echo $pec['pec_nome']; ?></td>
                                                             </tr>
@@ -266,9 +258,10 @@ $CI->load->library('session');
         } ?>
     </div>
     <br>
+    <button type="submit"  class="btn btn-success" style="color: white">Enviar</button>
+    <?php echo form_close(); ?>
+
 </div><!-- Fim container-->
-<button type="submit"  class="btn btn-success" style="color: white">Enviar</button>
-<?php echo form_close(); ?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

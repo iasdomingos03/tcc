@@ -263,6 +263,16 @@ public function randonComputador(){
 		->where("cli_cpf=$cli_cpf");
 		return $this->db->get();
 	}
+
+	public function selecionaCliente01(){
+		$CI = & get_instance();
+		$CI->load->library('session');
+		$cpf=$CI->session->userdata('cli_cpf');
+		$this->db->select("cli_nome,cli_email")
+		->from("tblCliente")
+		->where("cli_cpf=$cpf");
+		return $this->db->get();
+	}
 	public function mandaManutencao($dataPed){
 		$this->db->insert("tbl_pedidoManutencao",$dataPed);
 	}
@@ -281,6 +291,60 @@ public function randonComputador(){
 			"tbl_tipoManutencao.tman_codigo=tbl_itensPedidoManutencao.tman_codigo")
 		->where("pman_codigo=$pman_codigo");
 		$query = $this->db->get('tbl_tipoManutencao');
+		$data = array();
+		if($query !== FALSE && $query->num_rows() > 0){
+			foreach ($query->result_array() as $row) {
+				$data[] = $row;
+			}
+		}
+		return $data;
+		
+	}
+
+
+	/***************com sessão************************************/
+	public function exibeMandaManutencao01($cpf){
+		$CI = & get_instance();
+		$CI->load->library('session');
+		$CI->db->from("tbl_pedidoManutencao")
+		->where("cli_cpf=$cpf");
+		return $CI->db->get();		
+
+	}
+	public function exibeMandaItensManutencao01($pman_codigo){
+		$CI = & get_instance();
+		$CI->load->library('session');
+		$CI->db->select("tbl_itensPedidoManutencao.pman_codigo,tbl_itensPedidoManutencao.ipm_codigo,tbl_tipoManutencao.tman_nome,tbl_tipoManutencao.tman_codigo, tbl_itensPedidoManutencao.pman_descricao")
+		->join("tbl_itensPedidoManutencao",
+			"tbl_tipoManutencao.tman_codigo=tbl_itensPedidoManutencao.tman_codigo")
+		->where("pman_codigo=$pman_codigo");
+		$query = $CI->db->get('tbl_tipoManutencao');
+		$data = array();
+		if($query !== FALSE && $query->num_rows() > 0){
+			foreach ($query->result_array() as $row) {
+				$data[] = $row;
+			}
+		}
+		return $data;
+	}
+
+	public function exibeMandaMontagem01($cpf){
+		$CI = & get_instance();
+		$CI->load->library('session');
+		$CI->db->from("tbl_pedidoMontagem")
+		->where("cli_cpf=$cpf");
+		return $CI->db->get();		
+
+	}
+
+	public function exibeMandaItensMontagem01($pmon_codigo){
+		$CI = & get_instance();
+		$CI->load->library('session');
+		$CI->db->select("tbl_itensMontagem.mon_codigo,tbl_itensMontagem.pmon_codigo, tbl_pecasComputador.pec_nome, tbl_pecasComputador.pec_codigo,tbl_categoriaPecas.catp_codigo,tbl_categoriaPecas.catp_nome")
+		->join("tbl_pecasComputador","tbl_pecasComputador.pec_codigo=tbl_itensMontagem.pec_codigo")
+		->join("tbl_categoriaPecas","tbl_pecasComputador.pec_categoria=tbl_categoriaPecas.catp_codigo")
+		->where("pmon_codigo=$pmon_codigo");
+		$query = $CI->db->get('tbl_itensMontagem');
 		$data = array();
 		if($query !== FALSE && $query->num_rows() > 0){
 			foreach ($query->result_array() as $row) {
@@ -339,11 +403,6 @@ public function randonComputador(){
 		->join("tbl_categoriaPecas","tbl_pecasComputador.pec_categoria=tbl_categoriaPecas.catp_codigo")
 		->where("pmon_codigo=$pmon_codigo");
 		$query = $this->db->get('tbl_itensMontagem');
-
-		// SELECT `tbl_itensMontagem`.`mon_codigo`, `tbl_itensMontagem`.`pmon_codigo`, `tbl_pecasComputador`.`pec_nome`, `tbl_pecasComputador`.`pec_codigo`,`tbl_categoriaPecas`.`catp_codigo`, `tbl_categoriaPecas`.`catp_nome` FROM `tbl_itensMontagem` JOIN `tbl_pecasComputador` ON `tbl_pecasComputador`.`pec_codigo`=`tbl_itensMontagem`.`pec_codigo` 
-		// JOIN `tbl_categoriaPecas` ON `tbl_pecasComputador`.`pec_categoria`=`tbl_categoriaPecas`.`catp_codigo` 
-		// where pmon_codigo=7;
-
 		$data = array();
 		if($query !== FALSE && $query->num_rows() > 0){
 			foreach ($query->result_array() as $row) {

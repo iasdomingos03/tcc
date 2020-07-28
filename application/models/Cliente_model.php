@@ -88,4 +88,6 @@ public function updateSenha($cpf,$senhaCMD5){
 	$this->db->update('tblCliente');//update
 }
 
+
+
 }

@@ -47,7 +47,6 @@ $CI->load->library('session');
                                 clip-rule="evenodd" />
                             </svg></a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item ml-2" href="#">Pedidos</a>
                                 <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                                 <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                             </div>
@@ -118,9 +117,8 @@ $CI->load->library('session');
             <div class="container" style="width: 100%;">
                 <div class="row justify-content-md-center">
                     <h1 class="col-12 text-center text-light">
-                        Os melhores jogos você encontra aqui.
+                        As melhores peças você encontra aqui.
                     </h1>
-                
                 </div>
             </div>
         </div>
@@ -253,359 +251,31 @@ $CI->load->library('session');
     ?>
 </div>
 </div><!--Form Container-->
+<br>
+<footer class="container-fluid bg-dark">
+    <h3 class="text-white text-center mb-5">
+        Faça seu pedido pelos telefones:
+    </h3>
 
+    <div class="row">
+        <div class="col-4">
+            <h5 class="text-white">Telefone:</h5>
+            <p class="text-break text-white"  style="font-size: 20px;">(12) XXXX-XXXX</p>
 
-<!--    <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-        <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-        <div class="card-body">
-            <h5 class="card-title">Notebook</h5>
-            <p class="card-text">Descrição do Produto
-            </p>
         </div>
-        <div class="ml-4">
-            <h6 id="">Preço</h6>
-            <h6 id="">Parcela</h6>
+
+        <div class="col-4">
+            <h5 class="text-white">Celular:</h5>
+            <p class="text-break text-white" style="font-size: 20px;">(12) XXXXX-XXXX</p>
         </div>
-        <div class="card-body">
-            <a href="#" class="btn-block btn btn-success">Ver</a>
+        <div class=" col-4 container text-center mb-2">
+            <h5 class="text-white">WhatsApp:</h5>
+            <p class="text-white" style="font-size: 20px;"><img src="<?=base_url();?>public/img/Whatsapp.png" width="40px" height="40px" alt="Responsive image">  XXXXX-XXXX</p>
         </div>
     </div>
-    <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-        <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-        <div class="card-body">
-            <h5 class="card-title">Notebook</h5>
-            <p class="card-text">Descrição do Produto
-            </p>
-        </div>
-        <div class="ml-4">
-            <h6 id="">Preço</h6>
-            <h6 id="">Parcela</h6>
-        </div>
-        <div class="card-body">
-            <a href="#" class="btn-block btn btn-success">Ver</a>
-        </div>
-    </div>
-    <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-        <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-        <div class="card-body">
-            <h5 class="card-title">Notebook</h5>
-            <p class="card-text">Descrição do Produto
-            </p>
-        </div>
-        <div class="ml-4">
-            <h6 id="">Preço</h6>
-            <h6 id="">Parcela</h6>
-        </div>
-        <div class="card-body">
-            <a href="#" class="btn-block btn btn-success">Ver</a>
-        </div>
-    </div>
-</div>
-</div>
 
 
-    <div class="card-deck mx-auto justify-content-center">
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div>
-
-        
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div>
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div>
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="card-deck mx-auto  justify-content-center">
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div> 
-
-       
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div>
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div>
-        <div class="card text-center text-white bg-dark mb-3 d-flex" style="width: 18rem;">
-            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-            <div class="card-body">
-                <h5 class="card-title">Notebook</h5>
-                <p class="card-text">Descrição do Produto
-                </p>
-            </div>
-            <div class="ml-4">
-                <h6 id="">Preço</h6>
-                <h6 id="">Parcela</h6>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn-block btn btn-success">Ver</a>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-    <!--<div class="row my-3 align-content-center">
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row my-3 align-content-lg-center">
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="card shadow" style="width: 18rem;">
-                            <img src="../public/img/note.jpeg" class="card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <h5 class="card-title">Notebook</h5>
-                                <p class="card-text">Descrição do Produto
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <h6 id="">Preço</h6>
-                                <h6 id="">Parcela</h6>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn-block btn btn-success">Ver</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-             <div class="form-container2 container align-content-center ">
-
-        <div class="row">
-            <div class="col-sm-6">
-                https://blog.da2k.com.br/2015/02/25/css-float-ou-overflow/
-                <div class="img1">
-                    <img src="../public/img/arte.png" alt="Responsive image" />
-                </div>
-            </div>
-            <div class="col-sm-6 ">
-                <h5 class="card-title text-success" id="">Título</h5>
-                <h6 class="card-text ">Descrição do produto:</h6>
-                <h6 class="card-text text-break ">vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv</h6>
-                <h6 id="">Preço:</h6>
-                <p id="">30,00</p>
-                <h6>Classificação</h6>
-                <container id="" class="bg-danger rounded ">16</container>
-                <br>
-                <button class="btn btn-success">Comprar</button>
-            </div>
-        </div>
-        
-
-    </div>
--->
-
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

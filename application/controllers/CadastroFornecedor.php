@@ -69,9 +69,16 @@ class CadastroFornecedor extends CI_Controller{
 			$data=$data2+$data1;
 
 			$this->load->model('Formulario_model');
-			$this->Formulario_model->inserirFornecedor($data);
-			$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
-			$this->load->view('Cadastro',$success);		
+			$verificaf=$this->Formulario_model->verificarFornecedor($data2['for_cnpj'],$data1['for_email']);
+			if($verificaf){
+				$error = array('mensagens' => "<div class='alert alert-danger'>Esse Fornecedor já está cadastrado!</div>");
+				$this->load->view('Cadastro',$error);		
+			}else{
+				$this->load->model('Formulario_model');
+				$this->Formulario_model->inserirFornecedor($data);
+				$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+				$this->load->view('Cadastro',$success);		
+			}
 		}
 
 	}

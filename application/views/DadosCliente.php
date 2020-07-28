@@ -71,21 +71,17 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                             Redes Sociais
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#"><img src=".<?=base_url();?>public/public/img/IconFace.png" width="30px"
+                            <a class="dropdown-item ml-2" href="#"><img src=".<?=base_url();?>public/img/IconFace.png" width="30px"
                                 height="30px" alt="Responsive image"></a>
 
-                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/public/img/IconInsta.jpg" width="30px"
+                                <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconInsta.jpg" width="30px"
                                     height="30px" alt="Responsive image"></a>
-                                    <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/public/img/IconTwit.png" width="30px"
+                                    <a class="dropdown-item ml-2" href="#"><img src="<?=base_url();?>public/img/IconTwit.png" width="30px"
                                         height="30px" alt="Responsive image"></a>
 
                                     </div>
                                 </li>
                             </ul>
-                            <form class="form-check-inline">
-                                <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                                <button type="button" class="btn btn-success">Buscar</button>
-                            </form>
                         </div>
                     </div>
                 </nav>
@@ -94,7 +90,8 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                         <div class="col-lg-2 col-md-2 col-sm-12 shadow p-3 mb-5 bg-white rounded">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Dados</a>
-                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Pedidos</a>
+                                <a class="nav-link" id="v-pills-man-tab" data-toggle="pill" href="#v-pills-man" role="tab" aria-controls="v-pills-man" aria-selected="false">Pedidos Manutenção</a>
+                                <a class="nav-link" id="v-pills-mon-tab" data-toggle="pill" href="#v-pills-mon" role="tab" aria-controls="v-pills-mon" aria-selected="false">Pedidos Montagem</a>
                             </div>
                         </div> <!--FECHA O NAV FLEX-->
                         <?php 
@@ -123,7 +120,7 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
 
                                         <?php  echo form_open('index.php/Cliente/AlteraCliente'); ?>
                                         <div class="container">
-                                         <div class="form-group row">
+                                           <div class="form-group row">
                                             <label for="" class="col-sm-4 col-form-label">Nome</label>
                                             <div class="col-sm-9">
                                                 <input type="text"  class="form-control" id="" name="cli_nome" readonly="readonly" value="<?= $rows_cli['cli_nome'];?>" >
@@ -231,44 +228,173 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                                 </div>
                                 <?php echo form_close(); ?>
                             </div>
-                            <?php
 
-                        }//fecha if
-                        ?>
+                            <div class="tab-pane fade" id="v-pills-man" role="tabpanel" aria-labelledby="v-pills-man-tab">
+                                <div class="container">
+                                  <div class="container theme-showcase flex-row" role="main" id="container-Pmanutencao">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo Manutenção</th>
+                                                        <th>Descrição</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php 
+                                                    $CI = & get_instance();
+                                                    $CI->load->library('session');
 
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <div class="container">
-                                <!--FAZER OS PEDIDOS DE ACORDO COM O CLIENTE-->
-                            </div>
+                                                    $CI->load->model('Teste_model');
+                                                    $cpf=$CI->session->userdata('cli_cpf');
+                                                    $man=$CI->Teste_model->exibeMandaManutencao01($cpf);
+                                        //$manman=$this->Teste_model->exibeMandaItensManutencao();
+                                                    if($man->num_rows()== 0){ ?>
+                                                        <tr><td><?php echo "Ainda não foi realizado nenhum pedido!";?></td></tr>
+                                                        <?php
+                                                    }else{                                                    foreach($man->result_array() as $rows_mmanutencao){ 
+
+                                                        $pman_codigo=$rows_mmanutencao['pman_codigo']; 
+                                                    //$cli_cpf=$rows_mmanutencao['cli_cpf'];
+                                                        $data=$CI->Teste_model->exibeMandaItensManutencao01($pman_codigo);
+                                                        $cliente=$CI->Teste_model->selecionaCliente01();
+                                                    //print_r($this->db->last_query()); 
+                                                        ?>
+                                                        <tr>   
+                                                            <td>    
+                                                                <?php
+                                                                foreach($data as $datas){ ?>
+                                                                   <li> <?php echo $datas['tman_nome']."</br>"; ?></li>
+                                                                   <?php
+                                                               }
+                                                               ?>
+                                                           </td>
+                                                           <td>    
+                                                            <?php
+                                                            foreach($data as $datas){ ?>
+                                                                <li><?php echo $datas['pman_descricao']."</br>"; ?></li>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>      
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div><!--Primeiro container-->
-        <div class="container-fluid">
-            <div class="card- text-white bg-dark mb-3" style="max-width: 100%;">
-                <div class="card-header"></div>
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text">
-                    </p>
-                </div>
+                <div class="tab-pane fade" id="v-pills-mon" role="tabpanel" aria-labelledby="v-pills-mon-tab">
+                    <div class="container">
+                      <div class="container theme-showcase flex-row" role="main" id="container-Pmontagem">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Montagem</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                        $CI = & get_instance();
+                                        $CI->load->library('session');
 
-            </div>
-        </div>
+                                        $CI->load->model('Teste_model');
+                                        $cpf=$CI->session->userdata('cli_cpf');
+                                        $mon=$CI->Teste_model->exibeMandaMontagem01($cpf);
+                                        //$manman=$this->Teste_model->exibeMandaItensManutencao();
+                                        if($mon->num_rows()== 0){ ?>
+                                            <tr><td><?php echo "Ainda não foi realizado nenhum pedido!";?></td></tr>
+                                            <?php
+                                        }else{ 
+                                            foreach($mon->result_array() as $rows_mmontagem){ 
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                                                $pmon_codigo=$rows_mmontagem['pmon_codigo']; 
+                                                    //$cli_cpf=$rows_mmanutencao['cli_cpf'];
+                                                $data=$CI->Teste_model->exibeMandaItensMontagem01($pmon_codigo);
+                                                $cliente=$CI->Teste_model->selecionaCliente01();
+                                            //print_r($this->db->last_query()); 
+                                                ?>
+                                                <tr>
+                                                    <td>    
+                                                        <?php
+                                                        foreach($data as $datas){ ?>
+                                                            <li><?php echo $datas['pec_nome']."</br>";?></li>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>    
+                                                        <?php
+                                                        foreach($data as $datas){ ?>
+                                                           <li> <?php echo $datas['catp_nome']."</br>"; ?></li>
+                                                           <?php
+                                                       }
+                                                       ?>
+                                                   </td>
+                                               </tr>
+                                               <?php
+                                           }
+                                       } ?>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>      
+                   </div>
+               </div>
+           </div>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <script src="<?= base_url()?>public/js/CEP.js"></script>
-        <script src="<?= base_url()?>public/js/jquery.mask.min.js"></script>
-        <script src="<?= base_url()?>public/js/Mascara.js"></script>
 
-        <script type="text/javascript">
+       </div>
+   </div>
+   <?php
+                        }//fecha if
+                        ?>
+                    </div> 
+                </div><!--Primeiro container-->
+                <footer class="container-fluid bg-dark">
+                    <h3 class="text-white text-center mb-5">
+                        Faça seu pedido pelos telefones:
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <h5 class="text-white">Telefone:</h5>
+                            <p class="text-break text-white"  style="font-size: 20px;">(12) XXXX-XXXX</p>
+
+                        </div>
+
+                        <div class="col-4">
+                            <h5 class="text-white">Celular:</h5>
+                            <p class="text-break text-white" style="font-size: 20px;">(12) XXXXX-XXXX</p>
+                        </div>
+                        <div class=" col-4 container text-center mb-2">
+                            <h5 class="text-white">WhatsApp:</h5>
+                            <p class="text-white" style="font-size: 20px;"><img src="<?=base_url();?>public/img/Whatsapp.png" width="40px" height="40px" alt="Responsive image">  XXXXX-XXXX</p>
+                        </div>
+                    </div>
+
+
+                </footer>
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+                <script src="<?= base_url()?>public/js/CEP.js"></script>
+                <script src="<?= base_url()?>public/js/jquery.mask.min.js"></script>
+                <script src="<?= base_url()?>public/js/Mascara.js"></script>
+
+                <script type="text/javascript">
             /*$('.cep').mask('00000-000');
             $('.telefone').mask('(99)9999-9999');
             $('.cnpj').mask('00.000.000/0000-00', {reverse: true});

@@ -9,7 +9,7 @@
 		min-height: 100vh;
 		/* don't forget to add all the previously mentioned styles here too */
 		background:white;
-		color:#007bff;
+		color:#28a745;
 		transition: all 0.3s;
 
 	}
@@ -45,11 +45,11 @@
     	font-size: 1.1em;
     	font-weight: 300;
     	line-height: 1.7em;
-    	color:#007bff;
+    	color:#28a745;
     }
 
     a, a:hover, a:focus {
-    	color: inherit;
+    	color: #28a745;
     	text-decoration: none;
     }
 
@@ -66,7 +66,7 @@
     }
 
     #sidebar ul p {
-    	color: #007bff;
+    	color: #28a745;
     	padding: 10px;
     }
 
@@ -76,13 +76,13 @@
     	display: block;
     }
     #sidebar ul li a:hover {
-    	color:#007bff;
+    	color:#28a745;
     	background:white;
     }
 
     #sidebar ul li.active > a, a[aria-expanded="true"] {
     	color:white;
-    	background:#007bff;
+    	background:#28a745;
     }
     ul ul a {
     	font-size: 0.9em !important;

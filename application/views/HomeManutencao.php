@@ -55,7 +55,6 @@ $CI->load->library('session');
                             clip-rule="evenodd" />
                         </svg></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#">Pedidos</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                         </div>

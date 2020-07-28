@@ -34,12 +34,12 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 		</div>
 	</header>
 
-	<div class="wrapper">
+<div class="wrapper">
 		<nav id="sidebar">
 			<ul class="list-unstyled components">
 				<li>
-					<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SERVIÇOS</a>
-					<ul class="collapse list-unstyled" id="homeSubmenu">
+					<a style="background-color: #28a745;color: white">SERVIÇOS</a>
+					<ul class="list-unstyled">
 						<li>
 							<input type="radio" name="rdb" value="Jogos"/>
 							<label>Jogos</label>

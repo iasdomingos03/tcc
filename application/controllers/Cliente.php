@@ -107,7 +107,7 @@ class Cliente extends CI_Controller{
 				$this->load->view('CadastroCliente',$error);		
 			}else{
 				$this->Cliente_model->inserirCliente($data);
-				$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso!</div>");
+				$success = array('mensagens' => "<div class='alert alert-success'>Cadastro realizado com sucesso! A sua primeira senha de acesso corresponde ao seu <strong>CPF</strong>.</div>");
 				$this->load->view('CadastroCliente',$success);	
 			}	
 		}
@@ -163,7 +163,6 @@ class Cliente extends CI_Controller{
 				$this->session->set_userdata("cli_nome",$cli_nome);
 				$this->session->set_userdata("cli_senha",$cli_senha);
 				$this->session->set_userdata("cli_cpf",$cli_cpf);
-				echo "Olaaaaaa";
 				header("Location:".base_url().'index.php/Cliente/logado');
 			}else{
 				$error=array('mensagens' => "<div class='alert alert-danger'>Login ou senha incorretos!</div>");

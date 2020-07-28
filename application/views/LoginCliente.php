@@ -67,10 +67,6 @@
                                     </div>
                                 </li>
                             </ul>
-                            <form class="form-check-inline">
-                                <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                                <button type="button" class="btn btn-success">Buscar</button>
-                            </form>
                         </div>
                     </div>
                 </nav>

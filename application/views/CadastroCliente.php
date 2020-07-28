@@ -73,10 +73,6 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                                     </div>
                                 </li>
                             </ul>
-                            <form class="form-check-inline">
-                                <input class="form-control mr-2" type="search" placeholder="O que você procura?">
-                                <button type="button" class="btn btn-success">Buscar</button>
-                            </form>
                         </div>
                     </div>
 
@@ -95,7 +91,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control cpf" id="cpf" name="cli_cpf" placeholder="xxx.xxx.xxx-xx" onblur="return validaCPF(this)">
+                                    <input type="text" class="form-control cpf" id="cpf" name="cli_cpf" placeholder="xxx.xxx.xxx-xx" onblur="ValidaCPF()">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -155,7 +151,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-3 mr-1 ">
-                                <input type="submit" class="btn btn-success btn-block" value="Cadastrar" />
+                                <input type="submit" class="btn btn-success btn-block" value="Cadastrar" onclick="ValidaCPF()" />
                             </div>
                             <div class="col-sm-3 ">
                                 <input type="reset" class="btn btn-secondary btn-block" value="Limpar"/>
@@ -176,43 +172,65 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 
 
             <script type="text/javascript">
-              //   var cel = function (val) {
-              //     return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-              // },
-              // spOptions = {
-              //     onKeyPress: function(val, e, field, options) {
-              //         field.mask(cel.apply({}, arguments), options);
-              //     }
-              // };
-              // $('.sp_celphones').mask(cel, spOptions);
-            //   function validaCPF(cpf) {
-            //     var Soma;
-            //     var Resto;
-            //     Soma = 0;
-            //     cpf=document.getElementById('cpf').value;
-            //     cpf=cpf.replace('.','').replace('.','').replace('-','');
-            //      // cpf=cpf.replace('/[\.\-]/g','');
-            //      if (cpf == "00000000000"){
-            //        alert(cpf);
-            //    }
 
-            //      for (i=1; i<=9; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (11 - i);
-            //         Resto = (Soma * 10) % 11;
+                let CPF = document.querySelector("#cpf");
 
-            //     if ((Resto == 10) || (Resto == 11))  Resto = 0;
-            //     if (Resto != parseInt(cpf.substring(9, 10)) ) return false;
+                function ValidaCPF() {
+                 let aux = CPF.value;
+                 console.log("aux" + aux);
+                 let varCpf = aux.replace(".", "").replace(".", "").replace("-","");
+                 console.log("var" + varCpf);
 
-            //     Soma = 0;
-            //     for (i = 1; i <= 10; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (12 - i);
-            //         Resto = (Soma * 10) % 11;
+                 let soma = 0;
+                 let verificador1 = 0;
+                 let verificador2 = 0;
 
-            //     if ((Resto == 10) || (Resto == 11))  Resto = 0;
-            //     if (Resto != parseInt(cpf.substring(10, 11) ) ) return false;
-            //     return true;
-            //     alert(validaCPF(cpf));
-            // }
+                 for (let index = 0, valor = 10; index < 9; index++, valor--) {
+                     soma += varCpf[index] * valor;
+                 }
 
-        </script>
+                 verificador1 = soma * 10 % 11;
 
-    </body>
-    </html>
+                 if (verificador1 == 10) {
+                     verificador1 = 0;
+                 }
+
+
+ //------------------------------------------------
+ soma = 0;
+ for (let index = 0, valor = 11; index < 9; index++, valor--) {
+     soma += varCpf[index] * valor;
+ }
+ soma += verificador1 * 2;
+
+ verificador2 = soma * 10 % 11;
+
+ if (verificador2 == 10) {
+     verificador2 = 0;
+ }
+
+
+ if (verificador1 != varCpf[9] || verificador2 != varCpf[10]) {
+     CPF.value = "";
+ }else{
+  if(
+    varCpf[0]==varCpf[1] &&
+    varCpf[1]==varCpf[2] &&
+    varCpf[2]==varCpf[3] &&
+    varCpf[3]==varCpf[4] &&
+    varCpf[4]==varCpf[5] &&
+    varCpf[5]==varCpf[6] &&
+    varCpf[6]==varCpf[7] &&
+    varCpf[7]==varCpf[8] &&
+    varCpf[8]==varCpf[9] &&
+    varCpf[9]==varCpf[10]){
+
+    CPF.value="";
+}
+}
+}
+</script>
+
+
+</body>
+</html>

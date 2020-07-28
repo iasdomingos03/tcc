@@ -58,7 +58,6 @@ if($CI->session->userdata("cli_email")=='' || $CI->session->userdata("cli_senha"
                             clip-rule="evenodd" />
                         </svg></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item ml-2" href="#">Pedidos</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/exibirDados'?>>Dados</a>
                             <a class="dropdown-item ml-2" href=<?=base_url().'index.php/Cliente/logoff'?>>Sair</a>
                         </div>
@@ -633,7 +632,31 @@ if(++$pec==4) break;
 </div>
 
 </div><!--Fechamento container-->
+<br>
+<footer class="container-fluid bg-dark">
+    <h3 class="text-white text-center mb-5">
+        Faça seu pedido pelos telefones:
+    </h3>
 
+    <div class="row">
+        <div class="col-4">
+            <h5 class="text-white">Telefone:</h5>
+            <p class="text-break text-white"  style="font-size: 20px;">(12) XXXX-XXXX</p>
+
+        </div>
+
+        <div class="col-4">
+            <h5 class="text-white">Celular:</h5>
+            <p class="text-break text-white" style="font-size: 20px;">(12) XXXXX-XXXX</p>
+        </div>
+        <div class=" col-4 container text-center mb-2">
+            <h5 class="text-white">WhatsApp:</h5>
+            <p class="text-white" style="font-size: 20px;"><img src="<?=base_url();?>public/img/Whatsapp.png" width="40px" height="40px" alt="Responsive image">  XXXXX-XXXX</p>
+        </div>
+    </div>
+
+
+</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 

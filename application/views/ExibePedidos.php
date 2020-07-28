@@ -38,7 +38,7 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 		<nav id="sidebar">
 			<ul class="list-unstyled components">
 				<li>
-					<a>PEDIDOS</a>
+					<a style="background-color: #28a745;color: white">PEDIDOS</a>
 					<ul class="list-unstyled">
 						<li>
 							<input type="radio" name="rdb" value="PManutencao">
@@ -98,7 +98,8 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 									</td>
 									<td>	
 										<?php
-										foreach($data as $datas){ ?>
+										foreach($data as $datas){
+											  ?>
 											<?php echo $datas['pman_descricao']."</br></br>"; ?>
 											<?php
 										}
@@ -144,16 +145,18 @@ defined('BASEPATH') or exit('No direct sript acess allowed');
 										<td><?php echo $cli['cli_nome'];?></td>
 										<td><?php echo $cli['cli_email'];?></td>
 									<?php } ?>
-									<td><?php echo $rows_mmontagem['pmon_codigo']; ?></td>	
-									<?php
-									foreach($data as $datas){ ?>
-										<div class='row'>
-											<td  nowrap="nowrap"><?php echo $datas['pec_nome']?>
-											<?php echo $datas['catp_nome'];?></td>
-										</div>
+									<td><?php echo $rows_mmontagem['pmon_codigo']; ?></td>
+									<td>
 										<?php
-									}
-									?>
+										foreach($data as $datas){ ?>
+											<td><?php echo $datas['pec_nome']?></td>
+											<?php
+										}
+										
+										foreach($data as $dat){ ?>
+											<td><?php echo $dat['catp_nome'];?></td>
+										 <?php }?>
+									</td>
 								</tr>
 								<?php
 							} ?>
